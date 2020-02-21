@@ -1,0 +1,11 @@
+*.js
+!jest.config.js
+
+*.d.ts
+
+.idea
+.prettierrc
+
+node_modules
+build
+test/reports

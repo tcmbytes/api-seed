@@ -1,0 +1,13 @@
+{
+    "name": "api-seed",
+    "version": "0.1.0",
+    "description": "API Seed package",
+    "license": "MIT",
+    "repository": {
+        "type" : "git",
+        "url" : "https://github.com/alexcristea/api-seed.git"
+    },
+    "dependencies": {
+        "dotenv": "^8.2.0"
+    }
+  }

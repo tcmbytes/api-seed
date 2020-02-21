@@ -1,0 +1,14 @@
+{
+    "files.exclude": {
+        "**/.git": true,
+        "**/.DS_Store": true,
+        "**/*.js": {
+            "when": "$(basename).ts"
+        },
+        "**/*.js.map": true
+    },
+    "prettier.printWidth": 120,
+    "prettier.semi": false,
+    "eslint.enable": false,
+    "prettier.singleQuote": true
+}
