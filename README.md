@@ -2,19 +2,19 @@
 
 ## Project setup
 
-Make sure to have [Node.js](https://nodejs.org) and [npm](https://www.npmjs.com/get-npm) installed on your machine before continuing with the setup.
+Make sure to have [Node.js](https://nodejs.org) and [yarn](https://yarnpkg.com) installed on your machine before continuing with the setup.
 
 ```bash
 $ node --version
 v11.14.0
 
-$ npm --version
-6.13.2
+$ yarn --version
+1.22.4
 ```
 
 ### Clone the project locally
 
-If you have `SSH` setup on your account, run the following command: 
+If you have `SSH` setup on your account, run the following command:
 
 ```bash
 $ git clone git@github.com:alexcristea/api-seed.git
@@ -30,10 +30,10 @@ $ git clone https://github.com/alexcristea/api-seed.git
 
 Change the working directory to the repo directory.
 
- To install the project dependencies, run the following install command:
+To install the project dependencies, run the following install command:
 
 ```bash
-$ npm install
+$ yarn
 ```
 
 ## Development
@@ -50,7 +50,7 @@ PORT=8080
 To start the app on a local server, run the following command from the root directoy of the project:
 
 ```bash
-$ npm run api:start
+$ yarn api:start
 ```
 
 ### Run tests
@@ -58,13 +58,13 @@ $ npm run api:start
 To run the unit test, run the following command from the root directoy of the project:
 
 ```bash
-$ npm run test
+$ yarn test
 ```
 
 To continuously run the unit tests as you code, run the following command:
 
 ```bash
-$ npm run test:watch
+$ yarn test:watch
 ```
 
 The generated tests reports are available in `./tests/reports/` directory.
@@ -74,7 +74,7 @@ The generated tests reports are available in `./tests/reports/` directory.
 To continuously watch for file changes and check for syntax errors, run the following command:
 
 ```bash
-$ npm run watch
+$ yarn watch
 ```
 
 ### Docker
@@ -89,13 +89,34 @@ Docker version 19.03.5, build 633a0ea
 To build the Docker image, run the following command from the root directoy of the project:
 
 ```bash
-$ npm run docker:build
+$ yarn docker:build
 ```
 
 To run the Docker image, run the following command from the root directoy of the project:
 
 ```bash
-$ npm run docker:run
+$ yarn docker:run
+```
+
+### AWS
+
+Make sure to have [AWS Cli](https://aws.amazon.com/cli/) installed on your machine.
+
+```bash
+$ aws --version
+aws-cli/1.16.240 Python/3.7.4 Darwin/19.4.0 botocore/1.12.230
+```
+
+To build the AWS deploy image, run the following command from the root directoy of the project:
+
+```bash
+$ yarn aws:build
+```
+
+To publish the AWS deploy image, run the following command from the root directoy of the project:
+
+```bash
+$ yarn aws:publish
 ```
 
 ## Architecute and design

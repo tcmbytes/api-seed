@@ -8,19 +8,25 @@
     "url": "https://github.com/alexcristea/api-seed.git"
   },
   "scripts": {
+    ":clean": "rm -rf ./build",
+    ":compile": "tsc && cp ./src/package.json ./build/src/package.json",
+    ":install": "cd ./build/src && yarn install --production",
     "dkr:image:build": "docker build -t ${npm_package_name} --file ./infrastructure/containerization/Dockerfile ./build/src",
     "dkr:container:run": "docker container run --publish 8080:8080 --detach --name ${npm_package_name} ${npm_package_name}:latest",
     "dkr:container:remove": "docker rm ${npm_package_name}",
     "test": "jest --maxWorkers=100%",
     "test:watch": "jest --watchAll --maxWorkers=100%",
     "watch": "tsc -w",
-    "build": "rm -rf ./build && tsc && cp ./src/package.json ./build/src/package.json && cd ./build/src && npm install",
+    "build": "run-s :clean :compile :install",
     "start": "node ./build/src/delivery/api/app.js",
     "api:build": "run-s test build",
     "api:start": "run-s test build start",
     "docker:build": "run-s test build dkr:image:build",
     "docker:run": "run-s test build dkr:image:build dkr:container:run",
-    "docker:rerun": "run-s test build dkr:image:build dkr:container:remove dkr:container:run"
+    "docker:rerun": "run-s test build dkr:image:build dkr:container:remove dkr:container:run",
+    "aws:build": "run-s build && (cd build && zip -r deploy.zip .)",
+    "aws:lambda:loggingFunction": "aws lambda update-function-code --function-name hello-world-handler --zip-file fileb://build/deploy.zip",
+    "aws:publish": "run-s aws:build aws:lambda:loggingFunction :clean"
   },
   "devDependencies": {
     "@types/faker": "^4.1.9",
