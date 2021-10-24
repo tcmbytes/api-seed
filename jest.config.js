@@ -1,9 +1,9 @@
 module.exports = {
   displayName: 'unit',
-  roots: ['<rootDir>/test'],
+  roots: ['<rootDir>/src'],
   testMatch: ['**/*.test.ts'],
   transform: {
-    '^.+\\.tsx?$': 'ts-jest'
+    '^.+\\.tsx?$': 'ts-jest',
   },
   reporters: [
     'default',
@@ -13,8 +13,8 @@ module.exports = {
         publicPath: './test/reports/unit',
         filename: 'index.html',
         expand: true,
-        theme: 'darkTheme'
-      }
-    ]
-  ]
+        theme: 'darkTheme',
+      },
+    ],
+  ],
 }

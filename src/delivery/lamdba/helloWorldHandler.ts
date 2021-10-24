@@ -1,8 +1,8 @@
-import sayHello from '../../domain/hello-world'
+import { sayHelloUseCase } from '../../domain/usecases'
 
 module.exports.handler = async (event: any, context: any) => {
   try {
-    let response = sayHello({ name: event.queryStringParameters.name })
+    let response = sayHelloUseCase({ name: event.queryStringParameters.name })
 
     context.succeed({
       statusCode: 200,
