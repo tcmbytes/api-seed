@@ -2,7 +2,8 @@ import { sayHelloUseCase } from '../../domain/usecases'
 
 module.exports.handler = async (event: any, context: any) => {
   try {
-    let response = sayHelloUseCase({ name: event.queryStringParameters.name })
+    let usecase = sayHelloUseCase({})
+    let response = usecase({ name: event.queryStringParameters.name })
 
     context.succeed({
       statusCode: 200,

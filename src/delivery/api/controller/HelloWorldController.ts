@@ -2,7 +2,8 @@ import { sayHelloUseCase } from '../../../domain/usecases'
 
 export const HelloWorldController = async (req: any, res: any, next: any) => {
   try {
-    let result = sayHelloUseCase({ name: req.params.name })
+    let usecase = sayHelloUseCase({})
+    let result = usecase({ name: req.params.name })
     res.status(200).send(result)
   } catch (error) {
     console.log(`> ${error.message}`)
