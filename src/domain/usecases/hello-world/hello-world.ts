@@ -1,12 +1,12 @@
 import { UseCaseConstructor } from '../../boundaries/usecase'
 
-interface Props {}
+export interface Props {}
 
-interface Request {
+export interface Request {
   name: string
 }
 
-interface Response {
+export interface Response {
   message: string
 }
 
