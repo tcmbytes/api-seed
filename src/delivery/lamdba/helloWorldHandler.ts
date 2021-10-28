@@ -1,20 +1,23 @@
+import { APIGatewayProxyHandler } from 'aws-lambda'
 import { sayHelloUseCase } from '../../domain/usecases'
 
-module.exports.handler = async (event: any, context: any) => {
+export const handler: APIGatewayProxyHandler = async (event) => {
   try {
     let usecase = sayHelloUseCase({})
-    let response = usecase({ name: event.queryStringParameters.name })
+    let name = event.queryStringParameters ? ['name'] : ''
 
-    context.succeed({
+    let response = usecase({ name: name as string })
+
+    return {
       statusCode: 200,
       body: JSON.stringify(response),
-    })
+    }
   } catch (error) {
     console.log(`> ${error.message}`)
-    context.fail({
+    return {
       status: 'error',
       statusCode: 400,
-      message: error.message,
-    })
+      body: error.message,
+    }
   }
 }
