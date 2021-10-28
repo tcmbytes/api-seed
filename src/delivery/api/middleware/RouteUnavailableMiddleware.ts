@@ -1,4 +1,6 @@
-export const RouteUnavailableMiddleware = (req: any, res: any, next: any) => {
+import { Handler } from 'express'
+
+export const routeUnavailableMiddleware: Handler = (req, res, next) => {
   const statusCode = 404
   const message = `Cannot ${req.method} ${req.originalUrl}`
 
@@ -6,6 +8,6 @@ export const RouteUnavailableMiddleware = (req: any, res: any, next: any) => {
   res.status(statusCode).json({
     status: 'error',
     statusCode,
-    message
+    message,
   })
 }

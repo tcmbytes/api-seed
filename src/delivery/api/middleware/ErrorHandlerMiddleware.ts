@@ -1,10 +1,12 @@
-export const ErrorHandlerMiddleware = (err: any, req: any, res: any, next: any) => {
+import { ErrorRequestHandler } from 'express'
+
+export const errorHandlerMiddleware: ErrorRequestHandler = (err, req, res, next) => {
   const { message, statusCode } = err
 
   console.log(`> ${message}`)
   res.status(statusCode).json({
     status: 'error',
     statusCode,
-    message
+    message,
   })
 }

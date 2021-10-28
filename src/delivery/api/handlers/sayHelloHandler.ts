@@ -5,7 +5,7 @@ interface Params {
   usecase: sayHelloUseCaseType
 }
 
-export const sayHelloController: RouteHandlerConstructor<Params> = (params) => async (req, res) => {
+export const sayHelloHandler: RouteHandlerConstructor<Params> = (params) => async (req, res) => {
   try {
     let { usecase } = params
     let result = usecase({ name: req.params.name })

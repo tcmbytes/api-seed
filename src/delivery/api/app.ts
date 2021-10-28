@@ -1,6 +1,7 @@
-import { ErrorHandlerMiddleware } from './middleware/ErrorHandlerMiddleware'
-import { RouteUnavailableMiddleware } from './middleware/RouteUnavailableMiddleware'
-import { sayHelloRouteResolver } from './factories/sayHelloControllerFactory'
+import { errorHandlerMiddleware, routeUnavailableMiddleware } from './middleware'
+
+import { routeResolver } from './types'
+import { sayHelloHandlerFactory } from './factories'
 
 const dotenv = require('dotenv')
 dotenv.config()
@@ -12,10 +13,10 @@ const express = require('express')
 const app = express()
 app.use(express.json())
 
-app.get('/say-hello/:name', sayHelloRouteResolver)
+app.get('/say-hello/:name', routeResolver(sayHelloHandlerFactory))
 
-app.use(RouteUnavailableMiddleware)
-app.use(ErrorHandlerMiddleware)
+app.use(routeUnavailableMiddleware)
+app.use(errorHandlerMiddleware)
 
 app.listen(port, hostname, () => {
   console.log(`> Server running at http://${hostname}:${port}/`)
