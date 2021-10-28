@@ -1,7 +1,6 @@
 import { ErrorHandlerMiddleware } from './middleware/ErrorHandlerMiddleware'
-import { HelloWorldController } from './controller/HelloWorldController'
 import { RouteUnavailableMiddleware } from './middleware/RouteUnavailableMiddleware'
-import { sayHelloFactory } from './factories/SayHelloUseCaseFactory'
+import { sayHelloRouteResolver } from './factories/sayHelloControllerFactory'
 
 const dotenv = require('dotenv')
 dotenv.config()
@@ -13,7 +12,7 @@ const express = require('express')
 const app = express()
 app.use(express.json())
 
-app.get('/say-hello/:name', HelloWorldController(sayHelloFactory))
+app.get('/say-hello/:name', sayHelloRouteResolver)
 
 app.use(RouteUnavailableMiddleware)
 app.use(ErrorHandlerMiddleware)

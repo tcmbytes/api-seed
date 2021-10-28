@@ -1,14 +1,16 @@
-import { UseCaseConstructor } from '../../boundaries/usecase'
+import { UseCase, UseCaseConstructor } from '../../boundaries/usecase'
 
-export interface Props {}
+interface Props {}
 
-export interface Request {
+interface Request {
   name: string
 }
 
-export interface Response {
+interface Response {
   message: string
 }
+
+export type sayHelloUseCaseType = UseCase<Request, Response>
 
 export const sayHelloUseCase: UseCaseConstructor<Props, Request, Response> = (props) => (request) => {
   return {
