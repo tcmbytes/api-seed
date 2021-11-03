@@ -18,7 +18,7 @@
     "test:watch": "jest --watchAll --maxWorkers=100%",
     "watch": "tsc -w",
     "build": "run-s :clean :compile :install",
-    "start": "node ./build/delivery/api/app.js",
+    "start": "node ./build/delivery/main/index.js",
     "api:build": "run-s test build",
     "api:start": "run-s test build start",
     "docker:build": "run-s test build dkr:image:build",
