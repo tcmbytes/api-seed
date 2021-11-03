@@ -1,1 +1,1 @@
-export * from './sayHelloHandlerFactory'
+export * from './makeGetHelloHandler'

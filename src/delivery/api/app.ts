@@ -1,7 +1,7 @@
 import { errorHandlerMiddleware, routeUnavailableMiddleware } from './middleware'
 
-import { routeResolver } from './types'
-import { sayHelloHandlerFactory } from './factories'
+import { makeGetHelloHandler } from './factories'
+import { resolveRoute } from './types'
 
 const dotenv = require('dotenv')
 dotenv.config()
@@ -13,7 +13,7 @@ const express = require('express')
 const app = express()
 app.use(express.json())
 
-app.get('/say-hello/:name', routeResolver(sayHelloHandlerFactory))
+app.get('/say-hello/:name', resolveRoute(makeGetHelloHandler))
 
 app.use(routeUnavailableMiddleware)
 app.use(errorHandlerMiddleware)

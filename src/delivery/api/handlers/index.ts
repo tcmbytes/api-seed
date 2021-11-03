@@ -1,1 +1,1 @@
-export * from './sayHelloHandler'
+export * from './getHelloHandler'
