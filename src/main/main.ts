@@ -8,5 +8,5 @@ import { startServer } from './server'
   const logger = makeLogger({ context })
 
   setupProcessListeners({ logger })
-  startServer()
+  startServer({ logger })
 })()

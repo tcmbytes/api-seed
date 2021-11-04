@@ -1,15 +1,22 @@
 import { errorHandlerMiddleware, routeUnavailableMiddleware } from './middleware'
 
+import { Logger } from '../../shared/logger'
 import { makeGetHelloHandler } from './factories'
 import { resolveRoute } from './types'
 
-interface Params {
+interface Options {
   port: number
   hostname: string
 }
 
+interface Params {
+  logger: Logger
+  options: Options
+}
+
 export const setupServer = (params: Params) => {
-  const { port, hostname } = params
+  const { logger, options } = params
+  const { port, hostname } = options
 
   const express = require('express')
   const server = express()
@@ -22,9 +29,14 @@ export const setupServer = (params: Params) => {
 
   server
     .listen(port, hostname, () => {
-      console.log(`> Server running at http://${hostname}:${port}/`)
+      logger.info('MAIN setupServer was invoked', {
+        details: `Server running at http://${hostname}:${port}/`,
+      })
     })
     .on('error', () => {
+      logger.error('MAIN setupServer failed', {
+        details: `Server failed running at http://${hostname}:${port}/`,
+      })
       process.exit(1)
     })
 }
