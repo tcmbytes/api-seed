@@ -1,7 +1,12 @@
+import { makeContext } from '../shared/logger/context'
+import { makeLogger } from '../shared/logger/logger'
 import { setupProcessListeners } from './process'
 import { startServer } from './server'
 ;
 (async () => {
-  setupProcessListeners({})
+  const context = makeContext()
+  const logger = makeLogger({ context })
+
+  setupProcessListeners({ logger })
   startServer()
 })()
