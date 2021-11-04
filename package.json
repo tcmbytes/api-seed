@@ -29,10 +29,13 @@
     "aws:publish": "run-s aws:build aws:lambda:loggingFunction :clean"
   },
   "devDependencies": {
+    "@types/aws-lambda": "^8.10.84",
+    "@types/express": "^4.17.13",
     "@types/faker": "^4.1.9",
     "@types/jest": "^25.1.2",
     "@types/node": "^13.7.1",
     "@types/npm": "^2.0.31",
+    "@types/uuid": "^8.3.1",
     "faker": "^4.1.0",
     "jest": "^25.1.0",
     "jest-html-reporters": "^1.2.1",
@@ -43,9 +46,8 @@
     "typescript": "^3.7.5"
   },
   "dependencies": {
-    "@types/aws-lambda": "^8.10.84",
-    "@types/express": "^4.17.13",
     "dotenv": "^8.2.0",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "uuid": "^8.3.2"
   }
 }
