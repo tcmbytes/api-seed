@@ -1,4 +1,4 @@
-import { makeHelloHandler } from './factories'
-import { resolveHandler } from './types'
+import { makeGetHelloHandler } from './factories'
+import { resolveHandler } from './utils'
 
-module.exports.handler = resolveHandler(makeHelloHandler)
+module.exports.handler = resolveHandler(makeGetHelloHandler)

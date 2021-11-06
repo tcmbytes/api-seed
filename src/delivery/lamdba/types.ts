@@ -1,17 +1,11 @@
-import { APIGatewayEvent, APIGatewayProxyHandler, Callback, Context } from 'aws-lambda'
+import { APIGatewayEvent, APIGatewayProxyEvent, APIGatewayProxyResult, Callback, Context } from 'aws-lambda'
 
-export type HandlerFactory = (event: APIGatewayEvent, context: Context) => APIGatewayProxyHandler
-export type HandlerConstructor<T> = (params: T) => APIGatewayProxyHandler
+export type HandlerFactory = (event: APIGatewayEvent, context: Context) => Handler
 
-export const resolveHandler =
-  (factory: HandlerFactory) => async (event: APIGatewayEvent, context: Context, callback: Callback) => {
-    try {
-      let handler = factory(event, context)
-      return await handler(event, context, callback)
-    } catch (err) {
-      return {
-        statusCode: 500,
-        body: err.message as string,
-      }
-    }
-  }
+export type HandlerConstructor<T> = (params: T) => Handler
+
+export type Handler = (
+  event: APIGatewayProxyEvent,
+  context: Context,
+  callback: Callback<APIGatewayProxyResult>
+) => APIGatewayProxyResult | Promise<APIGatewayProxyResult>

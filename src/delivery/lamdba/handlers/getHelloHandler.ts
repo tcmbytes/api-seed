@@ -5,23 +5,23 @@ interface Params {
   usecase: sayHelloUseCaseType
 }
 
-export const sayHelloHandler: HandlerConstructor<Params> = (params) => async (event) => {
+export const getHelloHandler: HandlerConstructor<Params> = (params) => async (event) => {
   try {
     let name = event.queryStringParameters ? ['name'] : 'World'
 
     let { usecase } = params
-    let response = usecase({ name: name as string })
+    let response = await usecase({ name: name as string })
 
     return {
       statusCode: 200,
       body: JSON.stringify(response),
     }
   } catch (error) {
-    console.log(`> ${error.message}`)
+    const { message } = error as Error
     return {
-      status: 'error',
+      status: 'Bad Request',
       statusCode: 400,
-      body: error.message,
+      body: message,
     }
   }
 }
