@@ -8,15 +8,15 @@ interface Params {
 export const getHelloHandler: RouteHandlerConstructor<Params> = (params) => async (req, res) => {
   try {
     let { usecase } = params
-    let result = usecase({ name: req.params.name })
+    let result = await usecase({ name: req.params.name })
 
     res.status(200).send(result)
   } catch (error) {
-    console.log(`> ${error.message}`)
+    const { message } = error as Error
     res.status(400).json({
-      status: 'error',
+      status: 'Bad Request',
       statusCode: 400,
-      message: error.message,
+      message: message,
     })
   }
 }

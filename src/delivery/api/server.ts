@@ -1,8 +1,8 @@
-import { errorHandlerMiddleware, routeUnavailableMiddleware } from './middleware'
+import { errorHandlerMiddleware, loggingContextMiddleware, routeUnavailableMiddleware } from './middleware'
 
 import { Logger } from '../../shared/logger'
 import { makeGetHelloHandler } from './factories'
-import { resolveRoute } from './types'
+import { resolveRoute } from './utils'
 
 interface Options {
   port: number
@@ -21,6 +21,7 @@ export const setupServer = (params: Params) => {
   const express = require('express')
   const server = express()
   server.use(express.json())
+  server.use(loggingContextMiddleware)
 
   server.get('/say-hello/:name', resolveRoute(makeGetHelloHandler))
 

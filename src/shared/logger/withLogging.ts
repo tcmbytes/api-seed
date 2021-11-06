@@ -11,8 +11,8 @@ export const withLogging =
 
       return result
     } catch (err) {
-      logger.info(`${component} ${funcName} failed`, {
-        reason: err,
+      logger.error(`${component} ${funcName} failed`, {
+        details: err,
       })
       throw err
     }

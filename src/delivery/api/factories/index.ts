@@ -1,1 +1,2 @@
-export * from './makeGetHelloHandler'
+export * from './makeGetHelloHandler';
+

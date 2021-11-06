@@ -1,12 +1,20 @@
 import { ErrorRequestHandler } from 'express'
+import { makeContextFromRequest } from '../utils'
+import { makeLogger } from '../../../shared/logger'
 
 export const errorHandlerMiddleware: ErrorRequestHandler = (err, req, res, next) => {
-  const { message, statusCode } = err
+  const { message } = err
 
-  console.log(`> ${message}`)
-  res.status(statusCode).json({
-    status: 'error',
-    statusCode,
+  const context = makeContextFromRequest(req)
+  const logger = makeLogger({ context })
+
+  logger.error(`API errorHandlerMiddleware failed`, {
+    details: err,
+  })
+
+  res.status(500).json({
+    status: 'Internal Server Error',
+    statusCode: 500,
     message,
   })
 }
