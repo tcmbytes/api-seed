@@ -10,8 +10,8 @@ export const makeGetHelloHandler: HandlerFactory = (req, res) => {
 
   let usecase = sayHelloUseCase({})
   let handler = getHelloHandler({
-    usecase,
+    usecase: withLogging(logger, 'API', 'sayHelloUseCase')(usecase),
   })
 
-  return withLogging(logger, 'API')(handler)
+  return withLogging(logger, 'API', 'getHelloHandler')(handler)
 }
