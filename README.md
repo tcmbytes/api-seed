@@ -1,5 +1,6 @@
 # API Seed
 
+The seed from which your software grows.
 ## Project setup
 
 Make sure to have [Node.js](https://nodejs.org) and [yarn](https://yarnpkg.com) installed on your machine before continuing with the setup.
@@ -41,6 +42,12 @@ $ yarn
 ### Start local web server
 
 To configure the `hostname` and `port` (default: `localhost:8080`) of the web server, make sure to configure the environment variables in the `.env` file:
+
+```bash
+cp .example.env .env
+```
+
+or copy the next lines into your `.env` file:
 
 ```bash
 HOSTNAME='localhost'
