@@ -1,7 +1,7 @@
 import { HandlerConstructor } from '../types'
 import { sayHelloUseCaseType } from '../../../domain/usecases'
 
-interface Params {
+type Params = {
   usecase: sayHelloUseCaseType
 }
 

@@ -1,7 +1,7 @@
 import { Logger } from '../shared/logger'
 import { setupServer } from '../delivery/api/server'
 
-interface Params {
+type Params = {
   logger: Logger
 }
 

@@ -1,6 +1,6 @@
 import { Logger } from '../shared/logger'
 
-interface Params {
+type Params = {
   logger: Logger
 }
 

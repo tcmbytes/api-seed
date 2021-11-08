@@ -4,12 +4,12 @@ import { Logger } from '../../shared/logger'
 import { makeGetHelloHandler } from './factories'
 import { resolveRoute } from './utils'
 
-interface Options {
+type Options = {
   port: number
   hostname: string
 }
 
-interface Params {
+type Params = {
   logger: Logger
   options: Options
 }

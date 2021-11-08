@@ -1,6 +1,6 @@
 import { Contex, Logger } from './'
 
-interface Params {
+type Params = {
   context: Contex
 }
 

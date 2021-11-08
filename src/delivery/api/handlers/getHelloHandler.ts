@@ -1,7 +1,7 @@
 import { RouteHandlerConstructor } from '../types'
 import { sayHelloUseCaseType } from '../../../domain/usecases'
 
-interface Params {
+type Params = {
   usecase: sayHelloUseCaseType
 }
 
