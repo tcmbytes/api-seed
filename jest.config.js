@@ -5,6 +5,7 @@ module.exports = {
   transform: {
     '^.+\\.tsx?$': 'ts-jest',
   },
+  setupFiles: ['jest-date-mock'],
   reporters: [
     'default',
     [
