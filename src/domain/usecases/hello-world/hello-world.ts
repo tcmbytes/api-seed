@@ -1,4 +1,4 @@
-import { UseCase, UseCaseConstructor } from '../../boundaries/usecase'
+import { UseCase, UseCaseConstructor } from '../../boundaries/UseCase'
 
 type Props = {}
 
