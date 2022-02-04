@@ -3,6 +3,7 @@
 
 *.d.ts
 
+.env
 .idea
 .prettierrc
 

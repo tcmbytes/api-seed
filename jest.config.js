@@ -11,7 +11,7 @@ module.exports = {
     [
       'jest-html-reporters',
       {
-        publicPath: './test/reports/unit',
+        publicPath: './test/reports',
         filename: 'index.html',
         expand: true,
         theme: 'darkTheme',
