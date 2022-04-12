@@ -1,4 +1,5 @@
 import { errorHandlerMiddleware, loggingContextMiddleware, routeUnavailableMiddleware } from './middleware'
+import express, { Express } from 'express'
 
 import { Logger } from '../../shared/logger'
 import { makeGetHelloHandler } from './factories'
@@ -10,16 +11,15 @@ type Options = {
 }
 
 type Params = {
+  server: Express
   logger: Logger
   options: Options
 }
 
 export const setupServer = (params: Params) => {
-  const { logger, options } = params
+  const { logger, options, server } = params
   const { port, hostname } = options
 
-  const express = require('express')
-  const server = express()
   server.use(express.json())
   server.use(loggingContextMiddleware)
 

@@ -1,11 +1,12 @@
 import { Logger } from '../shared/logger'
 
 type Params = {
+  process: NodeJS.Process
   logger: Logger
 }
 
 export const setupProcessListeners = (params: Params) => {
-  const { logger } = params
+  const { process, logger } = params
 
   logger.info('MAIN setupProcessListeners was invoked')
 

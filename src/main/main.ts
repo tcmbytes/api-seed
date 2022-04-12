@@ -1,15 +1,25 @@
 import 'dotenv/config'
 
 import { makeContext } from '../shared/logger/context'
+import { makeExpressServer } from './factory/express'
 import { makeLogger } from '../shared/logger/logger'
 import { setupProcessListeners } from './process'
-import { startServer } from './server'
+import { setupServer } from '../delivery/api/server'
 
-;
-(async () => {
+const main = () => {
   const context = makeContext()
   const logger = makeLogger({ context })
+  const server = makeExpressServer()
 
-  setupProcessListeners({ logger })
-  startServer({ logger })
-})()
+  const hostname = process.env.HOSTNAME ?? '0.0.0.0'
+  const port = parseInt(process.env.PORT ?? '8080')
+
+  setupProcessListeners({ process, logger })
+  setupServer({
+    server,
+    logger,
+    options: { port, hostname },
+  })
+}
+
+main()
