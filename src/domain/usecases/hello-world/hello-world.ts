@@ -12,7 +12,7 @@ type Response = {
   message: string
 }
 
-export type sayHelloUseCaseType = UseCase<Request, Response>
+export type SayHelloUseCaseType = UseCase<Request, Response>
 
 export const sayHelloUseCase: UseCaseConstructor<Params, Request, Response> = (params) => async (request) => {
   const { name } = request

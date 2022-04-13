@@ -1,8 +1,8 @@
 import { HandlerConstructor } from '../types'
-import { sayHelloUseCaseType } from '../../../domain/usecases'
+import { SayHelloUseCaseType } from '../../../domain/usecases'
 
 type Params = {
-  usecase: sayHelloUseCaseType
+  usecase: SayHelloUseCaseType
 }
 
 export const getHelloHandler: HandlerConstructor<Params> = (params) => async (event) => {
