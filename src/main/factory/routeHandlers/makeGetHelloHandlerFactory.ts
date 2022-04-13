@@ -1,13 +1,13 @@
 import { makeLogger, withLogging } from '../../../shared/logger'
 
-import { HandlerFactory } from '../types'
+import { HandlerFactory } from './types'
 import { InMemoryGreetingsRepo } from '../../../repository/InMemoryGreetingsRepo'
 import { WithLoggingGreetingRepo } from '../../../shared/logger/LoggingGreetingRepo'
-import { getHelloHandler } from '../handlers'
-import { makeContextFromRequest } from '../utils'
+import { getHelloHandler } from '../../../delivery/api/handlers'
+import { makeContextFromRequest } from '../../../delivery/api/utils'
 import { sayHelloUseCase } from '../../../domain/usecases'
 
-export const makeGetHelloHandler: HandlerFactory = (req, res) => {
+export const makeGetHelloHandlerFactory: HandlerFactory = (req, _res) => {
   const context = makeContextFromRequest(req)
   const logger = makeLogger({ context })
 

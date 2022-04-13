@@ -6,7 +6,7 @@ import { WithLoggingGreetingRepo } from '../../../shared/logger/LoggingGreetingR
 import { getHelloHandler } from '../handlers'
 import { sayHelloUseCase } from '../../../domain/usecases'
 
-export const makeGetHelloHandler: HandlerFactory = (event, _context) => {
+export const makeGetHelloHandler: HandlerFactory = (_event, _context) => {
   const context = makeContext()
   const logger = makeLogger({ context })
 

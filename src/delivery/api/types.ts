@@ -1,4 +1,8 @@
-import { Handler, Request, Response } from 'express'
+import { Handler } from 'express'
 
-export type HandlerFactory = (req: Request, res: Response) => Handler
 export type RouteHandlerConstructor<T> = (params: T) => Handler
+
+export interface RouteHandlersFactory {
+  make: (name: string) => Handler
+  getHandlers: () => string[]
+}

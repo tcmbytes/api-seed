@@ -2,8 +2,7 @@ import { errorHandlerMiddleware, loggingContextMiddleware, routeUnavailableMiddl
 import express, { Express } from 'express'
 
 import { Logger } from '../../shared/logger'
-import { makeGetHelloHandler } from './factories'
-import { resolveRoute } from './utils'
+import { RouteHandlersFactory } from './types'
 
 type Options = {
   port: number
@@ -14,16 +13,17 @@ type Params = {
   server: Express
   logger: Logger
   options: Options
+  handlersFactory: RouteHandlersFactory
 }
 
 export const setupServer = (params: Params) => {
-  const { logger, options, server } = params
+  const { logger, options, server, handlersFactory } = params
   const { port, hostname } = options
 
   server.use(express.json())
   server.use(loggingContextMiddleware)
 
-  server.get('/say-hello/:name', resolveRoute(makeGetHelloHandler))
+  server.get('/say-hello/:name', handlersFactory.make('getHelloHandler'))
 
   server.use(routeUnavailableMiddleware)
   server.use(errorHandlerMiddleware)
