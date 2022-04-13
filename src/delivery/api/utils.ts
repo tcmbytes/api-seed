@@ -1,6 +1,4 @@
-import { Handler, Request } from 'express'
-
-import { HandlerFactory } from './types'
+import { Request } from 'express'
 import { makeContext } from '../../shared/logger'
 
 export const makeContextFromRequest = (req: Request) => {
@@ -9,14 +7,3 @@ export const makeContextFromRequest = (req: Request) => {
 
   return context
 }
-
-export const resolveRoute =
-  (factory: HandlerFactory): Handler =>
-  async (req, res, next) => {
-    try {
-      let handler = factory(req, res)
-      return await handler(req, res, next)
-    } catch (err) {
-      next(err)
-    }
-  }
