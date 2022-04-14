@@ -1,12 +1,11 @@
-import { makeContext, makeLogger, withLogging } from '../../../shared/logger'
+import { WithLoggingGreetingRepo, makeContext, makeLogger, withLogging } from '../../../shared/logger'
 
-import { HandlerFactory } from '../types'
+import { HandlerFactory } from './types'
 import { InMemoryGreetingsRepo } from '../../../repository/InMemoryGreetingsRepo'
-import { WithLoggingGreetingRepo } from '../../../shared/logger/LoggingGreetingRepo'
-import { getHelloHandler } from '../handlers'
+import { getHelloHandler } from '../../../delivery/lamdba/handlers'
 import { sayHelloUseCase } from '../../../domain/usecases'
 
-export const makeGetHelloHandler: HandlerFactory = (_event, _context) => {
+export const makeGetHelloHandlerFactory: HandlerFactory = (_event, _context) => {
   const context = makeContext()
   const logger = makeLogger({ context })
 

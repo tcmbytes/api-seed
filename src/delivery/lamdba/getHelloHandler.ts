@@ -1,4 +1,5 @@
-import { makeGetHelloHandler } from './factories'
-import { resolveHandler } from './utils'
+import { makeLambdaHandlersFactory } from '../../main/factory/lamdaHandlers'
 
-module.exports.handler = resolveHandler(makeGetHelloHandler)
+const factory = makeLambdaHandlersFactory()
+
+module.exports.handler = factory.make('getHelloHandler')
