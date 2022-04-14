@@ -1,8 +1,8 @@
 import 'dotenv/config'
 
-import { makeContext } from '../shared/logger/context'
-import { makeExpressServer } from './factory/express'
-import { makeLogger } from '../shared/logger/logger'
+import { makeContext, makeLogger } from '../shared/logger'
+
+import { makeExpressServer } from './factory/drivers'
 import { makeRouteHandlersFactory } from './factory/routeHandlers'
 import { setupProcessListeners } from './process'
 import { setupServer } from '../delivery/api/server'
