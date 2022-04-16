@@ -139,13 +139,19 @@ When implementing new features it is important to keep the [conceptual integrity
 In order to make it easy to understand and extend the codebase, the folder structure mirrors the project architecure:
 
 ```
-•
-├── infrastructure          // code that implements infrastructure as code
-│   └── containerization    // code that implements the Docker image recepie
-├── src                     // code that implements business logic, flows and other concerns (i.e. delivery)
-│   ├── delivery            // code that handles the external delivery of business logic and flows (i.e. web server).
-│   └── domain              // code that implements busines flow and logic. It is agnostic of the way it's deployed.
-└── tests                   // code that tests the business logic.
-    ├── reports             // generated tests reports.
-    └── unit                // code that tests and documents the business logic.
+api-seed
+├── infrastructure          // Infrastructure as code (e.g. Docker, AWS)
+│   └── containerization    // Example of Docker image
+├── src                     // Production code and associated unit tests
+│   ├── main                // Main layer
+│   ├── delivery            // Delivery layer
+│   ├── shared              // Shared functionalities between layers (e.g. Logging)
+│   ├── repository          // Adapters layers (e.g. Repositories or Services)
+│   └── domain              // Domain layer. It is agnostic of the way it's deployed
+│       ├── boundaries      // Boundaraires to the external dependencies.
+│       ├── entities        // Entities to the external dependencies.
+│       └── usecases        // Busines logic. 
+└── tests                   // Testing code
+    ├── reports             // Generated reports
+    └── e2e                 // End-2-end testing
 ```
