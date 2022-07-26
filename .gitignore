@@ -2,10 +2,10 @@
 *.d.ts
 
 .env
-.idea
 .prettierrc
-.build
-.reports
 
-coverage
+.idea
+.build
+
 node_modules
+reports

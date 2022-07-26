@@ -2,6 +2,7 @@
   "roots": [
     "<rootDir>/src"
   ],
+  "maxWorkers": "50%",
   "testMatch": [
     "**/*.test.ts"
   ],
@@ -14,13 +15,14 @@
     [
       "jest-html-reporters",
       {
-        "publicPath": ".reports",
-        "filename": "index.html",
+        "publicPath": "reports",
+        "filename": "summary.html",
         "expand": true,
         "theme": "darkTheme"
       }
     ]
   ],
+  "coverageDirectory": "<rootDir>/reports/coverage",
   "coverageReporters": [
     "lcov"
   ]
