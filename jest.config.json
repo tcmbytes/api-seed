@@ -1,14 +1,11 @@
 {
-  "displayName": "unit",
   "roots": [
     "<rootDir>/src"
   ],
   "testMatch": [
     "**/*.test.ts"
   ],
-  "transform": {
-    "^.+\\.tsx?$": "ts-jest"
-  },
+  "preset": "ts-jest",
   "setupFiles": [
     "jest-date-mock"
   ],
@@ -23,5 +20,8 @@
         "theme": "darkTheme"
       }
     ]
+  ],
+  "coverageReporters": [
+    "lcov"
   ]
 }
