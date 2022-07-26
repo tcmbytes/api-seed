@@ -1,12 +1,10 @@
 *.js
-!jest.config.js
-
 *.d.ts
 
 .env
 .idea
 .prettierrc
+.build
+.reports
 
 node_modules
-build
-test/reports

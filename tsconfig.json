@@ -9,7 +9,7 @@
     "pretty": true,
     "strict": true,
     "target": "ES2020",
-    "outDir": "build",
+    "outDir": ".build",
     "declaration": true,
     "alwaysStrict": true,
     "inlineSources": true,
@@ -31,5 +31,5 @@
     "moduleResolution": "node",
   },
   "include": ["./src/**/*.ts"],
-  "exclude": ["cdk.out", "build"]
+  "exclude": [ ".build", "cdk.out"]
 }
