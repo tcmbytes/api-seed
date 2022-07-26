@@ -2,7 +2,7 @@ import { ErrorRequestHandler } from 'express'
 import { makeContextFromRequest } from '../utils'
 import { makeLogger } from '../../../shared/logger'
 
-export const errorHandlerMiddleware: ErrorRequestHandler = (err, req, res, next) => {
+export const errorHandlerMiddleware: ErrorRequestHandler = (err, req, res, _next) => {
   const { message } = err
 
   const context = makeContextFromRequest(req)

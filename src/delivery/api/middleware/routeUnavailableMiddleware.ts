@@ -2,7 +2,7 @@ import { Handler } from 'express'
 import { makeContextFromRequest } from '../utils'
 import { makeLogger } from '../../../shared/logger'
 
-export const routeUnavailableMiddleware: Handler = (req, res, next) => {
+export const routeUnavailableMiddleware: Handler = (req, res, _next) => {
   const message = `Cannot ${req.method} ${req.originalUrl}`
 
   const context = makeContextFromRequest(req)
