@@ -15,6 +15,7 @@
     "dkr:container:run": "docker container run --publish 8080:8080 --detach --name ${npm_package_name} ${npm_package_name}:latest",
     "dkr:container:remove": "docker rm ${npm_package_name}",
     "dpdm": "dpdm ./src/* --tsconfig ./tsconfig.json --exclude ./node_modules",
+    "typecheck": "tsc --pretty",
     "test": "jest",
     "test:coverage": "jest --coverage",
     "test:watch": "jest --watchAll",
