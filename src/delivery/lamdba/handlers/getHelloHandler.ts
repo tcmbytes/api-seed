@@ -7,10 +7,10 @@ type Params = {
 
 export const getHelloHandler: HandlerConstructor<Params> = (params) => async (event) => {
   try {
-    let name = event.queryStringParameters ? ['name'] : 'World'
+    const name = event.queryStringParameters ? ['name'] : 'World'
 
-    let { usecase } = params
-    let response = await usecase({ name: name as string })
+    const { usecase } = params
+    const response = await usecase({ name: name as string })
 
     return {
       statusCode: 200,

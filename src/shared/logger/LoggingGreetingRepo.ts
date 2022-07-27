@@ -11,9 +11,9 @@ export const WithLoggingGreetingRepo = (params: Params): GreetingsRepo => {
   const { repo, logger } = params
 
   const save = (greeting: Greeting): Promise<void> => {
-    logger.info(`REPO GreetingsRepo.save was invoked`)
+    logger.info('REPO GreetingsRepo.save was invoked')
     repo.save(greeting)
-    logger.info(`REPO GreetingsRepo.save finished`)
+    logger.info('REPO GreetingsRepo.save finished')
 
     return Promise.resolve()
   }

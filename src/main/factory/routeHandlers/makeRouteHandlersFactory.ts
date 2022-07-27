@@ -16,8 +16,8 @@ const make =
   (name: string): Handler =>
   async (req, res, next) => {
     try {
-      let factory = handlerFactories[name]
-      let handler = factory(req, res)
+      const factory = handlerFactories[name]
+      const handler = factory(req, res)
       return await handler(req, res, next)
     } catch (err) {
       next(err)

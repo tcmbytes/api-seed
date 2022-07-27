@@ -14,11 +14,11 @@ describe('sayHello', () => {
     clear()
   })
 
-  test("should return the 'Hi, Anonymous!' message when called with the input name 'Anonymous'", async () => {
-    let request = { name: 'Anonymous' }
+  test('should return the "Hi, Anonymous!" message when called with the input name "Anonymous"', async () => {
+    const request = { name: 'Anonymous' }
 
-    let sut = sayHelloUseCase({ repo })
-    let response = await sut(request)
+    const sut = sayHelloUseCase({ repo })
+    const response = await sut(request)
 
     expect(response).toStrictEqual({
       message: 'Hi, Anonymous!',
@@ -29,9 +29,9 @@ describe('sayHello', () => {
     const fakeDate = new Date()
     advanceTo(fakeDate)
 
-    let request = { name: 'Anonymous' }
+    const request = { name: 'Anonymous' }
 
-    let sut = sayHelloUseCase({ repo })
+    const sut = sayHelloUseCase({ repo })
     await sut(request)
 
     expect(saveMock).toBeCalledTimes(1)

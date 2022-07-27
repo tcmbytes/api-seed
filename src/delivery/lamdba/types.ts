@@ -3,7 +3,7 @@ import { APIGatewayProxyEvent, APIGatewayProxyResult, Callback, Context } from '
 export type Handler = (
   event: APIGatewayProxyEvent,
   context: Context,
-  callback: Callback<APIGatewayProxyResult>
+  callback: Callback<APIGatewayProxyResult>,
 ) => APIGatewayProxyResult | Promise<APIGatewayProxyResult>
 
 export type HandlerConstructor<T> = (params: T) => Handler

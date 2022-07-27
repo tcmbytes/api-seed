@@ -7,8 +7,8 @@ type Params = {
 
 export const getHelloHandler: RouteHandlerConstructor<Params> = (params) => async (req, res) => {
   try {
-    let { usecase } = params
-    let result = await usecase({ name: req.params.name })
+    const { usecase } = params
+    const result = await usecase({ name: req.params.name })
 
     res.status(200).send(result)
   } catch (error) {
