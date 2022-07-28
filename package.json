@@ -32,7 +32,8 @@
     "docker:rerun": "run-s test build dkr:image:build dkr:container:remove dkr:container:run",
     "aws:build": "run-s build && (cd build && zip -r deploy.zip .)",
     "aws:lambda:loggingFunction": "aws lambda update-function-code --function-name hello-world-handler --zip-file fileb://build/deploy.zip",
-    "aws:publish": "run-s aws:build aws:lambda:loggingFunction :clean"
+    "aws:publish": "run-s aws:build aws:lambda:loggingFunction :clean",
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.84",
@@ -57,7 +58,8 @@
     "ts-node": "^8.6.2",
     "tsconfig-paths": "^4.0.0",
     "tslint": "^6.0.0",
-    "typescript": "^3.7.5"
+    "typescript": "^3.7.5",
+    "husky": "^8.0.0"
   },
   "dependencies": {
     "dotenv": "^8.2.0",
