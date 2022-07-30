@@ -9,7 +9,7 @@
   },
   "scripts": {
     ":clean": "rm -rf .build",
-    ":compile": "tsc && cp ./src/package.json .build/package.json",
+    ":compile": "tsc && cp ./package.json .build/package.json",
     ":install": "cd .build && yarn install --production",
     "dkr:image:build": "docker build -t ${npm_package_name} --file ./infrastructure/containerization/Dockerfile .build",
     "dkr:container:run": "docker container run --publish 8080:8080 --detach --name ${npm_package_name} ${npm_package_name}:latest",
