@@ -7,9 +7,6 @@
     "**/*.test.ts"
   ],
   "preset": "ts-jest",
-  "setupFiles": [
-    "jest-date-mock"
-  ],
   "reporters": [
     "default",
     [

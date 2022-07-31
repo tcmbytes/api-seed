@@ -1,7 +1,6 @@
 import { Generator, GreetingsRepo } from '../../boundaries'
 import { mock, mockClear } from 'jest-mock-extended'
 
-import { clear } from 'jest-date-mock'
 import { sayHelloUseCase } from './hello-world'
 
 describe('sayHello', () => {
@@ -13,7 +12,6 @@ describe('sayHello', () => {
   afterEach(() => {
     mockClear(repo)
     mockClear(dateGenerator)
-    clear()
   })
 
   test('should return the "Hi, Anonymous!" message when called with the input name "Anonymous"', async () => {
