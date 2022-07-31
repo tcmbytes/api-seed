@@ -17,7 +17,11 @@ export const makeGetHelloHandlerFactory: HandlerFactory = (req, _res) => {
     logger,
   })
 
-  const usecase = sayHelloUseCase({ repo: decoratedRepo })
+  const dateGenerator = {
+    next: () => new Date(),
+  }
+
+  const usecase = sayHelloUseCase({ repo: decoratedRepo, dateGenerator })
   const decoratedUsecase = withLogging(logger, 'USECASE', 'sayHelloUseCase')(usecase)
 
   const handler = getHelloHandler({

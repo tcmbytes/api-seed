@@ -1,7 +1,8 @@
-import { GreetingsRepo, UseCase, UseCaseConstructor } from '../../boundaries'
+import { Generator, GreetingsRepo, UseCase, UseCaseConstructor } from '../../boundaries'
 
 type Params = {
   repo: GreetingsRepo
+  dateGenerator: Generator<Date>
 }
 
 type Request = {
@@ -15,12 +16,12 @@ type Response = {
 export type SayHelloUseCaseType = UseCase<Request, Response>
 
 export const sayHelloUseCase: UseCaseConstructor<Params, Request, Response> = (params) => async (request) => {
+  const { repo, dateGenerator } = params
   const { name } = request
-  const { repo } = params
 
   await repo.save({
     name: name,
-    savedOn: new Date(),
+    savedOn: dateGenerator.next(),
   })
 
   return {

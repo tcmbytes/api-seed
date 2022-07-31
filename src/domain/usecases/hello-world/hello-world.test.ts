@@ -1,23 +1,24 @@
-import { advanceTo, clear } from 'jest-date-mock'
+import { Generator, GreetingsRepo } from '../../boundaries'
+import { mock, mockClear } from 'jest-mock-extended'
 
-import { GreetingsRepo } from '../../boundaries'
+import { clear } from 'jest-date-mock'
 import { sayHelloUseCase } from './hello-world'
 
 describe('sayHello', () => {
-  const saveMock: jest.MockedFunction<GreetingsRepo['save']> = jest.fn()
-  const repo: GreetingsRepo = {
-    save: saveMock,
-  }
+  const repo = mock<GreetingsRepo>()
+  const dateGenerator = mock<Generator<Date>>()
+
+  const sut = sayHelloUseCase({ repo, dateGenerator })
 
   afterEach(() => {
-    saveMock.mockReset()
+    mockClear(repo)
+    mockClear(dateGenerator)
     clear()
   })
 
   test('should return the "Hi, Anonymous!" message when called with the input name "Anonymous"', async () => {
     const request = { name: 'Anonymous' }
 
-    const sut = sayHelloUseCase({ repo })
     const response = await sut(request)
 
     expect(response).toStrictEqual({
@@ -26,16 +27,15 @@ describe('sayHello', () => {
   })
 
   test('should save the name and request date into the GreetingsRepo', async () => {
-    const fakeDate = new Date()
-    advanceTo(fakeDate)
+    const fakeDate = new Date('2022-07-20')
+    dateGenerator.next.mockReturnValue(fakeDate)
 
     const request = { name: 'Anonymous' }
 
-    const sut = sayHelloUseCase({ repo })
     await sut(request)
 
-    expect(saveMock).toBeCalledTimes(1)
-    expect(saveMock).toBeCalledWith({
+    expect(repo.save).toBeCalledTimes(1)
+    expect(repo.save).toBeCalledWith({
       name: 'Anonymous',
       savedOn: fakeDate,
     })
