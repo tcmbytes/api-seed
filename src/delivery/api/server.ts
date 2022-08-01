@@ -23,7 +23,7 @@ export const setupServer = (params: Params) => {
   server.use(express.json())
   server.use(loggingContextMiddleware)
 
-  server.get('/say-hello/:name', handlersFactory.make('putGreetingHandler'))
+  server.put('/greetings', handlersFactory.make('putGreetingHandler'))
 
   server.use(routeUnavailableMiddleware)
   server.use(errorHandlerMiddleware)
