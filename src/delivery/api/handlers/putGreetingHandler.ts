@@ -5,10 +5,11 @@ type Params = {
   usecase: SayHelloUseCaseType
 }
 
-export const getHelloHandler: RouteHandlerConstructor<Params> = (params) => async (req, res) => {
+export const putGreetingHandler: RouteHandlerConstructor<Params> = (params) => async (req, res) => {
   try {
     const { usecase } = params
-    const result = await usecase({ name: req.params.name })
+    const { name } = req.params
+    const result = await usecase({ name })
 
     res.status(200).send(result)
   } catch (error) {
