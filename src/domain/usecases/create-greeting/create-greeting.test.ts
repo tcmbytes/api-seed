@@ -1,20 +1,20 @@
 import { Generator, GreetingsRepo } from '../../boundaries'
 import { mock, mockClear } from 'jest-mock-extended'
 
-import { sayHelloUseCase } from './hello-world'
+import { createGreetingUseCase } from './create-greeting'
 
-describe('sayHello', () => {
+describe('createGreetingUseCase should', () => {
   const repo = mock<GreetingsRepo>()
   const dateGenerator = mock<Generator<Date>>()
 
-  const sut = sayHelloUseCase({ repo, dateGenerator })
+  const sut = createGreetingUseCase({ repo, dateGenerator })
 
   afterEach(() => {
     mockClear(repo)
     mockClear(dateGenerator)
   })
 
-  test('should return the "Hi, Anonymous!" message when called with the input name "Anonymous"', async () => {
+  test('return the "Hi, Anonymous!" message when called with the input name "Anonymous"', async () => {
     const request = { name: 'Anonymous' }
 
     const response = await sut(request)
@@ -24,7 +24,7 @@ describe('sayHello', () => {
     })
   })
 
-  test('should save the name and request date into the GreetingsRepo', async () => {
+  test('save the name and request date into the GreetingsRepo', async () => {
     const fakeDate = new Date('2022-07-20')
     dateGenerator.next.mockReturnValue(fakeDate)
 

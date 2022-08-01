@@ -1,8 +1,8 @@
+import { CreateGreetingUseCase } from '../../../domain/usecases'
 import { RouteHandlerConstructor } from '../types'
-import { SayHelloUseCaseType } from '../../../domain/usecases'
 
 type Params = {
-  usecase: SayHelloUseCaseType
+  usecase: CreateGreetingUseCase
 }
 
 export const putGreetingHandler: RouteHandlerConstructor<Params> = (params) => async (req, res) => {

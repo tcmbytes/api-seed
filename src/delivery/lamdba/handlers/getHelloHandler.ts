@@ -1,8 +1,8 @@
+import { CreateGreetingUseCase } from '../../../domain/usecases'
 import { HandlerConstructor } from '../types'
-import { SayHelloUseCaseType } from '../../../domain/usecases'
 
 type Params = {
-  usecase: SayHelloUseCaseType
+  usecase: CreateGreetingUseCase
 }
 
 export const getHelloHandler: HandlerConstructor<Params> = (params) => async (event) => {

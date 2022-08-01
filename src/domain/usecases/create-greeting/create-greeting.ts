@@ -13,9 +13,9 @@ type Response = {
   message: string
 }
 
-export type SayHelloUseCaseType = UseCase<Request, Response>
+export type CreateGreetingUseCase = UseCase<Request, Response>
 
-export const sayHelloUseCase: UseCaseConstructor<Params, Request, Response> = (params) => async (request) => {
+export const createGreetingUseCase: UseCaseConstructor<Params, Request, Response> = (params) => async (request) => {
   const { repo, dateGenerator } = params
   const { name } = request
 
