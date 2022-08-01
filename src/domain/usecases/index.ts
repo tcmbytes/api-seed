@@ -1,1 +1,1 @@
-export * from './hello-world'
+export * from './create-greeting'
