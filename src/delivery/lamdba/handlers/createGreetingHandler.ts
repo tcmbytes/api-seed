@@ -5,7 +5,7 @@ type Params = {
   usecase: CreateGreetingUseCase
 }
 
-export const getHelloHandler: HandlerConstructor<Params> = (params) => async (event) => {
+export const createGreetingHandler: HandlerConstructor<Params> = (params) => async (event) => {
   try {
     const name = event.queryStringParameters ? ['name'] : 'World'
 

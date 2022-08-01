@@ -1,7 +1,7 @@
 import { Handler, LambdaHandlersFactory } from '../../../delivery/lamdba/types'
 
 import { HandlerFactory } from './types'
-import { makeGetHelloHandlerFactory } from './makeGetHelloHandlerFactory'
+import { makeCreateGreetingHandlerFactory } from './makeCreateGreetingHandlerFactory'
 
 export const makeLambdaHandlersFactory = (): LambdaHandlersFactory => ({
   make: make,
@@ -9,7 +9,7 @@ export const makeLambdaHandlersFactory = (): LambdaHandlersFactory => ({
 })
 
 const handlerFactories: { [key: string]: HandlerFactory } = {
-  getHelloHandler: makeGetHelloHandlerFactory,
+  createGreetingHandler: makeCreateGreetingHandlerFactory,
 }
 
 const make =

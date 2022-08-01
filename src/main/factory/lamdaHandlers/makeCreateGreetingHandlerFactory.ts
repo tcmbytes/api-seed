@@ -2,10 +2,10 @@ import { WithLoggingGreetingRepo, makeContext, makeLogger, withLogging } from '.
 
 import { HandlerFactory } from './types'
 import { InMemoryGreetingsRepo } from '../../../repository/InMemoryGreetingsRepo'
+import { createGreetingHandler } from '../../../delivery/lamdba/handlers'
 import { createGreetingUseCase } from '../../../domain/usecases'
-import { getHelloHandler } from '../../../delivery/lamdba/handlers'
 
-export const makeGetHelloHandlerFactory: HandlerFactory = (_event, _context) => {
+export const makeCreateGreetingHandlerFactory: HandlerFactory = (_event, _context) => {
   const context = makeContext()
   const logger = makeLogger({ context })
 
@@ -22,7 +22,7 @@ export const makeGetHelloHandlerFactory: HandlerFactory = (_event, _context) => 
   const usecase = createGreetingUseCase({ repo: decoratedRepo, dateGenerator })
   const decoratedUsecase = withLogging(logger, 'USECASE', 'sayHelloUseCase')(usecase)
 
-  const handler = getHelloHandler({
+  const handler = createGreetingHandler({
     usecase: decoratedUsecase,
   })
   const decoratedHandler = withLogging(logger, 'LAMBDA', 'getHelloHandler')(handler)
