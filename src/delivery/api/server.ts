@@ -24,6 +24,7 @@ export const setupServer = (params: Params) => {
   server.use(loggingContextMiddleware)
 
   server.put('/greetings', handlersFactory.make('putGreetingHandler'))
+  server.get('/greetings', handlersFactory.make('getGreetingsHandler'))
 
   server.use(routeUnavailableMiddleware)
   server.use(errorHandlerMiddleware)
