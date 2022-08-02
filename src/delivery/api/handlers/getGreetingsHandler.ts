@@ -1,15 +1,14 @@
-import { CreateGreetingUseCase } from '../../../domain/usecases'
+import { ListGreetingsUseCase } from 'domain/usecases'
 import { RouteHandlerConstructor } from '../types'
 
 type Params = {
-  usecase: CreateGreetingUseCase
+  usecase: ListGreetingsUseCase
 }
 
-export const putGreetingHandler: RouteHandlerConstructor<Params> = (params) => async (req, res) => {
+export const getGreetingsHandler: RouteHandlerConstructor<Params> = (params) => async (_req, res) => {
   try {
     const { usecase } = params
-    const { name } = req.body
-    const result = await usecase({ name })
+    const result = await usecase()
 
     res.status(200).send(result)
   } catch (error) {

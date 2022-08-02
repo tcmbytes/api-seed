@@ -1,6 +1,7 @@
 import { Handler } from 'express'
 import { HandlerFactory } from './types'
 import { RouteHandlersFactory } from '../../../delivery/api/types'
+import { makeGetGreetingsHandlerFactory } from './makeGetGreetingsHandlerFactory'
 import { makePutGreetingHandlerFactory } from './makePutGreetingHandlerFactory'
 
 export const makeRouteHandlersFactory = (): RouteHandlersFactory => ({
@@ -10,6 +11,7 @@ export const makeRouteHandlersFactory = (): RouteHandlersFactory => ({
 
 const handlerFactories: { [key: string]: HandlerFactory } = {
   putGreetingHandler: makePutGreetingHandlerFactory,
+  getGreetingsHandler: makeGetGreetingsHandlerFactory,
 }
 
 const make =
