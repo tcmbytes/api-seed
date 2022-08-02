@@ -18,8 +18,18 @@ export const InMemoryGreetingsRepo = (): GreetingsRepo => {
     return Promise.resolve()
   }
 
+  const findAll = (): Promise<Greeting[]> => {
+    const result = greetings.map((row) => rowToGreeting(row))
+    return Promise.resolve(result)
+  }
+
+  const rowToGreeting = (row: Row): Greeting => ({
+    name: row.name,
+    savedOn: new Date(row.date),
+  })
+
   return {
     save: save,
-    findAll: () => Promise.resolve([]),
+    findAll: findAll,
   }
 }

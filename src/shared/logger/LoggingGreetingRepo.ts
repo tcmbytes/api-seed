@@ -18,8 +18,16 @@ export const WithLoggingGreetingRepo = (params: Params): GreetingsRepo => {
     return Promise.resolve()
   }
 
+  const findAll = (): Promise<Greeting[]> => {
+    logger.info('REPO GreetingsRepo.findAll was invoked')
+    const greetings = repo.findAll()
+    logger.info('REPO GreetingsRepo.findAll finished')
+
+    return Promise.resolve(greetings)
+  }
+
   return {
     save: save,
-    findAll: () => Promise.resolve([]),
+    findAll: findAll,
   }
 }
