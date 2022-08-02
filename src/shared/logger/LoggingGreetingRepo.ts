@@ -20,5 +20,6 @@ export const WithLoggingGreetingRepo = (params: Params): GreetingsRepo => {
 
   return {
     save: save,
+    findAll: () => Promise.resolve([]),
   }
 }

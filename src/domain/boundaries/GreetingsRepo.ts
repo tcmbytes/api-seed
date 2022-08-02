@@ -5,4 +5,5 @@ export type Greeting = {
 
 export interface GreetingsRepo {
   save: (greeting: Greeting) => Promise<void>
+  findAll: () => Promise<Greeting[]>
 }

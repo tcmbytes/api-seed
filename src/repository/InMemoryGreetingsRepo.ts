@@ -20,5 +20,6 @@ export const InMemoryGreetingsRepo = (): GreetingsRepo => {
 
   return {
     save: save,
+    findAll: () => Promise.resolve([]),
   }
 }
