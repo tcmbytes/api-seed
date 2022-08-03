@@ -5,5 +5,6 @@ export type Greeting = {
 
 export interface GreetingsRepo {
   save: (greeting: Greeting) => Promise<void>
+  findById: (id: string) => Promise<Greeting | null>
   findAll: () => Promise<Greeting[]>
 }

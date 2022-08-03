@@ -18,6 +18,14 @@ export const WithLoggingGreetingRepo = (params: Params): GreetingsRepo => {
     return Promise.resolve()
   }
 
+  const findById = (id: string): Promise<Greeting | null> => {
+    logger.info('REPO GreetingsRepo.findAll was invoked')
+    const greeting = repo.findById(id)
+    logger.info('REPO GreetingsRepo.findAll finished')
+
+    return Promise.resolve(greeting)
+  }
+
   const findAll = (): Promise<Greeting[]> => {
     logger.info('REPO GreetingsRepo.findAll was invoked')
     const greetings = repo.findAll()
@@ -28,6 +36,7 @@ export const WithLoggingGreetingRepo = (params: Params): GreetingsRepo => {
 
   return {
     save: save,
+    findById: findById,
     findAll: findAll,
   }
 }
