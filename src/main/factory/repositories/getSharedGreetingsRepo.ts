@@ -1,5 +1,5 @@
-import { GreetingsRepo } from 'domain/boundaries'
-import { InMemoryGreetingsRepo } from 'repository/InMemoryGreetingsRepo'
+import { GreetingsRepo } from '../../../domain/boundaries'
+import { InMemoryGreetingsRepo } from '../../../repository/InMemoryGreetingsRepo'
 
 let instance: GreetingsRepo
 
