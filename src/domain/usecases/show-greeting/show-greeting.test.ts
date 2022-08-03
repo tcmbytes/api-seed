@@ -1,7 +1,8 @@
-import { Greeting, GreetingsRepo } from '../../boundaries'
 import { mock, mockClear } from 'jest-mock-extended'
 
+import { Greeting } from '../../types'
 import { GreetingNotFoundError } from '../../errors'
+import { GreetingsRepo } from '../../boundaries'
 import { showGreetingUseCase } from './show-greeting'
 
 describe('showGreetingUseCase should', () => {

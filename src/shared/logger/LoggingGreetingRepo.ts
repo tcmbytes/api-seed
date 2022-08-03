@@ -1,6 +1,6 @@
-import { Greeting, GreetingsRepo } from '../../domain/boundaries'
-
-import { Logger } from '.'
+import { Greeting } from 'domain/types'
+import { GreetingsRepo } from 'domain/boundaries'
+import { Logger } from './types'
 
 type Params = {
   repo: GreetingsRepo
@@ -19,9 +19,9 @@ export const WithLoggingGreetingRepo = (params: Params): GreetingsRepo => {
   }
 
   const findById = (id: string): Promise<Greeting | null> => {
-    logger.info('REPO GreetingsRepo.findAll was invoked')
+    logger.info('REPO GreetingsRepo.findById was invoked')
     const greeting = repo.findById(id)
-    logger.info('REPO GreetingsRepo.findAll finished')
+    logger.info('REPO GreetingsRepo.findById finished')
 
     return Promise.resolve(greeting)
   }

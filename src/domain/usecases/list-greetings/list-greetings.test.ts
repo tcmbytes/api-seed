@@ -1,6 +1,7 @@
-import { Greeting, GreetingsRepo } from '../../boundaries'
 import { mock, mockClear } from 'jest-mock-extended'
 
+import { Greeting } from '../../types'
+import { GreetingsRepo } from '../../boundaries'
 import { listGreetingsUseCase } from './list-greetings'
 
 describe('listGreetingsUseCase should', () => {

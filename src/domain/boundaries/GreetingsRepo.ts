@@ -1,7 +1,4 @@
-export type Greeting = {
-  name: string
-  savedOn: Date
-}
+import { Greeting } from '../types'
 
 export interface GreetingsRepo {
   save: (greeting: Greeting) => Promise<void>

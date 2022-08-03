@@ -1,4 +1,6 @@
-import { Greeting, GreetingsRepo, UseCase, UseCaseConstructor } from '../../boundaries'
+import { GreetingsRepo, UseCase, UseCaseConstructor } from '../../boundaries'
+
+import { Greeting } from '../../types'
 
 type Params = {
   repo: GreetingsRepo

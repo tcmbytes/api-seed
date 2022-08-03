@@ -1,4 +1,5 @@
-import { Greeting, GreetingsRepo } from '../domain/boundaries'
+import { Greeting } from 'domain/types'
+import { GreetingsRepo } from 'domain/boundaries'
 
 type Row = {
   name: string
