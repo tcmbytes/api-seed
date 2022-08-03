@@ -25,6 +25,7 @@ export const setupServer = (params: Params) => {
 
   server.put('/greetings', handlersFactory.make('putGreetingHandler'))
   server.get('/greetings', handlersFactory.make('getGreetingsHandler'))
+  server.get('/greetings/:greetingId', handlersFactory.make('getGreetingHandler'))
 
   server.use(routeUnavailableMiddleware)
   server.use(errorHandlerMiddleware)
