@@ -9,9 +9,9 @@ type Params = {
 export const getGreetingHandler: RouteHandlerConstructor<Params> = (params) => async (req, res) => {
   try {
     const { usecase } = params
-    const { id } = req.params
+    const { greetingId } = req.params
 
-    const result = await usecase({ id })
+    const result = await usecase({ id: greetingId })
 
     res.status(200).send(result)
   } catch (error) {
