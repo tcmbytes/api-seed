@@ -20,8 +20,12 @@ export const createGreetingUseCase: UseCaseConstructor<Params, Request, Response
   const { name } = request
 
   await repo.save({
-    name: name,
-    savedOn: dateGenerator.next(),
+    id: '',
+    from: name,
+    to: '',
+    message: '',
+    createdOn: dateGenerator.next(),
+    modifiedOn: dateGenerator.next(),
   })
 
   return {

@@ -2,8 +2,12 @@ import { Greeting } from 'domain/types'
 import { GreetingsRepo } from 'domain/boundaries'
 
 type Row = {
-  name: string
-  date: number
+  id: string
+  from: string
+  to: string
+  message: string
+  created_date: number
+  modified_date: number
 }
 
 export const InMemoryGreetingsRepo = (): GreetingsRepo => {
@@ -11,8 +15,12 @@ export const InMemoryGreetingsRepo = (): GreetingsRepo => {
 
   const save = (greeting: Greeting): Promise<void> => {
     const row = {
-      name: greeting.name,
-      date: greeting.savedOn.getTime(),
+      id: greeting.id,
+      from: greeting.from,
+      to: greeting.to,
+      message: greeting.message,
+      created_date: greeting.createdOn.getTime(),
+      modified_date: greeting.modifiedOn.getTime(),
     }
     greetings.push(row)
 
@@ -27,8 +35,12 @@ export const InMemoryGreetingsRepo = (): GreetingsRepo => {
   }
 
   const rowToGreeting = (row: Row): Greeting => ({
-    name: row.name,
-    savedOn: new Date(row.date),
+    id: row.id,
+    from: row.from,
+    to: row.to,
+    message: row.message,
+    createdOn: new Date(row.created_date),
+    modifiedOn: new Date(row.modified_date),
   })
 
   return {

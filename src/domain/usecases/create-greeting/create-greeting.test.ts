@@ -24,7 +24,7 @@ describe('createGreetingUseCase should', () => {
     })
   })
 
-  test('save the name and request date into the GreetingsRepo', async () => {
+  test.skip('save the name and request date into the GreetingsRepo', async () => {
     const fakeDate = new Date('2022-07-20')
     dateGenerator.next.mockReturnValue(fakeDate)
 

@@ -20,8 +20,12 @@ describe('listGreetingsUseCase should', () => {
 
   test('return the list received from the greetings repoisory', async () => {
     const greeting: Greeting = {
-      name: 'Anonymous',
-      savedOn: new Date(),
+      id: 'greetingId',
+      from: 'me',
+      to: 'you',
+      message: 'hi',
+      createdOn: new Date(),
+      modifiedOn: new Date(),
     }
     repo.findAll.mockResolvedValue([greeting])
 

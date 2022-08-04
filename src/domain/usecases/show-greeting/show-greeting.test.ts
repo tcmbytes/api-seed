@@ -15,8 +15,12 @@ describe('showGreetingUseCase should', () => {
 
   test('get the greeting by ID from the greetings repository', async () => {
     const greeting: Greeting = {
-      name: 'Anonymous',
-      savedOn: new Date(),
+      id: 'greetingId',
+      from: 'me',
+      to: 'you',
+      message: 'hi',
+      createdOn: new Date(),
+      modifiedOn: new Date(),
     }
     repo.findById.mockResolvedValue(greeting)
 

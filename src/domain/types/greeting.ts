@@ -1,4 +1,8 @@
 export type Greeting = {
-  name: string
-  savedOn: Date
+  id: string
+  from: string
+  to: string
+  message: string
+  createdOn: Date
+  modifiedOn: Date
 }
