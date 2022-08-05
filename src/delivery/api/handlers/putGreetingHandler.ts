@@ -8,8 +8,9 @@ type Params = {
 export const putGreetingHandler: RouteHandlerConstructor<Params> = (params) => async (req, res) => {
   try {
     const { usecase } = params
-    const { name } = req.body
-    const result = await usecase({ name })
+    const { from, to, message } = req.body
+
+    const result = await usecase({ from, to, message })
 
     res.status(200).send(result)
   } catch (error) {

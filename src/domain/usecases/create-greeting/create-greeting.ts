@@ -1,34 +1,35 @@
 import { Generator, GreetingsRepo, UseCase, UseCaseConstructor } from '../../boundaries'
 
+import { Greeting } from 'domain/types'
+
 type Params = {
   repo: GreetingsRepo
   dateGenerator: Generator<Date>
+  uuidGenerator: Generator<string>
 }
 
 type Request = {
-  name: string
-}
-
-type Response = {
+  from: string
+  to: string
   message: string
 }
 
-export type CreateGreetingUseCase = UseCase<Request, Response>
+export type CreateGreetingUseCase = UseCase<Request, Greeting>
 
-export const createGreetingUseCase: UseCaseConstructor<Params, Request, Response> = (params) => async (request) => {
-  const { repo, dateGenerator } = params
-  const { name } = request
+export const createGreetingUseCase: UseCaseConstructor<Params, Request, Greeting> = (params) => async (request) => {
+  const { repo, dateGenerator, uuidGenerator } = params
+  const { from, to, message } = request
 
-  await repo.save({
-    id: '',
-    from: name,
-    to: '',
-    message: '',
+  const greeting: Greeting = {
+    id: uuidGenerator.next(),
+    from: from,
+    to: to,
+    message: message,
     createdOn: dateGenerator.next(),
     modifiedOn: dateGenerator.next(),
-  })
-
-  return {
-    message: `Hi, ${name}!`,
   }
+
+  await repo.save(greeting)
+
+  return greeting
 }

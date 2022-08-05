@@ -6,6 +6,7 @@ import { createGreetingUseCase } from '../../../domain/usecases'
 import { getSharedGreetingsRepo } from '../repositories'
 import { makeContextFromRequest } from '../../../delivery/api/utils'
 import { putGreetingHandler } from '../../../delivery/api/handlers'
+import { v4 } from 'uuid'
 
 export const makePutGreetingHandlerFactory: HandlerFactory = (req, _res) => {
   const context = makeContextFromRequest(req)
@@ -21,7 +22,11 @@ export const makePutGreetingHandlerFactory: HandlerFactory = (req, _res) => {
     next: () => new Date(),
   }
 
-  const usecase = createGreetingUseCase({ repo: decoratedRepo, dateGenerator })
+  const uuidGenerator = {
+    next: () => v4(),
+  }
+
+  const usecase = createGreetingUseCase({ repo: decoratedRepo, dateGenerator, uuidGenerator })
   const decoratedUsecase = withLogging(logger, 'USECASE', 'sayHelloUseCase')(usecase)
 
   const handler = putGreetingHandler({

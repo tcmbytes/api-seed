@@ -7,10 +7,16 @@ type Params = {
 
 export const createGreetingHandler: HandlerConstructor<Params> = (params) => async (event) => {
   try {
-    const name = event.queryStringParameters ? ['name'] : 'World'
+    const from = event.queryStringParameters ? ['from'] : ''
+    const to = event.queryStringParameters ? ['to'] : ''
+    const message = event.queryStringParameters ? ['message'] : ''
 
     const { usecase } = params
-    const response = await usecase({ name: name as string })
+    const response = await usecase({
+      from: from as string,
+      to: to as string,
+      message: message as string,
+    })
 
     return {
       statusCode: 200,
