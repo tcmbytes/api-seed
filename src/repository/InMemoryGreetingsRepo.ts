@@ -27,7 +27,15 @@ export const InMemoryGreetingsRepo = (): GreetingsRepo => {
     return Promise.resolve()
   }
 
-  const findById = (_id: string): Promise<Greeting | null> => Promise.resolve(null)
+  const findById = (id: string): Promise<Greeting | null> => {
+    const row = greetings.find((greeting) => greeting.id === id)
+    if (!row) {
+      return Promise.resolve(null)
+    }
+
+    const greeting = rowToGreeting(row)
+    return Promise.resolve(greeting)
+  }
 
   const findAll = (): Promise<Greeting[]> => {
     const result = greetings.map((row) => rowToGreeting(row))
