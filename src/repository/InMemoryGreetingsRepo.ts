@@ -11,7 +11,7 @@ type Row = {
 }
 
 export const InMemoryGreetingsRepo = (): GreetingsRepo => {
-  const greetings: Row[] = []
+  const rows: Row[] = []
 
   const save = (greeting: Greeting): Promise<void> => {
     const row = {
@@ -22,13 +22,13 @@ export const InMemoryGreetingsRepo = (): GreetingsRepo => {
       created_date: greeting.createdOn.getTime(),
       modified_date: greeting.modifiedOn.getTime(),
     }
-    greetings.push(row)
+    rows.push(row)
 
     return Promise.resolve()
   }
 
   const findById = (id: string): Promise<Greeting | null> => {
-    const row = greetings.find((greeting) => greeting.id === id)
+    const row = rows.find((greeting) => greeting.id === id)
     if (!row) {
       return Promise.resolve(null)
     }
@@ -38,8 +38,8 @@ export const InMemoryGreetingsRepo = (): GreetingsRepo => {
   }
 
   const findAll = (): Promise<Greeting[]> => {
-    const result = greetings.map((row) => rowToGreeting(row))
-    return Promise.resolve(result)
+    const greetings = rows.map((row) => rowToGreeting(row))
+    return Promise.resolve(greetings)
   }
 
   const rowToGreeting = (row: Row): Greeting => ({
