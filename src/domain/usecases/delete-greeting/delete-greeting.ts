@@ -1,5 +1,7 @@
 import { GreetingsRepo, UseCase, UseCaseConstructor } from '../../boundaries'
 
+import { GreetingNotFoundError } from '../../errors'
+
 type Params = {
   repo: GreetingsRepo
 }
@@ -10,6 +12,14 @@ type Request = {
 
 export type DeleteGreetingUseCase = UseCase<Request, void>
 
-export const deleteGreetingUseCase: UseCaseConstructor<Params, Request, void> = (_params) => async (_request) => {
-  return Promise.resolve()
+export const deleteGreetingUseCase: UseCaseConstructor<Params, Request, void> = (params) => async (request) => {
+  const { repo } = params
+  const { id } = request
+
+  const greeting = await repo.findById(id)
+  if (!greeting) {
+    throw new GreetingNotFoundError(id)
+  }
+
+  await repo.remove(id)
 }

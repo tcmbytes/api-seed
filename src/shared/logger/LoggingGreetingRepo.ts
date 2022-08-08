@@ -34,9 +34,18 @@ export const WithLoggingGreetingRepo = (params: Params): GreetingsRepo => {
     return Promise.resolve(greetings)
   }
 
+  const remove = (id: string): Promise<void> => {
+    logger.info('REPO GreetingsRepo.remove was invoked')
+    repo.remove(id)
+    logger.info('REPO GreetingsRepo.remove finished')
+
+    return Promise.resolve()
+  }
+
   return {
-    save: save,
-    findById: findById,
-    findAll: findAll,
+    save,
+    findById,
+    findAll,
+    remove,
   }
 }
