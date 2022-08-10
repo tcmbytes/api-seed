@@ -111,8 +111,10 @@ Make sure to have [AWS Cli](https://aws.amazon.com/cli/) installed on your machi
 
 ```bash
 $ aws --version
-aws-cli/1.16.240 Python/3.7.4 Darwin/19.4.0 botocore/1.12.230
+aws-cli/2.7.21 Python/3.9.11 Darwin/21.6.0 exe/x86_64 prompt/off
 ```
+
+If needed, run `aws configure` to [configure the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html).
 
 To build the AWS deploy image, run the following command from the root directoy of the project:
 
