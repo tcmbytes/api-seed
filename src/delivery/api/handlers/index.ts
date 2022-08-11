@@ -1,4 +1,5 @@
 export * from './deleteGreetingHandler'
 export * from './getGreetingHandler'
 export * from './getGreetingsHandler'
+export * from './postGreetingHandler'
 export * from './putGreetingHandler'

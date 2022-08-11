@@ -4,6 +4,7 @@ import { RouteHandlersFactory } from '../../../delivery/api/types'
 import { makeDeleteGreetingHandlerFactory } from './makeDeleteGreetingHandlerFactory'
 import { makeGetGreetingHandlerFactory } from './makeGetGreetingHandlerFactory'
 import { makeGetGreetingsHandlerFactory } from './makeGetGreetingsHandlerFactory'
+import { makePostGreetingHandlerFactory } from './makePostGreetingHandlerFactory'
 import { makePutGreetingHandlerFactory } from './makePutGreetingHandlerFactory'
 
 export const makeRouteHandlersFactory = (): RouteHandlersFactory => ({
@@ -16,6 +17,7 @@ const handlerFactories: { [key: string]: HandlerFactory } = {
   deleteGreetingHandler: makeDeleteGreetingHandlerFactory,
   getGreetingsHandler: makeGetGreetingsHandlerFactory,
   putGreetingHandler: makePutGreetingHandlerFactory,
+  postGreetingHandler: makePostGreetingHandlerFactory,
 }
 
 const make =
