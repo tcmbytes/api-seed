@@ -1,5 +1,8 @@
 import { Generator, GreetingsRepo, UseCase, UseCaseConstructor } from '../../boundaries'
 
+import { Greeting } from 'domain/types'
+import { GreetingNotFoundError } from '../../errors'
+
 type Params = {
   repo: GreetingsRepo
   dateGenerator: Generator<Date>
@@ -10,13 +13,24 @@ type Request = {
   message: string
 }
 
-export type UpdateGreetingUseCase = UseCase<Request, void>
+export type UpdateGreetingUseCase = UseCase<Request, Greeting>
 
-export const updateGreetingUseCase: UseCaseConstructor<Params, Request, void> = (params) => async (request) => {
-  const { repo } = params
-  const { id } = request
+export const updateGreetingUseCase: UseCaseConstructor<Params, Request, Greeting> = (params) => async (request) => {
+  const { repo, dateGenerator } = params
+  const { id, message } = request
 
-  await repo.findById(id)
+  const greeting = await repo.findById(id)
+  if (!greeting) {
+    throw new GreetingNotFoundError(id)
+  }
 
-  return Promise.resolve()
+  const uppdatedGreeting = {
+    ...greeting,
+    message,
+    modifiedOn: dateGenerator.next(),
+  }
+
+  await repo.update(uppdatedGreeting)
+
+  return uppdatedGreeting
 }

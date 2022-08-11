@@ -18,6 +18,14 @@ export const WithLoggingGreetingRepo = (params: Params): GreetingsRepo => {
     return Promise.resolve()
   }
 
+  const update = (greeting: Greeting): Promise<void> => {
+    logger.info('REPO GreetingsRepo.update was invoked')
+    repo.update(greeting)
+    logger.info('REPO GreetingsRepo.update finished')
+
+    return Promise.resolve()
+  }
+
   const findById = (id: string): Promise<Greeting | null> => {
     logger.info('REPO GreetingsRepo.findById was invoked')
     const greeting = repo.findById(id)
@@ -44,6 +52,7 @@ export const WithLoggingGreetingRepo = (params: Params): GreetingsRepo => {
 
   return {
     save,
+    update,
     findById,
     findAll,
     remove,

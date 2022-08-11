@@ -1,6 +1,8 @@
 import { Generator, GreetingsRepo } from '../../boundaries'
 import { mock, mockClear } from 'jest-mock-extended'
 
+import { Greeting } from '../../types'
+import { GreetingNotFoundError } from '../../errors'
 import { updateGreetingUseCase } from './update-greeting'
 
 describe('updateGreetingUseCase should', () => {
@@ -15,14 +17,68 @@ describe('updateGreetingUseCase should', () => {
   })
 
   test('get the greeting from the greetings repository', async () => {
-    const request = {
+    const greeting: Greeting = {
+      id: 'greetingId',
+      from: 'me',
+      to: 'you',
+      message: 'hi',
+      createdOn: new Date(),
+      modifiedOn: new Date(),
+    }
+    repo.findById.mockResolvedValue(greeting)
+
+    await sut({
       id: 'greetingId',
       message: 'hi',
-    }
-
-    await sut(request)
+    })
 
     expect(repo.findById).toBeCalledTimes(1)
     expect(repo.findById).toBeCalledWith('greetingId')
+  })
+
+  test('throw GreetingNotFoundError when the greeting is not in the repository', async () => {
+    repo.findById.mockResolvedValue(null)
+
+    const error = new GreetingNotFoundError('greetingId')
+    await expect(
+      sut({
+        id: 'greetingId',
+        message: 'hi',
+      }),
+    ).rejects.toStrictEqual(error)
+  })
+
+  test('update the greeting into the greetings repository', async () => {
+    const greeting: Greeting = {
+      id: 'greetingId',
+      from: 'me',
+      to: 'you',
+      message: 'hi',
+      createdOn: new Date(),
+      modifiedOn: new Date(),
+    }
+    repo.findById.mockResolvedValue(greeting)
+
+    const modifiedOn = new Date('2022-07-20')
+    dateGenerator.next.mockReturnValue(modifiedOn)
+
+    const result = await sut({
+      id: 'greetingId',
+      message: 'hi there',
+    })
+
+    const expected = {
+      id: 'greetingId',
+      from: greeting.from,
+      to: greeting.to,
+      message: 'hi there',
+      createdOn: greeting.createdOn,
+      modifiedOn: new Date('2022-07-20'),
+    }
+
+    expect(repo.update).toBeCalledTimes(1)
+    expect(repo.update).toBeCalledWith(expected)
+
+    expect(result).toStrictEqual(expected)
   })
 })

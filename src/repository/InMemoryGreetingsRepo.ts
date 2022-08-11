@@ -27,6 +27,18 @@ export const InMemoryGreetingsRepo = (): GreetingsRepo => {
     return Promise.resolve()
   }
 
+  const update = (greeting: Greeting): Promise<void> => {
+    const row = rows.find((row) => row.id === greeting.id)
+    if (!row) {
+      return Promise.resolve()
+    }
+
+    row.message = greeting.message
+    row.modified_date = greeting.modifiedOn.getTime()
+
+    return Promise.resolve()
+  }
+
   const findById = (id: string): Promise<Greeting | null> => {
     const row = rows.find((greeting) => greeting.id === id)
     if (!row) {
@@ -58,6 +70,7 @@ export const InMemoryGreetingsRepo = (): GreetingsRepo => {
 
   return {
     save,
+    update,
     findById,
     findAll,
     remove,
