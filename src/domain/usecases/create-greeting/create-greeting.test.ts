@@ -38,8 +38,8 @@ describe('createGreetingUseCase should', () => {
       modifiedOn: fakeDate,
     }
 
-    expect(repo.save).toBeCalledTimes(1)
-    expect(repo.save).toBeCalledWith(expected)
+    expect(repo.create).toBeCalledTimes(1)
+    expect(repo.create).toBeCalledWith(expected)
 
     expect(result).toStrictEqual(expected)
   })

@@ -13,7 +13,7 @@ type Row = {
 export const InMemoryGreetingsRepo = (): GreetingsRepo => {
   let rows: Row[] = []
 
-  const save = (greeting: Greeting): Promise<void> => {
+  const create = (greeting: Greeting): Promise<void> => {
     const row = {
       id: greeting.id,
       from: greeting.from,
@@ -54,7 +54,7 @@ export const InMemoryGreetingsRepo = (): GreetingsRepo => {
     return Promise.resolve(greetings)
   }
 
-  const remove = (id: string): Promise<void> => {
+  const removeById = (id: string): Promise<void> => {
     rows = rows.filter((row) => row.id !== id)
     return Promise.resolve()
   }
@@ -69,10 +69,10 @@ export const InMemoryGreetingsRepo = (): GreetingsRepo => {
   })
 
   return {
-    save,
+    create,
     update,
     findById,
     findAll,
-    remove,
+    removeById,
   }
 }

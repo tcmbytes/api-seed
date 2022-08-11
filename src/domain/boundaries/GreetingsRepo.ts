@@ -1,9 +1,9 @@
 import { Greeting } from '../types'
 
 export interface GreetingsRepo {
-  save: (greeting: Greeting) => Promise<void>
+  create: (greeting: Greeting) => Promise<void>
   update: (greeting: Greeting) => Promise<void>
   findById: (id: string) => Promise<Greeting | null>
   findAll: () => Promise<Greeting[]>
-  remove: (id: string) => Promise<void>
+  removeById: (id: string) => Promise<void>
 }

@@ -29,7 +29,7 @@ export const createGreetingUseCase: UseCaseConstructor<Params, Request, Greeting
     modifiedOn: dateGenerator.next(),
   }
 
-  await repo.save(greeting)
+  await repo.create(greeting)
 
   return greeting
 }

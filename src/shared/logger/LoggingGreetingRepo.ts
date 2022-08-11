@@ -10,10 +10,10 @@ type Params = {
 export const WithLoggingGreetingRepo = (params: Params): GreetingsRepo => {
   const { repo, logger } = params
 
-  const save = (greeting: Greeting): Promise<void> => {
-    logger.info('REPO GreetingsRepo.save was invoked')
-    repo.save(greeting)
-    logger.info('REPO GreetingsRepo.save finished')
+  const create = (greeting: Greeting): Promise<void> => {
+    logger.info('REPO GreetingsRepo.create was invoked')
+    repo.create(greeting)
+    logger.info('REPO GreetingsRepo.create finished')
 
     return Promise.resolve()
   }
@@ -42,19 +42,19 @@ export const WithLoggingGreetingRepo = (params: Params): GreetingsRepo => {
     return Promise.resolve(greetings)
   }
 
-  const remove = (id: string): Promise<void> => {
-    logger.info('REPO GreetingsRepo.remove was invoked')
-    repo.remove(id)
-    logger.info('REPO GreetingsRepo.remove finished')
+  const removeById = (id: string): Promise<void> => {
+    logger.info('REPO GreetingsRepo.removeById was invoked')
+    repo.removeById(id)
+    logger.info('REPO GreetingsRepo.removeById finished')
 
     return Promise.resolve()
   }
 
   return {
-    save,
+    create,
     update,
     findById,
     findAll,
-    remove,
+    removeById,
   }
 }

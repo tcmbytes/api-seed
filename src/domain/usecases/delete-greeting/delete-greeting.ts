@@ -21,5 +21,5 @@ export const deleteGreetingUseCase: UseCaseConstructor<Params, Request, void> = 
     throw new GreetingNotFoundError(id)
   }
 
-  await repo.remove(id)
+  await repo.removeById(id)
 }

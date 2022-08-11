@@ -34,7 +34,7 @@ describe('deleteGreetingUseCase should', () => {
 
     await sut({ id: 'greetingId' })
 
-    expect(repo.remove).toBeCalledTimes(1)
-    expect(repo.remove).toBeCalledWith('greetingId')
+    expect(repo.removeById).toBeCalledTimes(1)
+    expect(repo.removeById).toBeCalledWith('greetingId')
   })
 })
