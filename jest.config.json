@@ -1,11 +1,9 @@
 {
-  "roots": [
-    "<rootDir>/src"
+  "coverageDirectory": "<rootDir>/reports/coverage",
+  "coverageReporters": [
+    "lcov"
   ],
   "maxWorkers": "50%",
-  "testMatch": [
-    "**/*.test.ts"
-  ],
   "preset": "ts-jest",
   "reporters": [
     "default",
@@ -19,8 +17,10 @@
       }
     ]
   ],
-  "coverageDirectory": "<rootDir>/reports/coverage",
-  "coverageReporters": [
-    "lcov"
+  "roots": [
+    "<rootDir>/src"
+  ],
+  "testMatch": [
+    "**/*.test.ts"
   ]
 }
