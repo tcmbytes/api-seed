@@ -1,7 +1,7 @@
 {
   "env": {
-    "browser": true,
-    "es2020": true
+    "es2020": true,
+    "node": true
   },
   "extends": [
     "eslint:recommended",
@@ -10,10 +10,10 @@
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": "latest",
-    "sourceType": "module",
     "ecmaFeatures": {
       "modules": true
-    }
+    },
+    "sourceType": "module"
   },
   "plugins": [
     "@typescript-eslint"
@@ -26,15 +26,15 @@
         "argsIgnorePattern": "^_"
       }
     ],
+    "linebreak-style": [
+      "error",
+      "unix"
+    ],
     "max-len": [
       "warn",
       {
         "code": 120
       }
-    ],
-    "linebreak-style": [
-      "error",
-      "unix"
     ],
     "quotes": [
       "error",
