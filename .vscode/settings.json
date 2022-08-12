@@ -2,8 +2,8 @@
   "eslint.enable": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
-  "editor.tabSize": 2,
   "editor.insertSpaces": true,
+  "editor.tabSize": 2,
   "files.exclude": {
     "**/.git": true,
     "**/.DS_Store": true,
@@ -16,6 +16,6 @@
   "prettier.semi": false,
   "prettier.singleQuote": true,
   "prettier.tabWidth": 2,
-  "sort-imports.on-save": true,
   "sort-imports.default-sort-style": "eslint",
+  "sort-imports.on-save": true,
 }
