@@ -1,0 +1,83 @@
+openapi: '3.0.2'
+info:
+  title: 🌱 API Seed
+  description: The seed from which you grow your project.
+  version: '1.0'
+servers:
+  - url: /v1
+paths:
+  /greetings:
+    get:
+      summary: Get the list of greetings.
+      tags:
+        - "Greetings"
+      responses:
+        '200':
+          description: 'The list of greetings.'
+          content:
+            'application/json':
+              schema:
+                $ref: '#components/schemas/Greetings'
+    put:
+      summary: Create a new greeting.
+      tags:
+        - "Greetings"
+      requestBody:
+        required: true
+        content:
+          'application/json': 
+            schema:
+              description: The properties required to create a new greeting.
+              properties:
+                from:
+                  type: string
+                  description: The email address of the sender of the greeting.
+                  example: from@api-seed.com
+                to:
+                  type: string
+                  description: The email address of the receiver of the greeting.
+                  example: to@api-seed.com
+                message:
+                  type: string
+                  description: The email address of the receiver of the greeting.
+                  example: Happy Birthday!
+      responses:
+        '200':
+          description: The greeting was successfully created.
+          content:
+            'application/json':
+              schema:
+                $ref: '#components/schemas/Greeting'
+components:
+  schemas:
+    Greeting:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The uuid of the greeting.
+          example: 62b36d15-0573-499f-8878-a395ca5b42f5
+        from:
+          type: string
+          description: The email address of the sender of the greeting.
+          example: from@api-seed.com
+        to:
+          type: string
+          description: The email address of the receiver of the greeting.
+          example: to@api-seed.com
+        message:
+          type: string
+          description: The email address of the receiver of the greeting.
+          example: Happy Birthday!
+        createdOn:
+          type: string
+          format: 'date-time'
+          example: 2022-08-11T19:50:35.346Z
+        modifiedOn:
+          type: string
+          format: 'date-time'
+          example: 2022-08-11T20:15:23.346Z
+    Greetings:
+      type: array
+      items:
+        $ref: '#components/schemas/Greeting'
