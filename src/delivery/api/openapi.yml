@@ -8,61 +8,85 @@ servers:
 paths:
   /greetings:
     get:
-      summary: Get the list of greetings.
+      summary: List all greetings.
       tags:
         - "Greetings"
       responses:
         '200':
-          description: 'The list of greetings.'
-          content:
-            'application/json':
-              schema:
-                $ref: '#components/schemas/Greetings'
+          $ref: '#components/responses/GreetingsList'
     put:
-      summary: Create a new greeting.
+      summary: Create greetings.
       tags:
         - "Greetings"
       requestBody:
-        required: true
-        content:
-          'application/json': 
-            schema:
-              description: The properties required to create a new greeting.
-              properties:
-                from:
-                  type: string
-                  description: The email address of the sender of the greeting.
-                  example: from@api-seed.com
-                to:
-                  type: string
-                  description: The email address of the receiver of the greeting.
-                  example: to@api-seed.com
-                message:
-                  type: string
-                  description: The email address of the receiver of the greeting.
-                  example: Happy Birthday!
+        $ref: '#/components/requestBodies/CreateGreeting'
+      responses:
+        '201':
+          $ref: '#components/responses/GreetingCreated'
+  /greetings/{greetingId}:
+    get:
+      summary: Get greeting details.
+      tags:
+        - "Greetings"
+      parameters:
+        - $ref: '#/components/parameters/GreetingId'
       responses:
         '200':
-          description: The greeting was successfully created.
-          content:
-            'application/json':
-              schema:
-                $ref: '#components/schemas/Greeting'
+          $ref: '#components/responses/GreetingDetails'
+        '404':
+          $ref: '#components/responses/GreetingNotFound'
+    post:
+      summary: Update greeting message.
+      tags:
+        - "Greetings"
+      parameters:
+        - $ref: '#/components/parameters/GreetingId'
+      requestBody:
+        $ref: '#/components/requestBodies/UpdateGreeting'
+      responses:
+        '200':
+          $ref: '#components/responses/GreetingDetails'
+        '404':
+          $ref: '#components/responses/GreetingNotFound'
+    delete:
+      summary: Delete greeting.
+      tags:
+        - "Greetings"
+      parameters:
+        - $ref: '#/components/parameters/GreetingId'
+      responses:
+        '204':
+          $ref: '#components/responses/GreetingDeleted'
+        '404':
+          $ref: '#components/responses/GreetingNotFound'
 components:
+  parameters:
+    GreetingId:
+      in: path
+      name: greetingId
+      schema: 
+        type: string
+        format: uuid
+        description: The ID of the greeting.
+        example: 62b36d15-0573-499f-8878-a395ca5b42f5
+      required: true
   schemas:
     Greeting:
       type: object
       properties:
         id:
           type: string
+          format: uuid
           description: The uuid of the greeting.
           example: 62b36d15-0573-499f-8878-a395ca5b42f5
         from:
           type: string
+          format: email
           description: The email address of the sender of the greeting.
           example: from@api-seed.com
         to:
           type: string
+          format: email
           description: The email address of the receiver of the greeting.
           example: to@api-seed.com
         message:
@@ -81,3 +105,77 @@ components:
       type: array
       items:
         $ref: '#components/schemas/Greeting'
+  requestBodies:
+    CreateGreeting:
+      required: true
+      content:
+        'application/json':
+          schema:
+            description: The properties required to create a greeting.
+            properties:
+              from:
+                type: string
+                format: email
+                description: The email address of the sender of the greeting.
+                example: from@api-seed.com
+              to:
+                type: string
+                format: email
+                description: The email address of the receiver of the greeting.
+                example: to@api-seed.com
+              message:
+                type: string
+                maxLength: 140
+                description: The email address of the receiver of the greeting.
+                example: Happy Birthday!
+    UpdateGreeting:
+      required: true
+      content:
+        'application/json':
+          schema:
+            description: The properties required to create a new greeting.
+            properties:
+              message:
+                type: string
+                maxLength: 140
+                description: The email address of the receiver of the greeting.
+                example: Happy Anniversary!
+  responses:
+    GreetingsList:
+      description: Greetings list.
+      content:
+        'application/json':
+          schema:
+            $ref: '#components/schemas/Greetings'
+    GreetingDetails:
+      description: Greeting details.
+      content:
+        'application/json':
+          schema:
+            $ref: '#components/schemas/Greetings'
+    GreetingCreated:
+      description: Greeting created.
+      content:
+        'application/json':
+          schema:
+            $ref: '#components/schemas/Greeting'
+    GreetingDeleted:
+      description: Greeting deleted.
+    GreetingNotFound:
+      description: Greeting not found.
+      content:
+        'application/json':
+          schema:              
+            properties:
+              status:
+                type: string
+                description: The status of the error.
+                example: Not found
+              statusCode:
+                type: number
+                description: The status code of the error.
+                example: 404
+              message:
+                type: string
+                description: A description of the error.
+                example: Greeting with id '62b36d15-0573-499f-8878-a395ca5b42f5' not found.
