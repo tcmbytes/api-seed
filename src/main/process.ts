@@ -10,13 +10,13 @@ export const setupProcessListeners = (params: Params) => {
 
   logger.info('MAIN setupProcessListeners was invoked')
 
-  process.on('unhandledRejection', () => {
-    logger.error('MAIN setupProcessListeners failed', { reason: 'unhandledRejection' })
+  process.on('unhandledRejection', (error) => {
+    logger.error('MAIN setupProcessListeners failed', { reason: 'unhandledRejection', error })
     process.exit(1)
   })
 
-  process.on('uncaughtException', () => {
-    logger.error('MAIN setupProcessListeners failed', { reason: 'uncaughtException' })
+  process.on('uncaughtException', (error) => {
+    logger.error('MAIN setupProcessListeners failed', { reason: 'uncaughtException', error })
     process.exit(1)
   })
 }
