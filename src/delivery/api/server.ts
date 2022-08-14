@@ -3,6 +3,8 @@ import express, { Express } from 'express'
 
 import { Logger } from '../../shared/logger'
 import { RouteHandlersFactory } from './types'
+import YAML from 'yamljs'
+import swaggerUi from 'swagger-ui-express'
 
 type Options = {
   port: number
@@ -22,6 +24,9 @@ export const setupServer = (params: Params) => {
 
   server.use(express.json())
   server.use(loggingContextMiddleware)
+
+  const apiDefinition = YAML.load('./src/delivery/api/openapi.yml')
+  server.use('/docs', swaggerUi.serve, swaggerUi.setup(apiDefinition))
 
   server.put('/greetings', handlersFactory.make('putGreetingHandler'))
   server.get('/greetings', handlersFactory.make('getGreetingsHandler'))
