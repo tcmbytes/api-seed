@@ -128,6 +128,12 @@ To publish the AWS deploy image, run the following command from the root directo
 $ yarn aws:publish
 ```
 
+## Documentation
+
+For the project technical documentation we use the [`README.md`](./README.md) file. 
+
+For the API documentation we use sagger with the openapi 3.0 format. It is available in the [`./src/delivery/api/openapi.yml`](./src/delivery/api/openapi.yml) and its accessible at the `/docs` endpoint.
+
 ## Architecute and design
 
 The `tests` document the full behaviour of the project functionality.
