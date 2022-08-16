@@ -1,4 +1,4 @@
-import { Contex, Logger } from './'
+import { Contex, Logger } from './types'
 
 type Params = {
   context: Contex

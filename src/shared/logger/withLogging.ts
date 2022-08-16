@@ -1,4 +1,4 @@
-import { Logger } from './'
+import { Logger } from './types'
 
 export const withLogging =
   (logger: Logger, component: string, funcName: string) =>
