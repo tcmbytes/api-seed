@@ -8,7 +8,7 @@ type WithLogging = (
   func: (...args: Params) => Return | Promise<Return>,
   inputMapper?: (...args: Params) => unknown,
   outputMapper?: (args: Return) => unknown,
-) => (...args: Params) => Return | Promise<Return>
+) => (...args: Params) => Promise<Return>
 
 export const withLogging: WithLogging =
   (logger, component, handler) =>
@@ -39,3 +39,5 @@ export const withLogging: WithLogging =
       throw err
     }
   }
+
+export const plainMap = <T>(input: T) => input

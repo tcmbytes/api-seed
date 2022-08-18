@@ -1,4 +1,5 @@
-import { Greeting } from 'domain/types'
+import { plainMap, withLogging } from './withLogging'
+
 import { GreetingsRepo } from 'domain/boundaries'
 import { Logger } from './types'
 
@@ -10,51 +11,11 @@ type Params = {
 export const WithLoggingGreetingRepo = (params: Params): GreetingsRepo => {
   const { repo, logger } = params
 
-  const create = (greeting: Greeting): Promise<void> => {
-    logger.info('REPO GreetingsRepo.create was invoked')
-    repo.create(greeting)
-    logger.info('REPO GreetingsRepo.create finished')
-
-    return Promise.resolve()
-  }
-
-  const update = (greeting: Greeting): Promise<void> => {
-    logger.info('REPO GreetingsRepo.update was invoked')
-    repo.update(greeting)
-    logger.info('REPO GreetingsRepo.update finished')
-
-    return Promise.resolve()
-  }
-
-  const findById = (id: string): Promise<Greeting | null> => {
-    logger.info('REPO GreetingsRepo.findById was invoked')
-    const greeting = repo.findById(id)
-    logger.info('REPO GreetingsRepo.findById finished')
-
-    return Promise.resolve(greeting)
-  }
-
-  const findAll = (): Promise<Greeting[]> => {
-    logger.info('REPO GreetingsRepo.findAll was invoked')
-    const greetings = repo.findAll()
-    logger.info('REPO GreetingsRepo.findAll finished')
-
-    return Promise.resolve(greetings)
-  }
-
-  const removeById = (id: string): Promise<void> => {
-    logger.info('REPO GreetingsRepo.removeById was invoked')
-    repo.removeById(id)
-    logger.info('REPO GreetingsRepo.removeById finished')
-
-    return Promise.resolve()
-  }
-
   return {
-    create,
-    update,
-    findById,
-    findAll,
-    removeById,
+    create: withLogging(logger, 'REPO', 'GreetingsRepo.create')(repo.create, plainMap),
+    update: withLogging(logger, 'REPO', 'GreetingsRepo.update')(repo.update, plainMap),
+    findById: withLogging(logger, 'REPO', 'GreetingsRepo.findById')(repo.findById, plainMap, plainMap),
+    findAll: withLogging(logger, 'REPO', 'GreetingsRepo.findAll')(repo.findAll, undefined, plainMap),
+    removeById: withLogging(logger, 'REPO', 'GreetingsRepo.removeById')(repo.removeById, plainMap),
   }
 }
