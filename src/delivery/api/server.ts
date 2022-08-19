@@ -1,8 +1,8 @@
-import { errorHandlerMiddleware, loggingContextMiddleware, routeUnavailableMiddleware } from './middleware'
+import { errorHandlerMiddleware, routeUnavailableMiddleware } from './middleware'
 import express, { Express } from 'express'
 
+import { HandlersFactory } from './types'
 import { Logger } from '../../shared/logger'
-import { RouteHandlersFactory } from './types'
 import YAML from 'yamljs'
 import swaggerUi from 'swagger-ui-express'
 
@@ -15,15 +15,16 @@ type Params = {
   server: Express
   logger: Logger
   options: Options
-  handlersFactory: RouteHandlersFactory
+  handlersFactory: HandlersFactory
+  middlewaresFactory: HandlersFactory
 }
 
 export const setupServer = (params: Params) => {
-  const { logger, options, server, handlersFactory } = params
+  const { logger, options, server, handlersFactory, middlewaresFactory } = params
   const { port, hostname } = options
 
   server.use(express.json())
-  server.use(loggingContextMiddleware)
+  server.use(middlewaresFactory.make('loggingContextMiddleware'))
 
   const apiDefinition = YAML.load('./src/delivery/api/openapi.yml')
   server.use('/docs', swaggerUi.serve, swaggerUi.setup(apiDefinition))

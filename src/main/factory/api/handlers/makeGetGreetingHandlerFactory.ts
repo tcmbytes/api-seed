@@ -1,10 +1,10 @@
-import { WithLoggingGreetingRepo, makeLogger, plainMap, withLogging } from '../../../shared/logger'
+import { WithLoggingGreetingRepo, makeLogger, plainMap, withLogging } from '../../../../shared/logger'
 
-import { HandlerFactory } from './types'
-import { getGreetingHandler } from '../../../delivery/api/handlers'
-import { getSharedGreetingsRepo } from '../repositories'
-import { makeContextFromRequest } from '../../../delivery/api/utils'
-import { showGreetingUseCase } from '../../../domain/usecases'
+import { HandlerFactory } from '../types'
+import { getGreetingHandler } from '../../../../delivery/api/handlers'
+import { getSharedGreetingsRepo } from '../../repositories'
+import { makeContextFromRequest } from '../../../../delivery/api/utils'
+import { showGreetingUseCase } from '../../../../domain/usecases'
 
 export const makeGetGreetingHandlerFactory: HandlerFactory = (req, _res) => {
   const context = makeContextFromRequest(req)

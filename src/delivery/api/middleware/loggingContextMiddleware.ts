@@ -1,12 +1,15 @@
-import { Handler } from 'express'
-import { makeContext } from '../../../shared/logger'
+import { Context } from '../../../shared/logger'
+import { RouteHandlerConstructor } from '../types'
 
-export const loggingContextMiddleware: Handler = (req, res, next) => {
-  if (!req.headers['x-trace-id']) {
-    const context = makeContext()
-    req.headers['x-trace-id'] = context.traceID
-  }
+type Params = {
+  context: Context
+}
 
+export const loggingContextMiddleware: RouteHandlerConstructor<Params> = (params) => (req, res, next) => {
+  const { context } = params
+
+  req.headers['x-trace-id'] = context.traceID
   res.setHeader('x-trace-id', req.headers['x-trace-id'])
+
   next()
 }
