@@ -1,7 +1,7 @@
-import { Contex, Logger } from './types'
+import { Context, Logger } from './types'
 
 type Params = {
-  context: Contex
+  context: Context
 }
 
 export const makeLogger = (params: Params): Logger => {

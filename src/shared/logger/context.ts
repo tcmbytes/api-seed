@@ -1,6 +1,6 @@
+import { Context } from './types'
 import { v4 as uuidv4 } from 'uuid'
-import { Contex } from './types'
 
-export const makeContext = (traceID?: string): Contex => ({
+export const makeContext = (traceID?: string): Context => ({
   traceID: traceID ?? uuidv4(),
 })

@@ -1,4 +1,4 @@
-export interface Contex {
+export interface Context {
   traceID: string
 }
 
