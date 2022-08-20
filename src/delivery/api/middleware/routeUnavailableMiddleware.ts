@@ -1,12 +1,13 @@
-import { Handler } from 'express'
-import { makeContextFromRequest } from '../utils'
-import { makeLogger } from '../../../shared/logger'
+import { Logger } from '../../../shared/logger'
+import { RouteHandlerConstructor } from '../types'
 
-export const routeUnavailableMiddleware: Handler = (req, res) => {
+type Params = {
+  logger: Logger
+}
+
+export const routeUnavailableMiddleware: RouteHandlerConstructor<Params> = (params) => (req, res) => {
+  const { logger } = params
   const message = `Cannot ${req.method} ${req.originalUrl}`
-
-  const context = makeContextFromRequest(req)
-  const logger = makeLogger({ context })
 
   logger.error('API routeUnavailableMiddleware failed', {
     details: message,

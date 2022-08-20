@@ -1,9 +1,9 @@
-import { errorHandlerMiddleware, routeUnavailableMiddleware } from './middleware'
 import express, { Express } from 'express'
 
 import { HandlersFactory } from './types'
 import { Logger } from '../../shared/logger'
 import YAML from 'yamljs'
+import { errorHandlerMiddleware } from './middleware'
 import swaggerUi from 'swagger-ui-express'
 
 type Options = {
@@ -36,7 +36,7 @@ export const setupServer = (params: Params) => {
   server.post('/greetings/:greetingId', handlersFactory.make('postGreetingHandler'))
   server.delete('/greetings/:greetingId', handlersFactory.make('deleteGreetingHandler'))
 
-  server.use(routeUnavailableMiddleware)
+  server.use(middlewaresFactory.make('routeUnavailableMiddleware'))
   server.use(errorHandlerMiddleware)
 
   server
