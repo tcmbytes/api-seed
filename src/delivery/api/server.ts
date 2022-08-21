@@ -37,7 +37,7 @@ export const setupServer = (params: Params) => {
   server.delete('/greetings/:greetingId', handlersFactory.make('deleteGreetingHandler'))
 
   server.use(middlewaresFactory.make('routeUnavailableMiddleware'))
-  server.use(errorHandlerMiddleware)
+  server.use(errorHandlerMiddleware({ logger }))
 
   server
     .listen(port, hostname, () => {
