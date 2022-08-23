@@ -26,8 +26,7 @@ export const setupServer = (params: Params) => {
   server.use(express.json())
   server.use(middlewaresFactory.make('loggingContextMiddleware'))
 
-  const apiDefinition = YAML.load('./src/delivery/api/openapi.yml')
-  server.use('/docs', swaggerUi.serve, swaggerUi.setup(apiDefinition))
+  setDocsRoute(server)
 
   server.put('/greetings', handlersFactory.make('putGreetingHandler'))
   server.get('/greetings', handlersFactory.make('getGreetingsHandler'))
@@ -51,4 +50,9 @@ export const setupServer = (params: Params) => {
       })
       process.exit(1)
     })
+}
+
+const setDocsRoute = (server: Express) => {
+  const apiDefinition = YAML.load('./src/delivery/api/openapi.yml')
+  server.use('/docs', swaggerUi.serve, swaggerUi.setup(apiDefinition))
 }
