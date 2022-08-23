@@ -1,9 +1,8 @@
-import express, { Express } from 'express'
+import express, { ErrorRequestHandler, Express, Handler } from 'express'
 
 import { HandlersFactory } from './types'
 import { Logger } from '../../shared/logger'
 import YAML from 'yamljs'
-import { errorHandlerMiddleware } from './middleware'
 import swaggerUi from 'swagger-ui-express'
 
 type Options = {
@@ -15,12 +14,13 @@ type Params = {
   server: Express
   logger: Logger
   options: Options
-  handlersFactory: HandlersFactory
-  middlewaresFactory: HandlersFactory
+  handlersFactory: HandlersFactory<Handler>
+  middlewaresFactory: HandlersFactory<Handler>
+  errorHandersFactory: HandlersFactory<ErrorRequestHandler>
 }
 
 export const setupServer = (params: Params) => {
-  const { logger, options, server, handlersFactory, middlewaresFactory } = params
+  const { logger, options, server, handlersFactory, middlewaresFactory, errorHandersFactory } = params
   const { port, hostname } = options
 
   server.use(express.json())
@@ -36,7 +36,7 @@ export const setupServer = (params: Params) => {
   server.delete('/greetings/:greetingId', handlersFactory.make('deleteGreetingHandler'))
 
   server.use(middlewaresFactory.make('routeUnavailableMiddleware'))
-  server.use(errorHandlerMiddleware({ logger }))
+  server.use(errorHandersFactory.make('errorHandler'))
 
   server
     .listen(port, hostname, () => {

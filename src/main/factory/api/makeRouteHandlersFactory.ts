@@ -2,7 +2,7 @@ import { Handler } from 'express'
 import { HandlerFactories } from './types'
 import { HandlersFactory } from '../../../delivery/api/types'
 
-export const makeHandlersFactory = (factories: HandlerFactories): HandlersFactory => ({
+export const makeHandlersFactory = (factories: HandlerFactories): HandlersFactory<Handler> => ({
   make: make(factories),
   getHandlers: getHandlers(factories),
 })
