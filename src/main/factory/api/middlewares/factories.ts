@@ -1,11 +1,11 @@
 import { ErrorHandlerFactories, HandlerFactories } from '../types'
 
 import { makeErrorHandlerMiddleware } from './makeErrorHandlerMiddleware'
-import { makeLoggingContextMiddlewareFactory } from './makeLoggingContextMiddlewareFactory'
 import { makeRouteUnavailableMiddlewareFactory } from './makeRouteUnavailableMiddlewareFactory'
+import { makeTracingMiddlewareFactory } from './makeTracingMiddlewareFactory'
 
 export const apiMiddlewareFactories: HandlerFactories = {
-  loggingContextMiddleware: makeLoggingContextMiddlewareFactory,
+  tracingMiddleware: makeTracingMiddlewareFactory,
   routeUnavailableMiddleware: makeRouteUnavailableMiddlewareFactory,
 }
 
