@@ -1,12 +1,12 @@
-import { GreetingNotFoundError } from '../../../domain/errors'
+import { GreetingNotFoundError } from 'domain/errors'
 import { RouteHandlerConstructor } from '../types'
-import { UpdateGreetingUseCase } from '../../../domain/usecases'
+import { UpdateGreetingUseCase } from 'domain/usecases'
 
 type Params = {
   usecase: UpdateGreetingUseCase
 }
 
-export const postGreetingHandler: RouteHandlerConstructor<Params> = (params) => async (req, res) => {
+export const newPostGreetingHandler: RouteHandlerConstructor<Params> = (params) => async (req, res) => {
   try {
     const { usecase } = params
     const { greetingId: id } = req.params

@@ -1,12 +1,12 @@
-import { DeleteGreetingUseCase } from '../../../domain/usecases'
-import { GreetingNotFoundError } from '../../../domain/errors'
+import { DeleteGreetingUseCase } from 'domain/usecases'
+import { GreetingNotFoundError } from 'domain/errors'
 import { RouteHandlerConstructor } from '../types'
 
 type Params = {
   usecase: DeleteGreetingUseCase
 }
 
-export const deleteGreetingHandler: RouteHandlerConstructor<Params> = (params) => async (req, res) => {
+export const newDeleteGreetingHandler: RouteHandlerConstructor<Params> = (params) => async (req, res) => {
   try {
     const { usecase } = params
     const { greetingId } = req.params
