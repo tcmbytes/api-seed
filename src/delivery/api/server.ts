@@ -1,6 +1,6 @@
 import express, { ErrorRequestHandler, Express, Handler } from 'express'
 
-import { HandlersFactory } from './types'
+import { AbstractFactory } from './types'
 import { Logger } from '../../shared/logger'
 import YAML from 'yamljs'
 import swaggerUi from 'swagger-ui-express'
@@ -14,9 +14,9 @@ type Params = {
   server: Express
   logger: Logger
   options: Options
-  handlersFactory: HandlersFactory<Handler>
-  middlewaresFactory: HandlersFactory<Handler>
-  errorHandersFactory: HandlersFactory<ErrorRequestHandler>
+  handlersFactory: AbstractFactory<Handler>
+  middlewaresFactory: AbstractFactory<Handler>
+  errorHandersFactory: AbstractFactory<ErrorRequestHandler>
 }
 
 export const setupServer = (params: Params) => {

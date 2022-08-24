@@ -1,8 +1,8 @@
+import { AbstractFactory } from '../../../delivery/api/types'
 import { Handler } from 'express'
 import { HandlerFactories } from './types'
-import { HandlersFactory } from '../../../delivery/api/types'
 
-export const makeHandlersFactory = (factories: HandlerFactories): HandlersFactory<Handler> => ({
+export const makeHandlersFactory = (factories: HandlerFactories): AbstractFactory<Handler> => ({
   make: make(factories),
   getHandlers: getHandlers(factories),
 })
