@@ -24,7 +24,7 @@ export const setupServer = (params: Params) => {
   const { port, hostname } = options
 
   server.use(express.json())
-  server.use(middlewaresFactory.make('loggingContextMiddleware'))
+  server.use(middlewaresFactory.make('tracingMiddleware'))
 
   setDocsRoute(server)
 
