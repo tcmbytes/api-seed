@@ -1,6 +1,6 @@
 import { Generator, GreetingsRepo, UseCase, UseCaseConstructor } from '../../boundaries'
 
-import { Greeting } from 'domain/types'
+import { Greeting } from '../../types'
 import { GreetingNotFoundError } from '../../errors'
 
 type Params = {
