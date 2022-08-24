@@ -1,11 +1,11 @@
-import { Logger } from '../../../shared/logger'
+import { Logger } from 'shared/logger'
 import { RouteHandlerConstructor } from '../types'
 
 type Params = {
   logger: Logger
 }
 
-export const routeUnavailableMiddleware: RouteHandlerConstructor<Params> = (params) => (req, res) => {
+export const newRouteUnavailableMiddleware: RouteHandlerConstructor<Params> = (params) => (req, res) => {
   const { logger } = params
   const message = `Cannot ${req.method} ${req.originalUrl}`
 

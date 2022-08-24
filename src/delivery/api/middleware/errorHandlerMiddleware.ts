@@ -1,11 +1,11 @@
 import { ErrorHandlerConstructor } from '../types'
-import { Logger } from '../../../shared/logger'
+import { Logger } from 'shared/logger'
 
 type Params = {
   logger: Logger
 }
 
-export const errorHandlerMiddleware: ErrorHandlerConstructor<Params> = (params) => (err, _req, res) => {
+export const newErrorHandlerMiddleware: ErrorHandlerConstructor<Params> = (params) => (err, _req, res) => {
   const { logger } = params
   const { message } = err
 

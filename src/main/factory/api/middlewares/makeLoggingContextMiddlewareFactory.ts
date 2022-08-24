@@ -1,14 +1,14 @@
 import { makeLogger, withLogging } from '../../../../shared/logger'
 
 import { HandlerFactory } from '../types'
-import { loggingContextMiddleware } from 'delivery/api/middleware'
 import { makeContextFromRequest } from 'delivery/api/utils'
+import { newLoggingContextMiddleware } from 'delivery/api/middleware'
 
 export const makeLoggingContextMiddlewareFactory: HandlerFactory = (req, _res) => {
   const context = makeContextFromRequest(req)
   const logger = makeLogger({ context })
 
-  const middleware = loggingContextMiddleware({
+  const middleware = newLoggingContextMiddleware({
     context,
   })
 

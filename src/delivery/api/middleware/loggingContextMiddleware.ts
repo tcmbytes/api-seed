@@ -1,11 +1,11 @@
-import { Context } from '../../../shared/logger'
+import { Context } from 'shared/logger'
 import { RouteHandlerConstructor } from '../types'
 
 type Params = {
   context: Context
 }
 
-export const loggingContextMiddleware: RouteHandlerConstructor<Params> = (params) => (req, res, next) => {
+export const newLoggingContextMiddleware: RouteHandlerConstructor<Params> = (params) => (req, res, next) => {
   const { context } = params
 
   req.headers['x-trace-id'] = context.traceID
