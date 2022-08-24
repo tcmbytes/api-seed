@@ -2,9 +2,9 @@ import { WithLoggingGreetingRepo, makeLogger, plainMap, withLogging } from '../.
 
 import { HandlerFactory } from '../types'
 import { deleteGreetingHandler } from '../../../../delivery/api/handlers'
-import { deleteGreetingUseCase } from '../../../../domain/usecases'
 import { getSharedGreetingsRepo } from '../../repositories'
 import { makeContextFromRequest } from '../../../../delivery/api/utils'
+import { newDeleteGreetingUseCase } from '../../../../domain/usecases'
 
 export const makeDeleteGreetingHandlerFactory: HandlerFactory = (req, _res) => {
   const context = makeContextFromRequest(req)
@@ -16,7 +16,7 @@ export const makeDeleteGreetingHandlerFactory: HandlerFactory = (req, _res) => {
     logger,
   })
 
-  const usecase = deleteGreetingUseCase({ repo: decoratedRepo })
+  const usecase = newDeleteGreetingUseCase({ repo: decoratedRepo })
   const decoratedUsecase = withLogging(logger, 'USECASE', 'deleteGreeting')(usecase, plainMap, plainMap)
 
   const handler = deleteGreetingHandler({

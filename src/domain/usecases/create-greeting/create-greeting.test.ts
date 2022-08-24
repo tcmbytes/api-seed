@@ -1,14 +1,14 @@
 import { Generator, GreetingsRepo } from '../../boundaries'
 import { mock, mockClear } from 'jest-mock-extended'
 
-import { createGreetingUseCase } from './create-greeting'
+import { newCreateGreetingUseCase } from './create-greeting'
 
 describe('createGreetingUseCase should', () => {
   const repo = mock<GreetingsRepo>()
   const dateGenerator = mock<Generator<Date>>()
   const uuidGenerator = mock<Generator<string>>()
 
-  const sut = createGreetingUseCase({ repo, dateGenerator, uuidGenerator })
+  const sut = newCreateGreetingUseCase({ repo, dateGenerator, uuidGenerator })
 
   afterEach(() => {
     mockClear(repo)

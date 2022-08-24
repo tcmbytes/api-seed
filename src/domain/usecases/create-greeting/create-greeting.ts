@@ -16,7 +16,7 @@ type Request = {
 
 export type CreateGreetingUseCase = UseCase<Request, Greeting>
 
-export const createGreetingUseCase: UseCaseConstructor<Params, Request, Greeting> = (params) => async (request) => {
+export const newCreateGreetingUseCase: UseCaseConstructor<Params, Request, Greeting> = (params) => async (request) => {
   const { repo, dateGenerator, uuidGenerator } = params
   const { from, to, message } = request
 

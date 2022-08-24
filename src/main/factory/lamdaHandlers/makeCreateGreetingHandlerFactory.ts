@@ -2,8 +2,8 @@ import { WithLoggingGreetingRepo, makeContext, makeLogger, withLogging } from '.
 
 import { HandlerFactory } from './types'
 import { createGreetingHandler } from '../../../delivery/lamdba/handlers'
-import { createGreetingUseCase } from '../../../domain/usecases'
 import { getSharedGreetingsRepo } from '../repositories'
+import { newCreateGreetingUseCase } from '../../../domain/usecases'
 import { v4 } from 'uuid'
 
 export const makeCreateGreetingHandlerFactory: HandlerFactory = (_event, _context) => {
@@ -24,7 +24,7 @@ export const makeCreateGreetingHandlerFactory: HandlerFactory = (_event, _contex
     next: () => v4(),
   }
 
-  const usecase = createGreetingUseCase({ repo: decoratedRepo, dateGenerator, uuidGenerator })
+  const usecase = newCreateGreetingUseCase({ repo: decoratedRepo, dateGenerator, uuidGenerator })
   const decoratedUsecase = withLogging(logger, 'USECASE', 'sayHelloUseCase')(usecase)
 
   const handler = createGreetingHandler({

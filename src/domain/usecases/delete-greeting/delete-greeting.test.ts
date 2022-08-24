@@ -3,12 +3,12 @@ import { mock, mockClear } from 'jest-mock-extended'
 import { Greeting } from '../../types'
 import { GreetingNotFoundError } from '../../errors'
 import { GreetingsRepo } from '../../boundaries'
-import { deleteGreetingUseCase } from './delete-greeting'
+import { newDeleteGreetingUseCase } from './delete-greeting'
 
 describe('deleteGreetingUseCase should', () => {
   const repo = mock<GreetingsRepo>()
 
-  const sut = deleteGreetingUseCase({ repo })
+  const sut = newDeleteGreetingUseCase({ repo })
 
   afterEach(() => {
     mockClear(repo)

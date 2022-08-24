@@ -14,7 +14,7 @@ type Response = Greeting
 
 export type ShowGreetingsUseCase = UseCase<Request, Response>
 
-export const showGreetingUseCase: UseCaseConstructor<Params, Request, Response> = (params) => async (input) => {
+export const newShowGreetingUseCase: UseCaseConstructor<Params, Request, Response> = (params) => async (input) => {
   const { repo } = params
   const { id } = input
 

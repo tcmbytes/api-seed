@@ -11,7 +11,7 @@ type Response = Greeting[]
 
 export type ListGreetingsUseCase = UseCase<Request, Response>
 
-export const listGreetingsUseCase: UseCaseConstructor<Params, Request, Response> = (params) => async () => {
+export const newListGreetingsUseCase: UseCaseConstructor<Params, Request, Response> = (params) => async () => {
   const { repo } = params
 
   return await repo.findAll()

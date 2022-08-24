@@ -2,11 +2,11 @@ import { mock, mockClear } from 'jest-mock-extended'
 
 import { Greeting } from '../../types'
 import { GreetingsRepo } from '../../boundaries'
-import { listGreetingsUseCase } from './list-greetings'
+import { newListGreetingsUseCase } from './list-greetings'
 
 describe('listGreetingsUseCase should', () => {
   const repo = mock<GreetingsRepo>()
-  const sut = listGreetingsUseCase({ repo })
+  const sut = newListGreetingsUseCase({ repo })
 
   afterEach(() => {
     mockClear(repo)
