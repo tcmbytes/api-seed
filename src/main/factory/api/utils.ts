@@ -1,5 +1,5 @@
 import { Request } from 'express'
-import { makeContext } from '../../shared/logger'
+import { makeContext } from 'shared/logger'
 
 export const makeContextFromRequest = (req: Request) => {
   const traceID = req.headers['x-trace-id'] as string | undefined

@@ -1,4 +1,4 @@
-import { AbstractFactory } from '../../../delivery/api/types'
+import { AbstractFactory } from 'delivery/api/types'
 import { ErrorHandlerFactories } from './types'
 import { ErrorRequestHandler } from 'express'
 
