@@ -6,12 +6,9 @@ type Params = {
   repo: GreetingsRepo
 }
 
-type Request = void
-type Response = Greeting[]
+export type ListGreetingsUseCase = UseCase<void, Greeting[]>
 
-export type ListGreetingsUseCase = UseCase<Request, Response>
-
-export const newListGreetingsUseCase: UseCaseConstructor<Params, Request, Response> = (params) => async () => {
+export const newListGreetingsUseCase: UseCaseConstructor<Params, void, Greeting[]> = (params) => async () => {
   const { repo } = params
 
   return await repo.findAll()

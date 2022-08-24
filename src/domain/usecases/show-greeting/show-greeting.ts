@@ -10,13 +10,12 @@ type Params = {
 type Request = {
   id: string
 }
-type Response = Greeting
 
-export type ShowGreetingsUseCase = UseCase<Request, Response>
+export type ShowGreetingsUseCase = UseCase<Request, Greeting>
 
-export const newShowGreetingUseCase: UseCaseConstructor<Params, Request, Response> = (params) => async (input) => {
+export const newShowGreetingUseCase: UseCaseConstructor<Params, Request, Greeting> = (params) => async (request) => {
   const { repo } = params
-  const { id } = input
+  const { id } = request
 
   const greeting = await repo.findById(id)
   if (!greeting) {
