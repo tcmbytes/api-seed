@@ -1,4 +1,4 @@
-import { Handler, LambdaHandlersFactory } from '../../../delivery/lamdba/types'
+import { Handler, LambdaHandlersFactory } from 'delivery/lamdba/types'
 
 import { HandlerFactory } from './types'
 import { makeCreateGreetingHandlerFactory } from './makeCreateGreetingHandlerFactory'

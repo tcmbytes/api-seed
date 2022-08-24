@@ -2,8 +2,8 @@ import { WithLoggingGreetingRepo, makeContext, makeLogger, withLogging } from '.
 
 import { HandlerFactory } from './types'
 import { getSharedGreetingsRepo } from '../repositories'
-import { newCreateGreetingHandler } from '../../../delivery/lamdba/handlers'
-import { newCreateGreetingUseCase } from '../../../domain/usecases'
+import { newCreateGreetingHandler } from 'delivery/lamdba/handlers'
+import { newCreateGreetingUseCase } from 'domain/usecases'
 import { v4 } from 'uuid'
 
 export const makeCreateGreetingHandlerFactory: HandlerFactory = (_event, _context) => {
