@@ -5,7 +5,7 @@ type Params = {
   usecase: ListGreetingsUseCase
 }
 
-export const newGetGreetingsHandler: RouteHandlerConstructor<Params> = (params) => async (_req, res) => {
+export const getGreetingsHandler: RouteHandlerConstructor<Params> = (params) => async (_req, res) => {
   try {
     const { usecase } = params
     const result = await usecase()

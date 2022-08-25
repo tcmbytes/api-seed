@@ -1,9 +1,9 @@
 import { WithLoggingGreetingRepo, makeLogger, plainMap, withLogging } from 'shared/logger'
 
 import { HandlerFactory } from '../types'
+import { getGreetingHandler } from 'delivery/api/handlers'
 import { getSharedGreetingsRepo } from '../../repositories'
 import { makeContextFromRequest } from '../utils'
-import { newGetGreetingHandler } from 'delivery/api/handlers'
 import { showGreetingUseCase } from 'domain/usecases'
 
 export const getGreetingHandlerFactory: HandlerFactory = (req, _res) => {
@@ -19,7 +19,7 @@ export const getGreetingHandlerFactory: HandlerFactory = (req, _res) => {
   const usecase = showGreetingUseCase({ repo: decoratedRepo })
   const decoratedUsecase = withLogging(logger, 'USECASE', 'showGreeting')(usecase, plainMap, plainMap)
 
-  const handler = newGetGreetingHandler({
+  const handler = getGreetingHandler({
     usecase: decoratedUsecase,
   })
   const decoratedHandler = withLogging(logger, 'API', 'getGreetingHandler')(handler)

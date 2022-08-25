@@ -1,6 +1,6 @@
 import { ErrorHandlerFactories, HandlerFactories } from '../types'
 
-import { errorHandlerMiddleware } from './errorHandlerMiddleware'
+import { errorHandlerMiddlewareFactory } from './errorHandlerMiddleware'
 import { routeUnavailableMiddlewareFactory } from './routeUnavailableMiddlewareFactory'
 import { tracingMiddlewareFactory } from './tracingMiddlewareFactory'
 
@@ -10,5 +10,5 @@ export const apiMiddlewareFactories: HandlerFactories = {
 }
 
 export const errorHandlerFactories: ErrorHandlerFactories = {
-  errorHandler: errorHandlerMiddleware,
+  errorHandler: errorHandlerMiddlewareFactory,
 }
