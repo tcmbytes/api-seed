@@ -13,7 +13,7 @@ type Row = {
 export const InMemoryGreetingsRepo = (): GreetingsRepo => {
   let rows: Row[] = []
 
-  const create = (greeting: Greeting): Promise<void> => {
+  const create: GreetingsRepo['create'] = (greeting) => {
     const row = {
       id: greeting.id,
       from: greeting.from,
@@ -27,7 +27,7 @@ export const InMemoryGreetingsRepo = (): GreetingsRepo => {
     return Promise.resolve()
   }
 
-  const update = (greeting: Greeting): Promise<void> => {
+  const update: GreetingsRepo['update'] = (greeting) => {
     const row = rows.find((row) => row.id === greeting.id)
     if (!row) {
       return Promise.resolve()
@@ -39,7 +39,7 @@ export const InMemoryGreetingsRepo = (): GreetingsRepo => {
     return Promise.resolve()
   }
 
-  const findById = (id: string): Promise<Greeting | null> => {
+  const findById: GreetingsRepo['findById'] = (id) => {
     const row = rows.find((greeting) => greeting.id === id)
     if (!row) {
       return Promise.resolve(null)
@@ -49,12 +49,12 @@ export const InMemoryGreetingsRepo = (): GreetingsRepo => {
     return Promise.resolve(greeting)
   }
 
-  const findAll = (): Promise<Greeting[]> => {
+  const findAll: GreetingsRepo['findAll'] = () => {
     const greetings = rows.map((row) => rowToGreeting(row))
     return Promise.resolve(greetings)
   }
 
-  const removeById = (id: string): Promise<void> => {
+  const removeById: GreetingsRepo['removeById'] = (id) => {
     rows = rows.filter((row) => row.id !== id)
     return Promise.resolve()
   }
