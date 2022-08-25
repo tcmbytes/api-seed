@@ -5,7 +5,7 @@ type Params = {
   logger: Logger
 }
 
-export const newRouteUnavailableMiddleware: RouteHandlerConstructor<Params> = (params) => (req, res) => {
+export const routeUnavailableMiddleware: RouteHandlerConstructor<Params> = (params) => (req, res) => {
   const { logger } = params
   const message = `Cannot ${req.method} ${req.originalUrl}`
 

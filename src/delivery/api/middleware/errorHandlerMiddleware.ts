@@ -5,7 +5,7 @@ type Params = {
   logger: Logger
 }
 
-export const newErrorHandlerMiddleware: ErrorHandlerConstructor<Params> = (params) => (err, _req, res) => {
+export const errorHandlerMiddleware: ErrorHandlerConstructor<Params> = (params) => (err, _req, res) => {
   const { logger } = params
   const { message } = err
 
