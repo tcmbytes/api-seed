@@ -30,13 +30,9 @@
     "docker:build": "run-s test build dkr:image:build",
     "docker:run": "run-s test build dkr:image:build dkr:container:run",
     "docker:rerun": "run-s test build dkr:image:build dkr:container:remove dkr:container:run",
-    "aws:build": "run-s build && (cd build && zip -r deploy.zip .)",
-    "aws:lambda:loggingFunction": "aws lambda update-function-code --function-name hello-world-handler --zip-file fileb://build/deploy.zip",
-    "aws:publish": "run-s aws:build aws:lambda:loggingFunction :clean",
     "prepare": "husky install"
   },
   "devDependencies": {
-    "@types/aws-lambda": "^8.10.84",
     "@types/express": "^4.17.13",
     "@types/faker": "^4.1.9",
     "@types/jest": "^25.1.2",

@@ -105,29 +105,6 @@ To run the Docker image, run the following command from the root directoy of the
 $ yarn docker:run
 ```
 
-### AWS
-
-Make sure to have [AWS Cli](https://aws.amazon.com/cli/) installed on your machine.
-
-```bash
-$ aws --version
-aws-cli/2.7.21 Python/3.9.11 Darwin/21.6.0 exe/x86_64 prompt/off
-```
-
-If needed, run `aws configure` to [configure the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html).
-
-To build the AWS deploy image, run the following command from the root directoy of the project:
-
-```bash
-$ yarn aws:build
-```
-
-To publish the AWS deploy image, run the following command from the root directoy of the project:
-
-```bash
-$ yarn aws:publish
-```
-
 ## Documentation
 
 For the project technical documentation we use the [`README.md`](./README.md) file. 
@@ -148,7 +125,7 @@ In order to make it easy to understand and extend the codebase, the folder struc
 
 ```
 api-seed
-├── infrastructure          // Infrastructure as code (e.g. Docker, AWS)
+├── infrastructure          // Infrastructure as code (e.g. Docker)
 │   └── containerization    // Example of Docker image
 ├── src                     // Production code and associated unit tests
 │   ├── main                // Main layer
