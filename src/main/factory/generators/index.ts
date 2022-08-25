@@ -1,2 +1,2 @@
-export * from './dateGenerator'
-export * from './uuidGenerator'
+export * from './getSharedDateGenerator'
+export * from './getSharedUUIDGenerator'
