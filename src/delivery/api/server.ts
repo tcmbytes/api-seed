@@ -28,11 +28,11 @@ export const setupServer = (params: Params) => {
 
   setDocsRoute(server)
 
-  server.put('/greetings', handlersFactory.make('putGreetingHandler'))
+  server.post('/greetings', handlersFactory.make('postGreetingHandler'))
   server.get('/greetings', handlersFactory.make('getGreetingsHandler'))
 
   server.get('/greetings/:greetingId', handlersFactory.make('getGreetingHandler'))
-  server.post('/greetings/:greetingId', handlersFactory.make('postGreetingHandler'))
+  server.put('/greetings/:greetingId', handlersFactory.make('putGreetingHandler'))
   server.delete('/greetings/:greetingId', handlersFactory.make('deleteGreetingHandler'))
 
   server.use(middlewaresFactory.make('routeUnavailableMiddleware'))

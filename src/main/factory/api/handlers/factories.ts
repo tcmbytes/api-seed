@@ -6,9 +6,9 @@ import { postGreetingHandlerFactory } from './postGreetingHandlerFactory'
 import { putGreetingHandlerFactory } from './putGreetingHandlerFactory'
 
 export const apiHandlerFactories: HandlerFactories = {
-  getGreetingHandler: getGreetingHandlerFactory,
-  deleteGreetingHandler: deleteGreetingHandlerFactory,
-  getGreetingsHandler: getGreetingsHandlerFactory,
-  putGreetingHandler: putGreetingHandlerFactory,
   postGreetingHandler: postGreetingHandlerFactory,
+  getGreetingsHandler: getGreetingsHandlerFactory,
+  getGreetingHandler: getGreetingHandlerFactory,
+  putGreetingHandler: putGreetingHandlerFactory,
+  deleteGreetingHandler: deleteGreetingHandlerFactory,
 }

@@ -12,7 +12,7 @@ paths:
       responses:
         '200':
           $ref: '#components/responses/GreetingsList'
-    put:
+    post:
       summary: Create greetings.
       tags:
         - "Greetings"
@@ -33,7 +33,7 @@ paths:
           $ref: '#components/responses/GreetingDetails'
         '404':
           $ref: '#components/responses/GreetingNotFound'
-    post:
+    put:
       summary: Update greeting message.
       tags:
         - "Greetings"

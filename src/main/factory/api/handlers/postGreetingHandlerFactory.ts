@@ -1,11 +1,11 @@
 import { WithLoggingGreetingRepo, makeLogger, plainMap, withLogging } from 'shared/logger'
+import { getSharedDateGenerator, getSharedUUIDGenerator } from '../../generators'
 
 import { HandlerFactory } from '../types'
-import { getSharedDateGenerator } from '../../generators'
+import { createGreetingUseCase } from 'domain/usecases'
 import { getSharedGreetingsRepo } from '../../repositories'
 import { makeContextFromRequest } from '../utils'
 import { postGreetingHandler } from 'delivery/api/handlers'
-import { updateGreetingUseCase } from 'domain/usecases'
 
 export const postGreetingHandlerFactory: HandlerFactory = (req, _res) => {
   const context = makeContextFromRequest(req)
@@ -18,14 +18,14 @@ export const postGreetingHandlerFactory: HandlerFactory = (req, _res) => {
   })
 
   const dateGenerator = getSharedDateGenerator()
+  const uuidGenerator = getSharedUUIDGenerator()
 
-  const usecase = updateGreetingUseCase({ repo: decoratedRepo, dateGenerator })
-  const decoratedUsecase = withLogging(logger, 'USECASE', 'updateGreeting')(usecase, plainMap, plainMap)
+  const usecase = createGreetingUseCase({ repo: decoratedRepo, dateGenerator, uuidGenerator })
+  const decoratedUsecase = withLogging(logger, 'USECASE', 'sayHelloUseCase')(usecase, plainMap, plainMap)
 
   const handler = postGreetingHandler({
     usecase: decoratedUsecase,
   })
-  const decoratedHandler = withLogging(logger, 'API', 'postGreetingHandler')(handler)
 
-  return decoratedHandler
+  return withLogging(logger, 'API', 'postGreetingHandler')(handler)
 }
