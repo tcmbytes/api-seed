@@ -12,7 +12,7 @@ type Request = {
 
 export type DeleteGreetingUseCase = UseCase<Request, void>
 
-export const newDeleteGreetingUseCase: UseCaseConstructor<Params, Request, void> = (params) => async (request) => {
+export const deleteGreetingUseCase: UseCaseConstructor<Params, Request, void> = (params) => async (request) => {
   const { repo } = params
   const { id } = request
 

@@ -3,13 +3,13 @@ import { mock, mockClear } from 'jest-mock-extended'
 
 import { Greeting } from '../../types'
 import { GreetingNotFoundError } from '../../errors'
-import { newUpdateGreetingUseCase } from './update-greeting'
+import { updateGreetingUseCase } from './update-greeting'
 
 describe('updateGreetingUseCase should', () => {
   const repo = mock<GreetingsRepo>()
   const dateGenerator = mock<Generator<Date>>()
 
-  const sut = newUpdateGreetingUseCase({ repo, dateGenerator })
+  const sut = updateGreetingUseCase({ repo, dateGenerator })
 
   afterEach(() => {
     mockClear(repo)

@@ -13,7 +13,7 @@ type Request = {
 
 export type ShowGreetingsUseCase = UseCase<Request, Greeting>
 
-export const newShowGreetingUseCase: UseCaseConstructor<Params, Request, Greeting> = (params) => async (request) => {
+export const showGreetingUseCase: UseCaseConstructor<Params, Request, Greeting> = (params) => async (request) => {
   const { repo } = params
   const { id } = request
 

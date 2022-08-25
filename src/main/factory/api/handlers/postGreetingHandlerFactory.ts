@@ -5,7 +5,7 @@ import { getSharedDateGenerator } from '../../generators'
 import { getSharedGreetingsRepo } from '../../repositories'
 import { makeContextFromRequest } from '../utils'
 import { newPostGreetingHandler } from 'delivery/api/handlers'
-import { newUpdateGreetingUseCase } from 'domain/usecases'
+import { updateGreetingUseCase } from 'domain/usecases'
 
 export const postGreetingHandlerFactory: HandlerFactory = (req, _res) => {
   const context = makeContextFromRequest(req)
@@ -19,7 +19,7 @@ export const postGreetingHandlerFactory: HandlerFactory = (req, _res) => {
 
   const dateGenerator = getSharedDateGenerator()
 
-  const usecase = newUpdateGreetingUseCase({ repo: decoratedRepo, dateGenerator })
+  const usecase = updateGreetingUseCase({ repo: decoratedRepo, dateGenerator })
   const decoratedUsecase = withLogging(logger, 'USECASE', 'updateGreeting')(usecase, plainMap, plainMap)
 
   const handler = newPostGreetingHandler({
