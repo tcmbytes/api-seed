@@ -7,7 +7,7 @@ import { makeContextFromRequest } from '../utils'
 import { newCreateGreetingUseCase } from 'domain/usecases'
 import { newPutGreetingHandler } from 'delivery/api/handlers'
 
-export const makePutGreetingHandlerFactory: HandlerFactory = (req, _res) => {
+export const putGreetingHandlerFactory: HandlerFactory = (req, _res) => {
   const context = makeContextFromRequest(req)
   const logger = makeLogger({ context })
 

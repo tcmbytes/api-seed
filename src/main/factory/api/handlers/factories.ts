@@ -1,14 +1,14 @@
 import { HandlerFactories } from '../types'
-import { makeDeleteGreetingHandlerFactory } from './makeDeleteGreetingHandlerFactory'
-import { makeGetGreetingHandlerFactory } from './makeGetGreetingHandlerFactory'
-import { makeGetGreetingsHandlerFactory } from './makeGetGreetingsHandlerFactory'
-import { makePostGreetingHandlerFactory } from './makePostGreetingHandlerFactory'
-import { makePutGreetingHandlerFactory } from './makePutGreetingHandlerFactory'
+import { deleteGreetingHandlerFactory } from './deleteGreetingHandlerFactory'
+import { getGreetingHandlerFactory } from './getGreetingHandlerFactory'
+import { getGreetingsHandlerFactory } from './getGreetingsHandlerFactory'
+import { postGreetingHandlerFactory } from './postGreetingHandlerFactory'
+import { putGreetingHandlerFactory } from './putGreetingHandlerFactory'
 
 export const apiHandlerFactories: HandlerFactories = {
-  getGreetingHandler: makeGetGreetingHandlerFactory,
-  deleteGreetingHandler: makeDeleteGreetingHandlerFactory,
-  getGreetingsHandler: makeGetGreetingsHandlerFactory,
-  putGreetingHandler: makePutGreetingHandlerFactory,
-  postGreetingHandler: makePostGreetingHandlerFactory,
+  getGreetingHandler: getGreetingHandlerFactory,
+  deleteGreetingHandler: deleteGreetingHandlerFactory,
+  getGreetingsHandler: getGreetingsHandlerFactory,
+  putGreetingHandler: putGreetingHandlerFactory,
+  postGreetingHandler: postGreetingHandlerFactory,
 }
