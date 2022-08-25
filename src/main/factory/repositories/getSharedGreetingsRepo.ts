@@ -1,12 +1,6 @@
 import { GreetingsRepo } from 'domain/boundaries'
 import { InMemoryGreetingsRepo } from 'repository/InMemoryGreetingsRepo'
 
-let instance: GreetingsRepo
+const instance = InMemoryGreetingsRepo()
 
-export const getSharedGreetingsRepo = (): GreetingsRepo => {
-  if (!instance) {
-    instance = InMemoryGreetingsRepo()
-  }
-
-  return instance
-}
+export const getSharedGreetingsRepo = (): GreetingsRepo => instance
