@@ -1,6 +1,6 @@
 import { mock, mockClear } from 'jest-mock-extended'
 
-import { Greeting } from '../../types'
+import { DummyGreeting } from '../../types'
 import { GreetingNotFoundError } from '../../errors'
 import { GreetingsRepo } from '../../boundaries'
 import { showGreetingUseCase } from './show-greeting'
@@ -14,14 +14,9 @@ describe('showGreetingUseCase should', () => {
   })
 
   test('get the greeting by ID from the greetings repository', async () => {
-    const greeting: Greeting = {
+    const greeting = DummyGreeting({
       id: 'greetingId',
-      from: 'me',
-      to: 'you',
-      message: 'hi',
-      createdOn: new Date(),
-      modifiedOn: new Date(),
-    }
+    })
     repo.findById.mockResolvedValue(greeting)
 
     const result = await sut({ id: 'greetingId' })

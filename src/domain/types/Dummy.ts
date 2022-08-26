@@ -1,1 +1,1 @@
-export type Dummy<Model> = (model: Partial<Model>) => Model
+export type Dummy<Model> = (model?: Partial<Model>) => Model
