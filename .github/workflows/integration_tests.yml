@@ -1,10 +1,9 @@
-name: Node.js CI
+name: Integration Tests
 
 on: [push]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     strategy:
