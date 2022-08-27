@@ -1,2 +1,2 @@
-export * from './DummyGreeting'
+export * from './Builder'
 export * from './Greeting'

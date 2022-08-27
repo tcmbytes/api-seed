@@ -1,7 +1,7 @@
 import { Generator, GreetingsRepo } from '../../boundaries'
 import { mock, mockClear } from 'jest-mock-extended'
 
-import { DummyGreeting } from '../../types'
+import { GreetingBuilder } from '../../shared'
 import { GreetingNotFoundError } from '../../errors'
 import { updateGreetingUseCase } from './update-greeting'
 
@@ -17,7 +17,7 @@ describe('updateGreetingUseCase should', () => {
   })
 
   test('get the greeting from the greetings repository', async () => {
-    const greeting = DummyGreeting({
+    const greeting = GreetingBuilder.build({
       id: 'greetingId',
     })
     repo.findById.mockResolvedValue(greeting)
@@ -44,7 +44,7 @@ describe('updateGreetingUseCase should', () => {
   })
 
   test('update the greeting into the greetings repository', async () => {
-    const greeting = DummyGreeting({
+    const greeting = GreetingBuilder.build({
       id: 'greetingId',
     })
     repo.findById.mockResolvedValue(greeting)

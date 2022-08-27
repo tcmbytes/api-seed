@@ -1,13 +1,19 @@
-import { Dummy } from './Dummy'
-import { Greeting } from './Greeting'
+import { Builder, Greeting } from '../types'
+
 import faker from 'faker'
 
-export const DummyGreeting: Dummy<Greeting> = (model) => ({
+const storage = {
   id: faker.random.uuid(),
   from: faker.internet.email(),
   to: faker.internet.email(),
   message: faker.lorem.sentence(),
   createdOn: faker.date.past(),
   modifiedOn: faker.date.recent(),
-  ...model,
-})
+}
+
+export const GreetingBuilder: Builder<Greeting> = {
+  build: (overrides) => ({
+    ...storage,
+    ...overrides,
+  }),
+}

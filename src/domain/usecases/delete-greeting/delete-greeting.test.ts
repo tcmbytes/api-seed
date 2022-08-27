@@ -1,6 +1,6 @@
 import { mock, mockClear } from 'jest-mock-extended'
 
-import { DummyGreeting } from '../../types'
+import { GreetingBuilder } from '../../shared'
 import { GreetingNotFoundError } from '../../errors'
 import { GreetingsRepo } from '../../boundaries'
 import { deleteGreetingUseCase } from './delete-greeting'
@@ -22,7 +22,7 @@ describe('deleteGreetingUseCase should', () => {
   })
 
   test('remove the greeting when the greeting is in the repository', async () => {
-    const greeting = DummyGreeting({
+    const greeting = GreetingBuilder.build({
       id: 'greetingId',
     })
     repo.findById.mockResolvedValue(greeting)
