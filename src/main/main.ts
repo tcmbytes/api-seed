@@ -3,6 +3,7 @@ import 'dotenv/config'
 import { apiHandlerFactories, apiMiddlewareFactories, makeHandlersFactory } from './factory/api'
 import { makeContext, makeLogger } from '../shared/logger'
 
+import { config } from './config'
 import { errorHandlerFactories } from './factory/api'
 import { makeErrorHandlersFactory } from './factory/api/makeErrorHandlersFactory'
 import { makeExpressServer } from './factory/drivers'
@@ -14,18 +15,20 @@ const main = () => {
   const logger = makeLogger({ context })
   const server = makeExpressServer()
 
+  const options = {
+    hostname: config.HOSTNAME,
+    port: config.PORT,
+  }
+
   const handlersFactory = makeHandlersFactory(apiHandlerFactories)
   const middlewaresFactory = makeHandlersFactory(apiMiddlewareFactories)
   const errorHandersFactory = makeErrorHandlersFactory(errorHandlerFactories)
-
-  const hostname = process.env.HOSTNAME ?? '0.0.0.0'
-  const port = parseInt(process.env.PORT ?? '8080')
 
   setupProcessListeners({ process, logger })
   setupServer({
     server,
     logger,
-    options: { port, hostname },
+    options,
     handlersFactory,
     middlewaresFactory,
     errorHandersFactory,
