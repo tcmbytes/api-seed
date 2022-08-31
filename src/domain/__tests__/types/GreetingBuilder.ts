@@ -1,5 +1,5 @@
-import { Builder, Greeting } from '../types'
-
+import { Builder } from './Builder'
+import { Greeting } from '../../types'
 import faker from 'faker'
 
 const storage = {
