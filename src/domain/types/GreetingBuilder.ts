@@ -1,5 +1,5 @@
-import { Builder } from './Builder'
-import { Greeting } from '../../types'
+import { Builder } from '../boundaries'
+import { Greeting } from './Greeting'
 import faker from 'faker'
 
 const storage = {
