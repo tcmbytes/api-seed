@@ -18,7 +18,7 @@
     ]
   ],
   "roots": [
-    "<rootDir>/src"
+    "<rootDir>"
   ],
   "testMatch": [
     "**/*.test.ts"
