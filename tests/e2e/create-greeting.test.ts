@@ -2,7 +2,7 @@ import 'dotenv/config'
 
 import { Method, callEndpoint } from './shared/callEndpoint'
 
-describe('postGreeting should', () => {
+describe('POST /greetings should', () => {
   test('create new greeting', async () => {
     const body = {
       from: 'from@example.com',
