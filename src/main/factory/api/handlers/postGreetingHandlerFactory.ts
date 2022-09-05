@@ -21,7 +21,7 @@ export const postGreetingHandlerFactory: HandlerFactory = (req, _res) => {
   const uuidGenerator = getSharedUUIDGenerator()
 
   const usecase = createGreetingUseCase({ repo: decoratedRepo, dateGenerator, uuidGenerator })
-  const decoratedUsecase = withLogging(logger, 'USECASE', 'sayHelloUseCase')(usecase, plainMap, plainMap)
+  const decoratedUsecase = withLogging(logger, 'USECASE', 'createGreetingUseCase')(usecase, plainMap, plainMap)
 
   const handler = postGreetingHandler({
     usecase: decoratedUsecase,
