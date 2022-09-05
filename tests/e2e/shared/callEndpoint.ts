@@ -1,3 +1,5 @@
+import 'dotenv/config'
+
 import { config } from '../../../src/main/config'
 import supertest from 'supertest'
 import { v4 } from 'uuid'

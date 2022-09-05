@@ -1,5 +1,3 @@
-import 'dotenv/config'
-
 import { Method, callEndpoint } from './shared/callEndpoint'
 
 describe('GET /greeting/:greetingID should', () => {

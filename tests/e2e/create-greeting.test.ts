@@ -1,5 +1,3 @@
-import 'dotenv/config'
-
 import { Method, callEndpoint } from './shared/callEndpoint'
 
 import { greetingsClient } from './shared/greetingsClient'
