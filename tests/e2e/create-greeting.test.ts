@@ -1,4 +1,4 @@
-import { Method, callEndpoint } from './shared/callEndpoint'
+import { callEndpoint, Method } from './shared/callEndpoint'
 
 import { greetingsClient } from './shared/greetingsClient'
 
@@ -21,6 +21,8 @@ describe('POST /greetings should', () => {
 
     const result = await callEndpoint('greetings', Method.Post, body)
     cleanUp(result.body.id)
+
+    expect(result.status).toStrictEqual(201)
 
     expect(new Date(result.body.createdOn)).toBeInstanceOf(Date)
     expect(new Date(result.body.modifiedOn)).toBeInstanceOf(Date)
