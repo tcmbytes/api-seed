@@ -12,7 +12,7 @@ export const postGreetingHandler: RouteHandlerConstructor<Params> = (params) => 
 
     const result = await usecase({ from, to, message })
 
-    res.status(200).send(result)
+    res.status(201).send(result)
   } catch (error) {
     const { message } = error as Error
     res.status(400).json({
