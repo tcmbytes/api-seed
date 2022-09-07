@@ -1,8 +1,7 @@
-import { callEndpoint, Method } from './shared/callEndpoint'
-import { greetingsClient } from './shared/greetingsClient'
+import { callEndpoint, greetingsClient, Method } from '../../shared'
 
 describe('GET /greeting/:greetingID should', () => {
-  test('return an error message with status 404 when the requested greeting does not exist', async () => {
+  test('return an informative message with status 404 when the requested greeting does not exist', async () => {
     const greetingID = 'greetingId'
 
     const result = await callEndpoint(Method.GET, `/greetings/${greetingID}`)
@@ -15,7 +14,7 @@ describe('GET /greeting/:greetingID should', () => {
     })
   })
 
-  test('return the greeting with status 200 when the requested greeting exists', async () => {
+  test('return the greeting with status 200 when the greeting is successfully retrieved', async () => {
     const greeting = await greetingsClient.create()
 
     const result = await callEndpoint(Method.GET, `/greetings/${greeting.id}`)

@@ -1,9 +1,8 @@
-import { callEndpoint, Method } from './shared/callEndpoint'
-import { greetingsClient } from './shared/greetingsClient'
-import { UpdateGreetingBody } from './types'
+import { callEndpoint, greetingsClient, Method } from '../../shared'
+import { UpdateGreetingBody } from '../../types'
 
 describe('PUT /greeting/:greetingID should', () => {
-  test('return an error message with status 404 when the requested greeting does not exist', async () => {
+  test('return an informative message with status 404 when the requested greeting does not exist', async () => {
     const greetingID = 'greetingId'
 
     const request: UpdateGreetingBody = {
@@ -19,7 +18,7 @@ describe('PUT /greeting/:greetingID should', () => {
     })
   })
 
-  test('return the updated greeting with status 200 when the request is successful', async () => {
+  test('return the updated greeting with status 200 when the greeting is successfully updated', async () => {
     const greeting = await greetingsClient.create()
 
     const request = {

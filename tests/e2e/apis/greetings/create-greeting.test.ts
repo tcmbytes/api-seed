@@ -1,12 +1,10 @@
-import { callEndpoint, Method } from './shared/callEndpoint'
+import { callEndpoint, greetingsClient, Method } from '../../shared'
 
-import { Greeting } from 'domain/types'
 import { validate as validateUUID } from 'uuid'
-import { greetingsClient } from './shared/greetingsClient'
-import { CreateGreetingBody } from './types'
+import { CreateGreetingBody, Greeting } from '../../types'
 
 describe('POST /greetings should', () => {
-  test('return the created greeting with status 201 when the greeting is created with success', async () => {
+  test('return the created greeting with status 201 when the greeting is successfully created', async () => {
     const body: CreateGreetingBody = {
       from: 'from@example.com',
       to: 'to@example.com',

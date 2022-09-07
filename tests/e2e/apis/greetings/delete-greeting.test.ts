@@ -1,9 +1,6 @@
-import { callEndpoint, Method } from './shared/callEndpoint'
-
-import { greetingsClient } from './shared/greetingsClient'
-
+import { callEndpoint, greetingsClient, Method } from '../../shared'
 describe('DELETE /greeting/:greetingID should', () => {
-  test('return an error message with status 404 when the requested greeting does not exist', async () => {
+  test('return an informative message with status 404 when the requested greeting does not exist', async () => {
     const greetingID = 'greetingId'
 
     const result = await callEndpoint(Method.DELETE, `/greetings/${greetingID}`)
