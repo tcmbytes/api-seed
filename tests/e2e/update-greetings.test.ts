@@ -1,44 +1,41 @@
 import { callEndpoint, Method } from './shared/callEndpoint'
 import { greetingsClient } from './shared/greetingsClient'
+import { UpdateGreetingBody } from './types'
 
 describe('PUT /greeting/:greetingID should', () => {
-  test('return 404 Not found when the greeting by the provided ID doesnt exist', async () => {
+  test('return an error message with status 404 when the requested greeting does not exist', async () => {
     const greetingID = 'greetingId'
-    const request = {
+
+    const request: UpdateGreetingBody = {
       message: 'Update message',
     }
-
     const result = await callEndpoint(Method.PUT, `/greetings/${greetingID}`, request)
 
     expect(result.status).toStrictEqual(404)
-    expect(result.body).toMatchObject({
+    expect(result.body).toStrictEqual({
       message: `Greeting with id '${greetingID}' not found.`,
+      status: 'Not Found',
+      statusCode: 404,
     })
   })
 
-  test('return 200 when the greeting is successfully updated', async () => {
-    const response = await greetingsClient.create()
-    const greetingID = response.data.id
+  test('return the updated greeting with status 200 when the request is successful', async () => {
+    const greeting = await greetingsClient.create()
 
     const request = {
       message: 'Update message',
     }
-    const result = await callEndpoint(Method.PUT, `/greetings/${greetingID}`, request)
+    const result = await callEndpoint(Method.PUT, `/greetings/${greeting.id}`, request)
 
     expect(result.status).toStrictEqual(200)
 
-    expect(new Date(result.body.createdOn)).toBeInstanceOf(Date)
-    expect(new Date(result.body.modifiedOn)).toBeInstanceOf(Date)
-
-    expect(result.body).toMatchObject({
-      id: expect.any(String),
-      from: expect.any(String),
-      to: expect.any(String),
+    expect(result.body.modifiedOn).not.toEqual(result.body.createdOn)
+    expect(result.body).toStrictEqual({
+      ...greeting,
       message: 'Update message',
-      createdOn: expect.any(String),
       modifiedOn: expect.any(String),
     })
 
-    await greetingsClient.removeById(greetingID)
+    await greetingsClient.removeById(greeting.id)
   })
 })
