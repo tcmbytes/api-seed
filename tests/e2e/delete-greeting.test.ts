@@ -1,4 +1,4 @@
-import { Method, callEndpoint } from './shared/callEndpoint'
+import { callEndpoint, Method } from './shared/callEndpoint'
 
 import { greetingsClient } from './shared/greetingsClient'
 

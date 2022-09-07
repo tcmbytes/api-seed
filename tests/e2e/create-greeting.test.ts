@@ -3,15 +3,6 @@ import { callEndpoint, Method } from './shared/callEndpoint'
 import { greetingsClient } from './shared/greetingsClient'
 
 describe('POST /greetings should', () => {
-  let GREETING_ID: string
-  const cleanUp = (id: string) => {
-    GREETING_ID = id
-  }
-
-  afterEach(() => async () => {
-    await greetingsClient.removeById(GREETING_ID)
-  })
-
   test('create new greeting', async () => {
     const body = {
       from: 'from@example.com',
@@ -20,7 +11,6 @@ describe('POST /greetings should', () => {
     }
 
     const result = await callEndpoint('greetings', Method.Post, body)
-    cleanUp(result.body.id)
 
     expect(result.status).toStrictEqual(201)
 
@@ -35,5 +25,7 @@ describe('POST /greetings should', () => {
       createdOn: expect.any(String),
       modifiedOn: expect.any(String),
     })
+
+    await greetingsClient.removeById(result.body.id)
   })
 })

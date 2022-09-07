@@ -20,17 +20,8 @@ describe('GET /greeting/:greetingID should', () => {
     const result = await callEndpoint(`greetings/${greetingID}`, Method.Get)
 
     expect(result.status).toStrictEqual(200)
+    expect(result.body).toMatchObject(response.data)
 
-    expect(new Date(result.body.createdOn)).toBeInstanceOf(Date)
-    expect(new Date(result.body.modifiedOn)).toBeInstanceOf(Date)
-
-    expect(result.body).toMatchObject({
-      id: expect.any(String),
-      from: expect.any(String),
-      to: expect.any(String),
-      message: expect.any(String),
-      createdOn: expect.any(String),
-      modifiedOn: expect.any(String),
-    })
+    await greetingsClient.removeById(greetingID)
   })
 })
