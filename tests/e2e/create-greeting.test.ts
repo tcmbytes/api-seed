@@ -10,7 +10,7 @@ describe('POST /greetings should', () => {
       message: 'hi!',
     }
 
-    const result = await callEndpoint('greetings', Method.Post, body)
+    const result = await callEndpoint(Method.POST, '/greetings', body)
 
     expect(result.status).toStrictEqual(201)
 

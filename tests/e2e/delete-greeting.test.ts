@@ -6,7 +6,7 @@ describe('DETELE /greeting/:greetingID should', () => {
   test('return 404 Not found when the greeting by the provided ID doesnt exist', async () => {
     const greetingID = 'greetingId'
 
-    const result = await callEndpoint(`greetings/${greetingID}`, Method.Delete)
+    const result = await callEndpoint(Method.DELETE, `/greetings/${greetingID}`)
 
     expect(result.status).toStrictEqual(404)
     expect(result.body).toMatchObject({
@@ -18,7 +18,7 @@ describe('DETELE /greeting/:greetingID should', () => {
     const response = await greetingsClient.create()
     const greetingID = response.data.id
 
-    const result = await callEndpoint(`greetings/${greetingID}`, Method.Delete)
+    const result = await callEndpoint(Method.DELETE, `/greetings/${greetingID}`)
 
     expect(result.status).toStrictEqual(204)
     expect(result.body).toMatchObject({})

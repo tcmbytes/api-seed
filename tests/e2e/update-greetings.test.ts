@@ -4,8 +4,11 @@ import { greetingsClient } from './shared/greetingsClient'
 describe('PUT /greeting/:greetingID should', () => {
   test('return 404 Not found when the greeting by the provided ID doesnt exist', async () => {
     const greetingID = 'greetingId'
+    const request = {
+      message: 'Update message',
+    }
 
-    const result = await callEndpoint(`greetings/${greetingID}`, Method.Put)
+    const result = await callEndpoint(Method.PUT, `/greetings/${greetingID}`, request)
 
     expect(result.status).toStrictEqual(404)
     expect(result.body).toMatchObject({
@@ -20,7 +23,7 @@ describe('PUT /greeting/:greetingID should', () => {
     const request = {
       message: 'Update message',
     }
-    const result = await callEndpoint(`greetings/${greetingID}`, Method.Put, request)
+    const result = await callEndpoint(Method.PUT, `/greetings/${greetingID}`, request)
 
     expect(result.status).toStrictEqual(200)
 

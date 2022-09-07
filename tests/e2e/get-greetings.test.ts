@@ -3,7 +3,7 @@ import { greetingsClient } from './shared/greetingsClient'
 
 describe('GET /greetings should', () => {
   test('return 200 and an empty array when there are no greetings in the list', async () => {
-    const result = await callEndpoint('greetings', Method.Get)
+    const result = await callEndpoint(Method.GET, '/greetings')
 
     expect(result.status).toStrictEqual(200)
     expect(result.body).toMatchObject([])
@@ -13,7 +13,7 @@ describe('GET /greetings should', () => {
     const firstGreeting = await greetingsClient.create()
     const secondGreeting = await greetingsClient.create()
 
-    const result = await callEndpoint('greetings', Method.Get)
+    const result = await callEndpoint(Method.GET, '/greetings')
 
     expect(result.status).toStrictEqual(200)
     expect(result.body).toMatchObject([firstGreeting.data, secondGreeting.data])

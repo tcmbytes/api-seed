@@ -1,19 +1,19 @@
 import 'dotenv/config'
 
-import { config } from '../../../src/main/config'
 import supertest from 'supertest'
-import { v4 } from 'uuid'
+import { v4 as uuid } from 'uuid'
+import { config } from '../../../src/main/config'
 
-const { HOSTNAME: host, PORT: port } = config
+const baseURL = `${config.HOSTNAME}:${config.PORT}`
 
 export enum Method {
-  Post = 'post',
-  Get = 'get',
-  Patch = 'patch',
-  Put = 'put',
-  Delete = 'delete',
+  POST = 'post',
+  GET = 'get',
+  PATCH = 'patch',
+  PUT = 'put',
+  DELETE = 'delete',
 }
 
-export const callEndpoint = (url: string, method: Method, payload: object = {}) => {
-  return supertest.agent(`${host}:${port}/`)[method](url).send(payload).set('trace-id', v4()).redirects(0)
+export const callEndpoint = (method: Method, url: string, payload: object = {}) => {
+  return supertest.agent(baseURL)[method](url).send(payload).set('trace-id', uuid()).redirects(0)
 }

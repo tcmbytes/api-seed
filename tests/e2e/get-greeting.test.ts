@@ -5,7 +5,7 @@ describe('GET /greeting/:greetingID should', () => {
   test('return 404 Not found when the greeting by the provided ID doesnt exist', async () => {
     const greetingID = 'greetingId'
 
-    const result = await callEndpoint(`greetings/${greetingID}`, Method.Get)
+    const result = await callEndpoint(Method.GET, `/greetings/${greetingID}`)
 
     expect(result.status).toStrictEqual(404)
     expect(result.body).toMatchObject({
@@ -17,7 +17,7 @@ describe('GET /greeting/:greetingID should', () => {
     const response = await greetingsClient.create()
     const greetingID = response.data.id
 
-    const result = await callEndpoint(`greetings/${greetingID}`, Method.Get)
+    const result = await callEndpoint(Method.GET, `/greetings/${greetingID}`)
 
     expect(result.status).toStrictEqual(200)
     expect(result.body).toMatchObject(response.data)
