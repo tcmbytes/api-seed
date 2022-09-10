@@ -60,6 +60,14 @@ To start the app on a local server, run the following command from the root dire
 $ yarn api:start
 ```
 
+### Watch mode
+
+To continuously watch for file changes and check for syntax errors, run the following command:
+
+```bash
+$ yarn api:watch
+```
+
 ### Run tests
 
 To run the unit test, run the following command from the root directoy of the project:
@@ -75,14 +83,6 @@ $ yarn test:watch
 ```
 
 The generated tests reports are available in `./tests/reports/` directory.
-
-### Watch mode
-
-To continuously watch for file changes and check for syntax errors, run the following command:
-
-```bash
-$ yarn watch
-```
 
 ### Docker
 
