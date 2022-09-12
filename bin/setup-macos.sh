@@ -46,6 +46,13 @@ echo "----------------------------------------------------------"
 yarn || { echo "NPM Packages could not be installed!"; exit 1; };
 
 echo "----------------------------------------------------------"
+echo "Setting up the environment variables"
+echo "----------------------------------------------------------"
+
+cp .example.env .env || { echo "Environment variables could not be setup!"; exit 1; };
+cat .env && echo
+
+echo "----------------------------------------------------------"
 echo "Running tests to verify setup is complete"
 echo "----------------------------------------------------------"
 

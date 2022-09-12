@@ -3,7 +3,35 @@
 The seed from which your software grows.
 ## Project setup
 
-Make sure to have [Node.js](https://nodejs.org) and [yarn](https://yarnpkg.com) installed on your machine before continuing with the setup.
+### Clone the project locally
+
+If you have `SSH` setup on your account, run the following command:
+
+```bash
+$ git clone git@github.com:alexcristea/api-seed.git
+```
+
+Otherwise, you may use the `HTTPS` version (might ask for username and password):
+
+```bash
+$ git clone https://github.com/alexcristea/api-seed.git
+```
+
+### Install dependencies
+
+Change the working directory to the repo directory:
+
+```bash 
+cd api-seed
+```
+
+If you're developing on macOS, then run the [setup-macos.sh](./bin/setup-macos.sh) script. It will install the system dependencies, project dependencies and the evironment for your app:
+
+```bash
+bash ./bin/setup-macos.sh
+```
+
+Otherwise, make sure to manually install [Node.js](https://nodejs.org) and [yarn](https://yarnpkg.com) on your machine before continuing with the development.
 
 ```bash
 $ node --version
@@ -13,24 +41,6 @@ $ yarn --version
 1.22.4
 ```
 
-### Clone the project locally
-
-If you have `SSH` setup on your account, run the following command:
-
-```bash
-$ git clone git@github.com:alexcristea/api-seed.git
-```
-
-Otherwise, you may use the `HTTPS` version ( might ask for username and password):
-
-```bash
-$ git clone https://github.com/alexcristea/api-seed.git
-```
-
-### Install dependencies
-
-Change the working directory to the repo directory.
-
 To install the project dependencies, run the following install command:
 
 ```bash
@@ -38,8 +48,6 @@ $ yarn
 ```
 
 ## Development
-
-### Start local web server
 
 To configure the `hostname` and `port` (default: `localhost:8080`) of the web server, make sure to configure the environment variables in the `.env` file:
 
@@ -53,6 +61,8 @@ or copy the next lines into your `.env` file:
 HOSTNAME='localhost'
 PORT=8080
 ```
+
+### Start local web server
 
 To start the app on a local server, run the following command from the root directoy of the project:
 
@@ -68,7 +78,7 @@ To continuously watch for file changes and check for syntax errors, run the foll
 $ yarn api:watch
 ```
 
-### Run tests
+### Run unit tests
 
 To run the unit test, run the following command from the root directoy of the project:
 
@@ -82,7 +92,31 @@ To continuously run the unit tests as you code, run the following command:
 $ yarn test:watch
 ```
 
-The generated tests reports are available in `./tests/reports/` directory.
+The generated tests reports are available in `./reports/summary.html` file.
+
+### Run end-2-end tests
+
+To run the end-2-end test, make sure to have the app running:
+
+```bash 
+$ yarn api:watch
+```
+
+ and then run the following command from the root directoy of the project:
+
+```bash
+$ yarn test:e2e
+```
+
+### Code coverage
+
+To generate the coverage report for your app, run the following command:
+
+```bash
+$ yarn test:coverage
+```
+
+The generated report is available in `./reports/coverage` directory.
 
 ### Docker
 
