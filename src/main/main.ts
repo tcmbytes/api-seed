@@ -1,14 +1,13 @@
 import 'dotenv/config'
 
-import { apiHandlerFactories, apiMiddlewareFactories, makeHandlersFactory } from './factory/api'
 import { makeContext, makeLogger } from '../shared/logger'
+import { apiHandlerFactories, apiMiddlewareFactories, makeHandlersFactory } from './factory/api'
 
+import { setupServer } from '../delivery/api/server'
 import { config } from './config'
-import { errorHandlerFactories } from './factory/api'
-import { makeErrorHandlersFactory } from './factory/api/makeErrorHandlersFactory'
+import { errorHandlerFactories, makeErrorHandlersFactory } from './factory/api'
 import { makeExpressServer } from './factory/drivers'
 import { setupProcessListeners } from './process'
-import { setupServer } from '../delivery/api/server'
 
 const main = () => {
   const context = makeContext()
