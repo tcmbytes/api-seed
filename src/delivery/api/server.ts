@@ -1,9 +1,9 @@
 import express, { ErrorRequestHandler, Express, Handler } from 'express'
 
-import { AbstractFactory } from './types'
-import { Logger } from '../../shared/logger'
-import YAML from 'yamljs'
+import { Logger } from 'shared/logger'
 import swaggerUi from 'swagger-ui-express'
+import YAML from 'yamljs'
+import { AbstractFactory } from './types'
 
 type Options = {
   port: number

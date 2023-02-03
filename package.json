@@ -24,7 +24,7 @@
     "test:coverage": "jest src --coverage",
     "test:watch": "jest src --watchAll",
     "build": "run-s :clean :compile :install",
-    "start": "node .build/main/index.js",
+    "start": "node .build/src/main/index.js",
     "api:build": "run-s test build",
     "api:start": "run-s test build start",
     "api:watch": "nodemon",

@@ -1,9 +1,9 @@
 import 'dotenv/config'
 
-import { makeContext, makeLogger } from '../shared/logger'
+import { makeContext, makeLogger } from 'shared/logger'
 import { apiHandlerFactories, apiMiddlewareFactories, makeHandlersFactory } from './factory/api'
 
-import { setupServer } from '../delivery/api/server'
+import { setupServer } from 'delivery/api/server'
 import { config } from './config'
 import { errorHandlerFactories, makeErrorHandlersFactory } from './factory/api'
 import { makeExpressServer } from './factory/drivers'
