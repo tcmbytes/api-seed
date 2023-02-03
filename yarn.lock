@@ -515,7 +515,7 @@
   dependencies:
     regexp-match-indices "1.0.2"
 
-"@cucumber/cucumber@*", "@cucumber/cucumber@^8.10.0":
+"@cucumber/cucumber@^8.10.0":
   version "8.10.0"
   resolved "https://registry.yarnpkg.com/@cucumber/cucumber/-/cucumber-8.10.0.tgz#2d575eccfa8b473c4f2198c2d31c24e36ebf7943"
   integrity sha512-UeXxdxjtv2HaXMaFkYS8ku1ddPXlyPtHJ0K9jTCcUiXyhiaYRzZlWTq6Kfi557Ni41odKaF1He6pn2EQh2n4GA==
@@ -901,13 +901,6 @@
   resolved "https://registry.yarnpkg.com/@tootallnate/once/-/once-1.1.2.tgz#ccb91445360179a04e7fe6aff78c00ffc1eeaf82"
   integrity sha512-RbzJvlNzmRq5c3O09UipeuXno4tA1FE6ikOjxZK0tuxVv3412l64l5t1W5pj4+rJq9vpkm/kwiR07aZXnsKPxw==
 
-"@types/axios@^0.14.0":
-  version "0.14.0"
-  resolved "https://registry.yarnpkg.com/@types/axios/-/axios-0.14.0.tgz#ec2300fbe7d7dddd7eb9d3abf87999964cafce46"
-  integrity sha512-KqQnQbdYE54D7oa/UmYVMZKq7CO4l8DEENzOKc4aBRwxCXSlJXGz83flFx5L7AWrOQnmuN3kVsRdt+GZPPjiVQ==
-  dependencies:
-    axios "*"
-
 "@types/babel__core@^7.0.0", "@types/babel__core@^7.1.14":
   version "7.1.16"
   resolved "https://registry.yarnpkg.com/@types/babel__core/-/babel__core-7.1.16.tgz#bc12c74b7d65e82d29876b5d0baf5c625ac58702"
@@ -960,13 +953,6 @@
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/@types/cookiejar/-/cookiejar-2.1.2.tgz#66ad9331f63fe8a3d3d9d8c6e3906dd10f6446e8"
   integrity sha512-t73xJJrvdTjXrn4jLS9VSGRbz0nUY3cl2DMGDU48lKl+HR9dbbjW2A9r3g40VA++mQpy6uuHg33gy7du2BKpog==
-
-"@types/cucumber@^7.0.0":
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/@types/cucumber/-/cucumber-7.0.0.tgz#941b25135a0212e315380ab39f7f674c66711b0b"
-  integrity sha512-cr5NN8/jmbw3vDKTQfGW0cSzDtkvxixu9bUD6po9U6OEF04XLuukTDldFG34ccDscLkA8bYnZ7VjxP79cIC7tg==
-  dependencies:
-    "@cucumber/cucumber" "*"
 
 "@types/express-serve-static-core@^4.17.18":
   version "4.17.24"
@@ -1426,7 +1412,7 @@ asynckit@^0.4.0:
   resolved "https://registry.yarnpkg.com/asynckit/-/asynckit-0.4.0.tgz#c79ed97f7f34cb8f2ba1bc9790bcc366474b4b79"
   integrity sha1-x57Zf380y48robyXkLzDZkdLS3k=
 
-axios@*, axios@^0.27.2:
+axios@^0.27.2:
   version "0.27.2"
   resolved "https://registry.yarnpkg.com/axios/-/axios-0.27.2.tgz#207658cc8621606e586c85db4b41a750e756d972"
   integrity sha512-t+yRIyySRTp/wua5xEr+z1q60QmLq8ABsS5O9Me1AsE5dfKqgnCFzwiCZZ/cGNd1lq4/7akDWMxdhVlucjmnOQ==

@@ -2,7 +2,7 @@
     "exec": "node --inspect -r dotenv/config -r ts-node/register -r tsconfig-paths/register ./src/main/index.ts",
     "ext": ".env, .json, .ts",
     "ignore": [
-        "**.spec.ts"
+        "**.test.ts"
     ],
     "watch": [
         "src/**/*",

@@ -36,8 +36,6 @@
   "devDependencies": {
     "@cucumber/cucumber": "^8.10.0",
     "@cucumber/pretty-formatter": "^1.0.0",
-    "@types/axios": "^0.14.0",
-    "@types/cucumber": "^7.0.0",
     "@types/express": "^4.17.13",
     "@types/faker": "^4.1.9",
     "@types/jest": "^25.1.2",
