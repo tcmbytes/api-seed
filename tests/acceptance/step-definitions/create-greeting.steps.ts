@@ -9,19 +9,11 @@ import {
   makeHandlersFactory,
 } from 'main/factory/api'
 import { makeExpressServer } from 'main/factory/drivers'
-import { makeContext, makeLogger } from 'shared/logger'
 import supertest, { Response } from 'supertest'
 import { CreateGreetingBody } from '../../e2e/types'
 
 const makeServer = () => {
-  const context = makeContext()
-  const logger = makeLogger({ context })
   const server = makeExpressServer()
-
-  const options = {
-    hostname: '',
-    port: 8080,
-  }
 
   const handlersFactory = makeHandlersFactory(apiHandlerFactories)
   const middlewaresFactory = makeHandlersFactory(apiMiddlewareFactories)
@@ -29,8 +21,6 @@ const makeServer = () => {
 
   setupServer({
     server,
-    logger,
-    options,
     handlersFactory,
     middlewaresFactory,
     errorHandersFactory,
