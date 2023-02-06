@@ -49,6 +49,7 @@
     "faker": "^4.1.0",
     "husky": "^8.0.0",
     "jest": "^27.0.0",
+    "jest-cucumber": "^3.0.1",
     "jest-html-reporters": "^1.2.1",
     "jest-mock-extended": "^2.0.7",
     "nodemon": "^2.0.19",
