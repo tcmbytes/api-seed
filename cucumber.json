@@ -14,7 +14,8 @@
       "tests/acceptance/step-definitions/**/*.ts"
     ],
     "requireModule": [
-      "ts-node/register"
+      "ts-node/register",
+      "tsconfig-paths/register"
     ]
   }
 }
