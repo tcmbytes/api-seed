@@ -4,6 +4,9 @@
     "lcov"
   ],
   "maxWorkers": "50%",
+  "modulePaths": [
+    "<rootDir>/src/"
+  ],
   "preset": "ts-jest",
   "reporters": [
     "default",
@@ -21,6 +24,7 @@
     "<rootDir>"
   ],
   "testMatch": [
-    "**/*.test.ts"
+    "**/*.test.ts",
+    "**/*.steps.ts"
   ]
 }
