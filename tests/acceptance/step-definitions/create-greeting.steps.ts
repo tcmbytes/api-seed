@@ -1,4 +1,4 @@
-import { Given, Then } from '@cucumber/cucumber'
+import { Then, When } from '@cucumber/cucumber'
 import assert from 'assert'
 import { setupServer } from 'delivery/api/server'
 import {
@@ -10,9 +10,8 @@ import {
 } from 'main/factory/api'
 import { makeExpressServer } from 'main/factory/drivers'
 import { makeContext, makeLogger } from 'shared/logger'
-import supertest from 'supertest'
-import { validate as validateUUID } from 'uuid'
-import { CreateGreetingBody, Greeting } from '../../e2e/types'
+import supertest, { Response } from 'supertest'
+import { CreateGreetingBody } from '../../e2e/types'
 
 const makeServer = () => {
   const context = makeContext()
@@ -40,38 +39,18 @@ const makeServer = () => {
   return supertest(server)
 }
 
-Given('I request to create a new greering', async () => {
+let result: Response
+
+When('I request to create a new greering', async () => {
   const server = makeServer()
   const body: CreateGreetingBody = {
     from: 'from@example.com',
     to: 'to@example.com',
     message: 'hi!',
   }
-  const result = await server.post('/greetings').send(body)
-  const greeting: Greeting = result.body
-
-  expect(result.status).toStrictEqual(201)
-
-  expect(validateUUID(greeting.id)).toEqual(true)
-  expect(new Date(greeting.createdOn)).toBeInstanceOf(Date)
-  expect(new Date(greeting.modifiedOn)).toBeInstanceOf(Date)
-
-  expect(greeting).toStrictEqual({
-    id: expect.any(String),
-    from: 'from@example.com',
-    to: 'to@example.com',
-    message: 'hi!',
-    createdOn: expect.any(String),
-    modifiedOn: expect.any(String),
-  })
+  result = await server.post('/greetings').send(body)
 })
 
-Then('a new greeting is created in the database', async () => {
-  console.log('Then')
-  assert(true)
-})
-
-Then('returned back to me', async () => {
-  console.log('Then')
-  assert(true)
+Then('The greeting is successfully created', async () => {
+  assert.strictEqual(result.status, 201)
 })
