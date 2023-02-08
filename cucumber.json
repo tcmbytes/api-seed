@@ -1,0 +1,23 @@
+{
+  "default": {
+    "publishQuiet": true,
+    "parallel": 2,
+    "format": [
+      "progress-bar",
+      "@cucumber/pretty-formatter",
+      "html:reports/acceptance-report.html"
+    ],
+    "paths": [
+      "tests/acceptance/features/**/*.feature"
+    ],
+    "require": [
+      "tests/acceptance/step-definitions/**/*.ts"
+    ],
+    "requireModule": [
+      "jest",
+      "ts-jest",
+      "ts-node/register",
+      "tsconfig-paths/register"
+    ]
+  }
+}

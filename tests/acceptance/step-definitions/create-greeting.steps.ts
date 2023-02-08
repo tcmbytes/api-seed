@@ -1,9 +1,9 @@
+import { Then, When } from '@cucumber/cucumber'
+import { expect } from 'chai'
 import { postGreetingHandler } from 'delivery/api/handlers'
 import { setupServer } from 'delivery/api/server'
 import { Generator, GreetingsRepo } from 'domain/boundaries'
 import { createGreetingUseCase } from 'domain/usecases'
-import { defineFeature, loadFeature } from 'jest-cucumber'
-import { mock } from 'jest-mock-extended'
 import {
   apiMiddlewareFactories,
   errorHandlerFactories,
@@ -13,6 +13,7 @@ import {
 import { HandlerFactories, HandlerFactory } from 'main/factory/api/types'
 import { makeExpressServer } from 'main/factory/drivers'
 import supertest, { Response } from 'supertest'
+import { stubInterface } from 'ts-sinon'
 import { CreateGreetingBody, Greeting } from '../../e2e/types'
 
 type Params = {
@@ -54,44 +55,39 @@ const makeServer = (params: Params) => {
   return supertest(server)
 }
 
-const feature = loadFeature('tests/acceptance/features/create-greeting.feature')
+const NOW = new Date('2022-07-20')
+const UUID = 'uuid'
 
-defineFeature(feature, (test) => {
-  test('Greeting is successfuly created', ({ when, then }) => {
-    let result: Response
-    let greeting: Greeting
+let result: Response
+let greeting: Greeting
 
-    const NOW = new Date('2022-07-20')
-    const UUID = 'uuid'
+When('I request to create a new greering', async () => {
+  const repo: GreetingsRepo = stubInterface<GreetingsRepo>()
 
-    when('I request to create a new greering', async () => {
-      const repo = mock<GreetingsRepo>()
-      const uuidGenerator = mock<Generator<string>>()
-      uuidGenerator.next.mockReturnValue(UUID)
+  const uuidGenerator = stubInterface<Generator<string>>()
+  uuidGenerator.next.returns(UUID)
 
-      const dateGenerator = mock<Generator<Date>>()
-      dateGenerator.next.mockReturnValue(NOW)
+  const dateGenerator = stubInterface<Generator<Date>>()
+  dateGenerator.next.returns(NOW)
 
-      const server = makeServer({ repo, dateGenerator, uuidGenerator })
-      const body: CreateGreetingBody = {
-        from: 'from@example.com',
-        to: 'to@example.com',
-        message: 'hi!',
-      }
-      result = await server.post('/greetings').send(body)
-      greeting = result.body
-    })
+  const server = makeServer({ repo, dateGenerator, uuidGenerator })
+  const body: CreateGreetingBody = {
+    from: 'from@example.com',
+    to: 'to@example.com',
+    message: 'hi!',
+  }
+  result = await server.post('/greetings').send(body)
+  greeting = result.body
+})
 
-    then('The greeting is successfully created', () => {
-      expect(result.status).toBe(201)
-      expect(greeting).toStrictEqual({
-        id: UUID,
-        from: 'from@example.com',
-        to: 'to@example.com',
-        message: 'hi!',
-        createdOn: NOW.toJSON(),
-        modifiedOn: NOW.toJSON(),
-      })
-    })
+Then('The greeting is successfully created', async () => {
+  expect(result.status).to.equal(201)
+  expect(greeting).to.eql({
+    id: UUID,
+    from: 'from@example.com',
+    to: 'to@example.com',
+    message: 'hi!',
+    createdOn: NOW.toJSON(),
+    modifiedOn: NOW.toJSON(),
   })
 })
