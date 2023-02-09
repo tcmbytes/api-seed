@@ -12,9 +12,8 @@ import {
 } from 'main/factory/api'
 import { HandlerFactories, HandlerFactory } from 'main/factory/api/types'
 import { makeExpressServer } from 'main/factory/drivers'
-import supertest, { Response } from 'supertest'
-import { stubInterface } from 'ts-sinon'
-import { CreateGreetingBody, Greeting } from '../../e2e/types'
+import supertest from 'supertest'
+import { dateGenerator, repo, state, uuidGenerator } from './common.steps'
 
 type Params = {
   repo: GreetingsRepo
@@ -57,36 +56,30 @@ const makeServer = (params: Params) => {
 
 const NOW = new Date('2022-07-20')
 const UUID = 'uuid'
+const FROM = 'from@example.com'
+const TO = 'to@example.com'
+const MESSAGE = 'Greetings!'
 
-let result: Response
-let greeting: Greeting
-
-When('I request to create a new greering', async () => {
-  const repo: GreetingsRepo = stubInterface<GreetingsRepo>()
-
-  const uuidGenerator = stubInterface<Generator<string>>()
+When('I create a new greeting', async () => {
   uuidGenerator.next.returns(UUID)
-
-  const dateGenerator = stubInterface<Generator<Date>>()
   dateGenerator.next.returns(NOW)
 
   const server = makeServer({ repo, dateGenerator, uuidGenerator })
-  const body: CreateGreetingBody = {
-    from: 'from@example.com',
-    to: 'to@example.com',
-    message: 'hi!',
+  const body = {
+    from: FROM,
+    to: TO,
+    message: MESSAGE,
   }
-  result = await server.post('/greetings').send(body)
-  greeting = result.body
+  state.response = await server.post('/greetings').send(body)
 })
 
-Then('The greeting is successfully created', async () => {
-  expect(result.status).to.equal(201)
-  expect(greeting).to.eql({
+Then('I receive the newly created greeting', async () => {
+  expect(state.response?.status).to.equal(201)
+  expect(state.response?.body).to.eql({
     id: UUID,
-    from: 'from@example.com',
-    to: 'to@example.com',
-    message: 'hi!',
+    from: FROM,
+    to: TO,
+    message: MESSAGE,
     createdOn: NOW.toJSON(),
     modifiedOn: NOW.toJSON(),
   })
