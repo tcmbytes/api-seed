@@ -1,7 +1,6 @@
 {
   "default": {
     "publishQuiet": true,
-    "parallel": 2,
     "format": [
       "progress-bar",
       "@cucumber/pretty-formatter",
