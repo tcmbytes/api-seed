@@ -1,6 +1,6 @@
 import { Before, Given, Then } from '@cucumber/cucumber'
 import { expect } from 'chai'
-import { GreetingsRepo } from 'domain/boundaries'
+import { Generator, GreetingsRepo } from 'domain/boundaries'
 import { GreetingBuilder } from 'domain/types'
 import faker from 'faker'
 import { Response } from 'supertest'
@@ -17,9 +17,13 @@ export const GREETING = GreetingBuilder.build()
 export const INVALID_UUID = faker.random.uuid()
 
 export const repo = stubInterface<GreetingsRepo>()
+export const uuidGenerator = stubInterface<Generator<string>>()
+export const dateGenerator = stubInterface<Generator<Date>>()
 
 Before(() => {
   repo.findById.resolves(undefined)
+  uuidGenerator.next.resolves(undefined)
+  dateGenerator.next.resolves(undefined)
 })
 
 Given('I have previously created a greeting', async () => {
