@@ -1,58 +1,8 @@
 import { Then, When } from '@cucumber/cucumber'
 import { expect } from 'chai'
-import { putGreetingHandler } from 'delivery/api/handlers'
-import { setupServer } from 'delivery/api/server'
-import { Generator, GreetingsRepo } from 'domain/boundaries'
-import { updateGreetingUseCase } from 'domain/usecases'
-import {
-  apiMiddlewareFactories,
-  errorHandlerFactories,
-  makeErrorHandlersFactory,
-  makeHandlersFactory,
-} from 'main/factory/api'
-import { HandlerFactories, HandlerFactory } from 'main/factory/api/types'
-import { makeExpressServer } from 'main/factory/drivers'
-import supertest from 'supertest'
 import { UpdateGreetingBody } from '../../e2e/types'
+import { makeServer } from '../shared'
 import { dateGenerator, GREETING, INVALID_UUID, repo, state } from './common.steps'
-
-type Params = {
-  repo: GreetingsRepo
-  dateGenerator: Generator<Date>
-}
-
-const putGreetingHandlerFactory =
-  (params: Params): HandlerFactory =>
-  (_req, _res) => {
-    const { repo, dateGenerator } = params
-
-    const usecase = updateGreetingUseCase({ repo, dateGenerator })
-
-    return putGreetingHandler({
-      usecase,
-    })
-  }
-
-const makeServer = (params: Params) => {
-  const server = makeExpressServer()
-
-  const handlerFactories: HandlerFactories = {
-    putGreetingHandler: putGreetingHandlerFactory(params),
-  }
-
-  const handlersFactory = makeHandlersFactory(handlerFactories)
-  const middlewaresFactory = makeHandlersFactory(apiMiddlewareFactories)
-  const errorHandersFactory = makeErrorHandlersFactory(errorHandlerFactories)
-
-  setupServer({
-    server,
-    handlersFactory,
-    middlewaresFactory,
-    errorHandersFactory,
-  })
-
-  return supertest(server)
-}
 
 const NOW = new Date()
 const MESSAGE = 'New message'
