@@ -7,7 +7,7 @@
       "html:reports/acceptance-report.html"
     ],
     "paths": [
-      "tests/acceptance/features/**/*.feature"
+      "documentation/requirements/**/*.feature"
     ],
     "require": [
       "tests/acceptance/step-definitions/**/*.ts"
