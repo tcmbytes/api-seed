@@ -1,10 +1,10 @@
 import { Response } from 'supertest'
 import { callEndpoint, Method } from '../shared'
-import { Greeting } from '../types'
+import { GreetingBody } from '../types'
 
 describe('Manage greetings flow', () => {
   let response: Response
-  let greeting: Greeting
+  let greeting: GreetingBody
 
   test('successfully creates, gets, edits and deletes greetings', async () => {
     response = await callEndpoint(Method.POST, '/greetings', {

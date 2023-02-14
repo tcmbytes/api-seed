@@ -1,4 +1,4 @@
-export type Greeting = {
+export type GreetingBody = {
   id: string
   from: string
   to: string
