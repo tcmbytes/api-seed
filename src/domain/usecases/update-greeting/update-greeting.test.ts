@@ -1,7 +1,7 @@
-import { Generator, GreetingsRepo } from '../../boundaries'
 import { mock, mockClear } from 'jest-mock-extended'
+import { Generator, GreetingsRepo } from '../../boundaries'
 
-import { GreetingBuilder } from '../../types'
+import { GreetingBuilder } from '@tests/shared'
 import { GreetingNotFoundError } from '../../errors'
 import { updateGreetingUseCase } from './update-greeting'
 

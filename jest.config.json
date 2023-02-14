@@ -7,6 +7,9 @@
   "modulePaths": [
     "<rootDir>/src/"
   ],
+  "moduleNameMapper": {
+    "^@tests/(.*)$": "<rootDir>/tests/$1"
+  },
   "preset": "ts-jest",
   "reporters": [
     "default",

@@ -1,6 +1,6 @@
 import { mock, mockClear } from 'jest-mock-extended'
 
-import { GreetingBuilder } from '../../types'
+import { GreetingBuilder } from '@tests/shared'
 import { GreetingsRepo } from '../../boundaries'
 import { listGreetingsUseCase } from './list-greetings'
 

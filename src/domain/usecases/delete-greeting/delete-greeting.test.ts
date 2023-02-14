@@ -1,8 +1,8 @@
 import { mock, mockClear } from 'jest-mock-extended'
 
-import { GreetingBuilder } from '../../types'
-import { GreetingNotFoundError } from '../../errors'
+import { GreetingBuilder } from '@tests/shared'
 import { GreetingsRepo } from '../../boundaries'
+import { GreetingNotFoundError } from '../../errors'
 import { deleteGreetingUseCase } from './delete-greeting'
 
 describe('deleteGreetingUseCase should', () => {

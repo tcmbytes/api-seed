@@ -1,6 +1,6 @@
 import { Given, Then, When } from '@cucumber/cucumber'
+import { GreetingBuilder } from '@tests/shared'
 import { expect } from 'chai'
-import { GreetingBuilder } from 'domain/types'
 import { makeServer } from '../shared'
 import { repo, state } from './common.steps'
 

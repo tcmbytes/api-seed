@@ -18,6 +18,9 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "outDir": ".build",
+    "paths":{
+      "@tests/*": ["../tests/*"]
+    },
     "pretty": true,
     "resolveJsonModule": true,
     "sourceMap": true,

@@ -1,6 +1,6 @@
-import { Builder } from '../boundaries'
-import { Greeting } from './Greeting'
+import { Greeting } from 'domain/types/Greeting'
 import faker from 'faker'
+import { Builder } from './Builder'
 
 const storage = {
   id: faker.random.uuid(),
