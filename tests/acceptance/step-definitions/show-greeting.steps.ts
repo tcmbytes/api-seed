@@ -1,6 +1,6 @@
 import { Then, When } from '@cucumber/cucumber'
 import { expect } from 'chai'
-import { makeTestsServer } from 'main/factory/drivers'
+import { makeTestsServer } from '@main/factory/drivers'
 import { dateGenerator, GREETING, INVALID_UUID, repo, state, uuidGenerator } from './common.steps'
 
 When('I request the greeting details', async () => {

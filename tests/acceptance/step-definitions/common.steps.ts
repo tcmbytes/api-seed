@@ -1,7 +1,7 @@
 import { Before, Given, Then } from '@cucumber/cucumber'
 import { GreetingBuilder } from '@tests/shared'
 import { expect } from 'chai'
-import { Generator, GreetingsRepo } from 'domain/boundaries'
+import { Generator, GreetingsRepo } from '@domain/boundaries'
 import faker from 'faker'
 import { Response } from 'supertest'
 import { stubInterface } from 'ts-sinon'

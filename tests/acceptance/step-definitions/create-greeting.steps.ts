@@ -1,6 +1,6 @@
 import { Then, When } from '@cucumber/cucumber'
 import { expect } from 'chai'
-import { makeTestsServer } from 'main/factory/drivers'
+import { makeTestsServer } from '@main/factory/drivers'
 import { dateGenerator, repo, state, uuidGenerator } from './common.steps'
 
 const NOW = new Date('2022-07-20')
