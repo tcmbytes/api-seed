@@ -1,6 +1,11 @@
 import { cleanEnv, port, str } from 'envalid'
 
-export const config = cleanEnv(
+export type Config = {
+  HOSTNAME: string
+  PORT: number
+}
+
+export const config = cleanEnv<Config>(
   process.env,
   {
     HOSTNAME: str({ default: '', desc: 'Server hostname' }),

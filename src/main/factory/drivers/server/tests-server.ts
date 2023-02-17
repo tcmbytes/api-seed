@@ -4,25 +4,20 @@ import {
   getGreetingsHandler,
   postGreetingHandler,
   putGreetingHandler,
-} from 'delivery/api/handlers'
-import { setupServer } from 'delivery/api/server'
-import { Generator, GreetingsRepo } from 'domain/boundaries'
+} from '@delivery/api/handlers'
+import { setupServer } from '@delivery/api/server'
+import { Generator, GreetingsRepo } from '@domain/boundaries'
 import {
   createGreetingUseCase,
   deleteGreetingUseCase,
   listGreetingsUseCase,
   showGreetingUseCase,
   updateGreetingUseCase,
-} from 'domain/usecases'
+} from '@domain/usecases'
 import express from 'express'
-import {
-  apiMiddlewareFactories,
-  errorHandlerFactories,
-  makeErrorHandlersFactory,
-  makeHandlersFactory,
-} from 'main/factory/api'
-import { HandlerFactories, HandlerFactory } from 'main/factory/api/types'
 import supertest from 'supertest'
+import { apiMiddlewareFactories, errorHandlerFactories, makeErrorHandlersFactory, makeHandlersFactory } from '../../api'
+import { HandlerFactories, HandlerFactory } from '../../api/types'
 
 type Params = {
   repo: GreetingsRepo

@@ -1,7 +1,7 @@
-import { makeLogger, plainMap, withLogging, WithLoggingGreetingRepo } from 'shared/logger'
+import { makeLogger, plainMap, withLogging, WithLoggingGreetingRepo } from '@shared/logger'
 
-import { deleteGreetingHandler } from 'delivery/api/handlers'
-import { deleteGreetingUseCase } from 'domain/usecases'
+import { deleteGreetingHandler } from '@delivery/api/handlers'
+import { deleteGreetingUseCase } from '@domain/usecases'
 import { getSharedGreetingsRepo } from '../../repositories'
 import { HandlerFactory } from '../types'
 import { makeContextFromRequest } from '../utils'

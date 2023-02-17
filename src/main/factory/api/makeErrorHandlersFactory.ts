@@ -1,6 +1,6 @@
-import { AbstractFactory } from 'delivery/api/types'
-import { ErrorHandlerFactories } from './types'
+import { AbstractFactory } from '@delivery/api/types'
 import { ErrorRequestHandler } from 'express'
+import { ErrorHandlerFactories } from './types'
 
 export const makeErrorHandlersFactory = (factories: ErrorHandlerFactories): AbstractFactory<ErrorRequestHandler> => ({
   make: make(factories),

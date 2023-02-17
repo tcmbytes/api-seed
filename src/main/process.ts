@@ -1,4 +1,4 @@
-import { Logger } from 'shared/logger'
+import { Logger } from '@shared/logger'
 
 type Params = {
   process: NodeJS.Process

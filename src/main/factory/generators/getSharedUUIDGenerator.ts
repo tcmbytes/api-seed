@@ -1,4 +1,4 @@
-import { Generator } from 'domain/boundaries'
+import { Generator } from '@domain/boundaries'
 import { v4 } from 'uuid'
 
 const instance = {

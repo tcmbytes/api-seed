@@ -1,4 +1,4 @@
-import { Generator } from 'domain/boundaries'
+import { Generator } from '@domain/boundaries'
 
 const instance = {
   next: () => new Date(),

@@ -1,4 +1,4 @@
-import { setupServer } from 'delivery/api/server'
+import { setupServer } from '@delivery/api/server'
 import express, { Express } from 'express'
 import {
   apiHandlerFactories,

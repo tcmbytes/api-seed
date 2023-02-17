@@ -1,4 +1,4 @@
-import { AbstractFactory } from 'delivery/api/types'
+import { AbstractFactory } from '@delivery/api/types'
 import { Handler } from 'express'
 import { HandlerFactories } from './types'
 
