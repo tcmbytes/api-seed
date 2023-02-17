@@ -23,7 +23,6 @@ import {
 } from 'main/factory/api'
 import { HandlerFactories, HandlerFactory } from 'main/factory/api/types'
 import supertest from 'supertest'
-import { dateGenerator, repo, uuidGenerator } from '../step-definitions/common.steps'
 
 type Params = {
   repo: GreetingsRepo
@@ -31,21 +30,15 @@ type Params = {
   uuidGenerator: Generator<string>
 }
 
-export const makeServer = (params: Partial<Params>) => {
-  const options = {
-    repo,
-    dateGenerator,
-    uuidGenerator,
-    ...params,
-  }
+export const makeTestsServer = (params: Params) => {
   const server = express()
 
   const handlerFactories: HandlerFactories = {
-    deleteGreetingHandler: deleteGreetingHandlerFactory(options),
-    getGreetingHandler: getGreetingHandlerFactory(options),
-    getGreetingsHandler: getGreetingsHandlerFactory(options),
-    postGreetingHandler: postGreetingHandlerFactory(options),
-    putGreetingHandler: putGreetingHandlerFactory(options),
+    deleteGreetingHandler: deleteGreetingHandlerFactory(params),
+    getGreetingHandler: getGreetingHandlerFactory(params),
+    getGreetingsHandler: getGreetingsHandlerFactory(params),
+    postGreetingHandler: postGreetingHandlerFactory(params),
+    putGreetingHandler: putGreetingHandlerFactory(params),
   }
 
   const handlersFactory = makeHandlersFactory(handlerFactories)

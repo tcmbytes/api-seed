@@ -6,9 +6,9 @@ import {
   errorHandlerFactories,
   makeErrorHandlersFactory,
   makeHandlersFactory,
-} from '../api'
+} from '../../api'
 
-export const makeExpressServer = (): Express => {
+export const makeProductionServer = (): Express => {
   const server = express()
 
   const handlersFactory = makeHandlersFactory(apiHandlerFactories)

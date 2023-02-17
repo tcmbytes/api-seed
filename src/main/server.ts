@@ -1,13 +1,13 @@
 import { Logger } from 'shared/logger'
 import { config } from './config'
-import { makeExpressServer } from './factory/drivers'
+import { makeProductionServer } from './factory/drivers'
 
 type Params = {
   logger: Logger
 }
 
 export const setupServerListerners = (params: Params) => {
-  const server = makeExpressServer()
+  const server = makeProductionServer()
 
   const { logger } = params
   const { HOSTNAME, PORT } = config

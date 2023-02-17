@@ -1,6 +1,6 @@
 import { Then, When } from '@cucumber/cucumber'
 import { expect } from 'chai'
-import { makeServer } from '../shared'
+import { makeTestsServer } from 'main/factory/drivers'
 import { dateGenerator, repo, state, uuidGenerator } from './common.steps'
 
 const NOW = new Date('2022-07-20')
@@ -13,7 +13,7 @@ When('I create a new greeting', async () => {
   uuidGenerator.next.returns(UUID)
   dateGenerator.next.returns(NOW)
 
-  const server = makeServer({ repo, dateGenerator, uuidGenerator })
+  const server = makeTestsServer({ repo, dateGenerator, uuidGenerator })
   const body = {
     from: FROM,
     to: TO,

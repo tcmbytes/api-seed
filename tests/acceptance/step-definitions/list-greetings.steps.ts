@@ -1,8 +1,8 @@
 import { Given, Then, When } from '@cucumber/cucumber'
 import { GreetingBuilder } from '@tests/shared'
 import { expect } from 'chai'
-import { makeServer } from '../shared'
-import { repo, state } from './common.steps'
+import { makeTestsServer } from 'main/factory/drivers'
+import { dateGenerator, repo, state, uuidGenerator } from './common.steps'
 
 const greetings = [GreetingBuilder.build(), GreetingBuilder.build(), GreetingBuilder.build(), GreetingBuilder.build()]
 
@@ -11,7 +11,7 @@ Given('I have a bunch of greetings created', async () => {
 })
 
 When('I request to list all greetings', async () => {
-  const server = makeServer({ repo })
+  const server = makeTestsServer({ repo, dateGenerator, uuidGenerator })
 
   state.response = await server.get('/greetings').send()
 })

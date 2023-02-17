@@ -1,7 +1,7 @@
 import { Then, When } from '@cucumber/cucumber'
 import { expect } from 'chai'
-import { makeServer } from '../shared'
-import { dateGenerator, GREETING, INVALID_UUID, repo, state } from './common.steps'
+import { makeTestsServer } from 'main/factory/drivers'
+import { dateGenerator, GREETING, INVALID_UUID, repo, state, uuidGenerator } from './common.steps'
 
 const NOW = new Date()
 const MESSAGE = 'New message'
@@ -9,7 +9,7 @@ const MESSAGE = 'New message'
 When('I update the greeting', async () => {
   dateGenerator.next.returns(NOW)
 
-  const server = makeServer({ repo, dateGenerator })
+  const server = makeTestsServer({ repo, dateGenerator, uuidGenerator })
   const body = {
     message: MESSAGE,
   }
@@ -29,7 +29,7 @@ Then('I receive the updated greeting', async () => {
 })
 
 When('I try to update a greeting that does not exist', async () => {
-  const server = makeServer({ repo, dateGenerator })
+  const server = makeTestsServer({ repo, dateGenerator, uuidGenerator })
   const body = {
     message: MESSAGE,
   }
