@@ -14,6 +14,7 @@ import {
   showGreetingUseCase,
   updateGreetingUseCase,
 } from 'domain/usecases'
+import express from 'express'
 import {
   apiMiddlewareFactories,
   errorHandlerFactories,
@@ -21,7 +22,6 @@ import {
   makeHandlersFactory,
 } from 'main/factory/api'
 import { HandlerFactories, HandlerFactory } from 'main/factory/api/types'
-import { makeExpressServer } from 'main/factory/drivers'
 import supertest from 'supertest'
 import { dateGenerator, repo, uuidGenerator } from '../step-definitions/common.steps'
 
@@ -38,7 +38,7 @@ export const makeServer = (params: Partial<Params>) => {
     uuidGenerator,
     ...params,
   }
-  const server = makeExpressServer()
+  const server = express()
 
   const handlerFactories: HandlerFactories = {
     deleteGreetingHandler: deleteGreetingHandlerFactory(options),

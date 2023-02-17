@@ -1,13 +1,5 @@
-import { setupServer } from 'delivery/api/server'
 import { Logger } from 'shared/logger'
 import { config } from './config'
-import {
-  apiHandlerFactories,
-  apiMiddlewareFactories,
-  errorHandlerFactories,
-  makeErrorHandlersFactory,
-  makeHandlersFactory,
-} from './factory/api'
 import { makeExpressServer } from './factory/drivers'
 
 type Params = {
@@ -15,21 +7,10 @@ type Params = {
 }
 
 export const setupServerListerners = (params: Params) => {
-  const { logger } = params
-  const { HOSTNAME, PORT } = config
-
   const server = makeExpressServer()
 
-  const handlersFactory = makeHandlersFactory(apiHandlerFactories)
-  const middlewaresFactory = makeHandlersFactory(apiMiddlewareFactories)
-  const errorHandersFactory = makeErrorHandlersFactory(errorHandlerFactories)
-
-  setupServer({
-    server,
-    handlersFactory,
-    middlewaresFactory,
-    errorHandersFactory,
-  })
+  const { logger } = params
+  const { HOSTNAME, PORT } = config
 
   server
     .listen(PORT, HOSTNAME, () => {
