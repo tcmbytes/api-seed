@@ -2,13 +2,15 @@
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
     "alwaysStrict": true,
-    "baseUrl": "./src",
+    "baseUrl": "./",
     "declaration": true,
     "esModuleInterop": true,
-    "forceConsistentCasingInFileNames":true,
+    "forceConsistentCasingInFileNames": true,
     "incremental": true,
     "inlineSources": true,
-    "lib": ["ES2020"],
+    "lib": [
+      "ES2020"
+    ],
     "module": "CommonJS",
     "moduleResolution": "node",
     "noFallthroughCasesInSwitch": true,
@@ -18,9 +20,13 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "outDir": ".build",
-    "paths":{
-      "@*": ["./*"],
-      "@tests/*": ["../tests/*"]
+    "paths": {
+      "@*": [
+        "./src/*"
+      ],
+      "@tests/*": [
+        "./tests/*"
+      ],
     },
     "pretty": true,
     "resolveJsonModule": true,
@@ -29,11 +35,13 @@
     "strictNullChecks": true,
     "skipLibCheck": true,
     "target": "ES2020",
-    "types": ["node", "jest"],
-    "typeRoots": ["./node_modules/@types"],
+    "types": [
+      "node",
+      "jest"
+    ],
   },
   "include": [
-    "./src/**/*.ts", 
+    "./src/**/*.ts",
     "./tests/**/*.ts"
   ]
 }
