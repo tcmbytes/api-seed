@@ -1,5 +1,5 @@
 import { ErrorHandlerConstructor } from '../types'
-import { Logger } from 'shared/logger'
+import { Logger } from '@shared/logger'
 
 type Params = {
   logger: Logger

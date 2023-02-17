@@ -1,6 +1,6 @@
-import { GreetingNotFoundError } from 'domain/errors'
+import { GreetingNotFoundError } from '@domain/errors'
 import { RouteHandlerConstructor } from '../types'
-import { UpdateGreetingUseCase } from 'domain/usecases'
+import { UpdateGreetingUseCase } from '@domain/usecases'
 
 type Params = {
   usecase: UpdateGreetingUseCase

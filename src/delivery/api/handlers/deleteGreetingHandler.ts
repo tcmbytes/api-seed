@@ -1,5 +1,5 @@
-import { DeleteGreetingUseCase } from 'domain/usecases'
-import { GreetingNotFoundError } from 'domain/errors'
+import { DeleteGreetingUseCase } from '@domain/usecases'
+import { GreetingNotFoundError } from '@domain/errors'
 import { RouteHandlerConstructor } from '../types'
 
 type Params = {
