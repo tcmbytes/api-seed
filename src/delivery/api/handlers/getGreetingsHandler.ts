@@ -1,4 +1,4 @@
-import { ListGreetingsUseCase } from 'domain/usecases'
+import { ListGreetingsUseCase } from '@domain/usecases'
 import { RouteHandlerConstructor } from '../types'
 
 type Params = {

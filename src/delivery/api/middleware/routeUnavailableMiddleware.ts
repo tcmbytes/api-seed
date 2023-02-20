@@ -1,4 +1,4 @@
-import { Logger } from 'shared/logger'
+import { Logger } from '@shared/logger'
 import { RouteHandlerConstructor } from '../types'
 
 type Params = {

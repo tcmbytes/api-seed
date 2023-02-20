@@ -1,6 +1,6 @@
 import { plainMap, withLogging } from './withLogging'
 
-import { GreetingsRepo } from 'domain/boundaries'
+import { GreetingsRepo } from '@domain/boundaries'
 import { Logger } from './types'
 
 type Params = {

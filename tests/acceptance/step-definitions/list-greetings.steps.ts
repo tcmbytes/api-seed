@@ -1,7 +1,7 @@
 import { Given, Then, When } from '@cucumber/cucumber'
 import { GreetingBuilder } from '@tests/shared'
 import { expect } from 'chai'
-import { makeTestsServer } from 'main/factory/drivers'
+import { makeTestsServer } from '@main/factory/drivers'
 import { dateGenerator, repo, state, uuidGenerator } from './common.steps'
 
 const greetings = [GreetingBuilder.build(), GreetingBuilder.build(), GreetingBuilder.build(), GreetingBuilder.build()]
