@@ -62,20 +62,20 @@ HOSTNAME='localhost'
 PORT=8080
 ```
 
-### Start local web server
+### Run in development mode
 
-To start the app on a local server, run the following command from the root directoy of the project:
+To start the project in development mode, run the following command from the root directoy of the project:
 
 ```bash
-$ yarn api:start
+$ yarn dev
 ```
 
-### Watch mode
+### Run in watch mode
 
 To continuously watch for file changes and check for syntax errors, run the following command:
 
 ```bash
-$ yarn api:watch
+$ yarn dev:watch
 ```
 
 ### Run unit tests
@@ -92,23 +92,9 @@ To continuously run the unit tests as you code, run the following command:
 $ yarn test:watch
 ```
 
-The generated tests reports are available in `./reports/summary.html` file.
+The generated tests reports are available in `./reports/test-results.html` file.
 
-### Run end-2-end tests
-
-To run the end-2-end test, make sure to have the app running:
-
-```bash 
-$ yarn api:watch
-```
-
- and then run the following command from the root directoy of the project:
-
-```bash
-$ yarn test:e2e
-```
-
-### Code coverage
+### Generate code coverage report
 
 To generate the coverage report for your app, run the following command:
 
@@ -117,6 +103,44 @@ $ yarn test:coverage
 ```
 
 The generated report is available in `./reports/coverage` directory.
+
+### Build for production
+
+To transpile the `TypeScript` files into `JavaScript`, run the following command from the root directoy of the project:
+
+```bash
+$ yarn build
+```
+
+### Run for production
+
+To build and start the transpiled project, run the following command from the root directoy of the project:
+
+```bash
+$ yarn start
+```
+
+### Project checks
+
+To run type, linting and prettier checks on your project, run the following command from the root directoy of the project:
+
+```bash
+$ yarn check:all
+```
+
+Alternatively, you can run the scripts independently:
+
+```bash
+$ yarn check:type
+$ yarn check:lint
+$ yarn check:prettier
+```
+
+Futhermore, to check for project dependency cycles, run the following command from the root directoy of the project:
+
+```bash
+$ yarn check:dpdm
+```
 
 ### Docker
 
