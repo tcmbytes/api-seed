@@ -1,9 +1,9 @@
 import { Greeting } from '@domain/types/Greeting'
-import faker from 'faker'
+import { faker } from '@faker-js/faker'
 import { Builder } from './Builder'
 
 const storage = {
-  id: faker.random.uuid(),
+  id: faker.datatype.uuid(),
   from: faker.internet.email(),
   to: faker.internet.email(),
   message: faker.lorem.sentence(),

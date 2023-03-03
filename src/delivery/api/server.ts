@@ -1,4 +1,4 @@
-import express, { ErrorRequestHandler, Express, Handler } from 'express'
+import express, { ErrorRequestHandler, Express, Handler, RequestHandler } from 'express'
 
 import swaggerUi from 'swagger-ui-express'
 import YAML from 'yamljs'
@@ -32,5 +32,5 @@ export const setupServer = (params: Params) => {
 
 const setDocsRoute = (server: Express) => {
   const apiDefinition = YAML.load('./src/delivery/api/openapi.yml')
-  server.use('/docs', swaggerUi.serve, swaggerUi.setup(apiDefinition))
+  server.use('/docs', swaggerUi.serve as Array<RequestHandler>, swaggerUi.setup(apiDefinition) as RequestHandler)
 }

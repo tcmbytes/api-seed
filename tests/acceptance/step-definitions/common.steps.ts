@@ -1,8 +1,8 @@
 import { Before, Given, Then } from '@cucumber/cucumber'
+import { Generator, GreetingsRepo } from '@domain/boundaries'
+import { faker } from '@faker-js/faker'
 import { GreetingBuilder } from '@tests/shared'
 import { expect } from 'chai'
-import { Generator, GreetingsRepo } from '@domain/boundaries'
-import faker from 'faker'
 import { Response } from 'supertest'
 import { stubInterface } from 'ts-sinon'
 
@@ -14,7 +14,7 @@ export const state: State = {
   response: undefined,
 }
 export const GREETING = GreetingBuilder.build()
-export const INVALID_UUID = faker.random.uuid()
+export const INVALID_UUID = faker.datatype.uuid()
 
 export const repo = stubInterface<GreetingsRepo>()
 export const uuidGenerator = stubInterface<Generator<string>>()
