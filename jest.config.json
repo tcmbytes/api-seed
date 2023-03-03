@@ -1,12 +1,9 @@
 {
-  "coverageDirectory": "<rootDir>/reports/coverage",
+  "coverageDirectory": "./reports/coverage",
   "coverageReporters": [
     "lcov"
   ],
   "maxWorkers": "50%",
-  "modulePaths": [
-    "<rootDir>/src/"
-  ],
   "moduleNameMapper": {
     "^@/(.*)$": "<rootDir>/src/$1",
     "^@tests/(.*)$": "<rootDir>/tests/$1"
@@ -17,18 +14,21 @@
     [
       "jest-html-reporters",
       {
-        "publicPath": "reports",
-        "filename": "summary.html",
+        "publicPath": "./reports",
+        "filename": "test-results.html",
         "expand": true,
         "theme": "darkTheme"
       }
+    ],
+    [
+      "jest-junit",
+      {
+        "outputDirectory": "./reports",
+        "outputName": "test-results.xml"
+      }
     ]
   ],
-  "roots": [
-    "<rootDir>"
-  ],
   "testMatch": [
-    "**/*.test.ts",
-    "**/*.steps.ts"
+    "**/*.test.ts"
   ]
 }

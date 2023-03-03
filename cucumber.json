@@ -4,7 +4,8 @@
     "format": [
       "progress-bar",
       "@cucumber/pretty-formatter",
-      "html:reports/acceptance-report.html"
+      "html:reports/acceptance-results.html",
+      "json:reports/acceptance-results.json"
     ],
     "paths": [
       "documentation/requirements/**/*.feature"
