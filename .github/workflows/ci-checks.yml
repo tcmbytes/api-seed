@@ -20,7 +20,7 @@ jobs:
     - name: Install dependencies
       run: yarn
     - name: Acceptance tests
-      uses: yarn test:acceptance
+      run: yarn test:acceptance
     - name: Functional tests
       uses: ArtiomTr/jest-coverage-report-action@v2.2.1
       with:
