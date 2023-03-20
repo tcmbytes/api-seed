@@ -1,7 +1,10 @@
 {
   "coverageDirectory": "./reports/coverage",
   "coverageReporters": [
-    "lcov"
+    "clover",
+    "json",
+    "lcov",
+    "text"
   ],
   "maxWorkers": "50%",
   "moduleNameMapper": {
